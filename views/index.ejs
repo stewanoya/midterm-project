@@ -16,12 +16,12 @@
     <h1>All Quizzes🥔</h1>
     <div class="container">
       <ol class="quiz-list">
-        <% if (locals.quizzes) { %> <% for (quiz of quizzes) { %>
+        <% for (quiz of quizzes) { %>
         <li>
           <%=quiz.title%>
           <img src="<%=quiz.cover_image_url%>" width="200" height="200" />
         </li>
-        <%}%> <%}%>
+        <%}%>
       </ol>
     </div>
   </body>
