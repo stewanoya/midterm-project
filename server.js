@@ -36,11 +36,13 @@ app.use(express.static("public"));
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
+const quizzesRoutes = require("./routes/quizzes");
 const widgetsRoutes = require("./routes/widgets");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
+// app.use("/quizzes", quizzesRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
@@ -63,6 +65,29 @@ app.get("/", (req, res) => {
       return err.message;
     });
 });
+
+app.get("/quizzes/:quizid", (req, res) => {
+  db.query(`SELECT quizzes.category, quizzes.title, questions_answers.*
+  FROM questions_answers
+  JOIN quizzes ON quizzes.id = quiz_id
+  WHERE quiz_id = $1;`,
+  [req.params.quizid])
+    .then(data => {
+
+      const quizzes = data.rows
+      const templateVars = {
+        quizzes
+      };
+      res.render( "quizzes", templateVars);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+});
+
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
