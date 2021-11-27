@@ -49,7 +49,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  db.query(`SELECT * from quizzes;`)
+  db.query(`SELECT * from quizzes LIMIT 15;`)
     .then((data) => {
       const quizzes = data.rows;
       return quizzes;
