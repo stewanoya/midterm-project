@@ -11,22 +11,44 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap" rel="stylesheet">
   </head>
 
   <body>
 
     <%- include('partials/_header') %>
 
-    <h1>All Quizzes🥔</h1>
+    <!-- utility div to provide spacing for fixed header -->
+    <div class="spacer"></div>
+    <section class="jumbotron">
+        Some image with get started button
+    </section>
+
     <div class="container">
-      <ol class="quiz-list">
+      <section class="call-to-action">
+        <h2 class="slogan">
+          Welcome to (quizappname)!
+        </h2>
+      </section>
+    </div>
+
+
+    <section class="quiz-container">
+      <h2 class="quiz-list-title">Quizzes</h2>
+      <ul class="quiz-grid">
         <% for (quiz of quizzes) { %>
-        <li>
-          <%=quiz.title%>
-          <img src="<%=quiz.cover_image_url%>" width="200" height="200" />
+          <!-- replace anchor link with the link id url -->
+          <a href='#'>
+        <li class="quiz-card" style="background-image: url('<%=quiz.cover_image_url%>'); background-size: contain;">
+          <div class="quiz-title-container">
+          <h3 class="quiz-title"><%=quiz.title%></h3>
+      </div>
         </li>
+      </a>
         <%}%>
       </ol>
-    </div>
+    </section>
   </body>
 </html>
