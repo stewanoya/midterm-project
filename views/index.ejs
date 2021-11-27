@@ -17,7 +17,10 @@
     <div class="container">
       <ol class="quiz-list">
         <% for (quiz of quizzes) { %>
-        <li><%=quiz.category%></li>
+        <li>
+          <%=quiz.title%>
+          <img src="<%=quiz.cover_image_url%>" width="200" height="200" />
+        </li>
         <%}%>
       </ol>
     </div>
