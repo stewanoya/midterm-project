@@ -22,9 +22,11 @@
 
     <!-- utility div to provide spacing for fixed header -->
     <div class="spacer"></div>
-    <section class="jumbotron">
+    <div class="flex-container">
+      <section class="jumbotron">
         Some image with get started button
-    </section>
+      </section>
+    </div>
 
     <section class="call-to-action">
         <!-- might change color for contrast -->
@@ -38,21 +40,22 @@
       </div>
       </section>
 
-
-    <section class="quiz-container">
-      <h2 class="quiz-list-title">Featured sQuizzes</h2>
-      <ul class="quiz-grid">
-        <% for (quiz of quizzes) { %>
-          <!-- replace anchor link with the link id url -->
-          <a href='#'>
-        <li class="quiz-card" style="background-image: url('<%=quiz.cover_image_url%>'); background-size: contain;">
-          <div class="quiz-title-container">
-          <h3 class="quiz-title"><%=quiz.title%></h3>
-      </div>
-        </li>
-      </a>
+      <div class="flex-container">
+      <section class="quiz-container">
+        <h2 class="quiz-list-title">Featured sQuizzes</h2>
+        <ul class="quiz-grid">
+          <% for (quiz of quizzes) { %>
+            <!-- replace anchor link with the link id url -->
+            <a href='#'>
+              <li class="quiz-card" style="background-image: url('<%=quiz.cover_image_url%>'); background-size: contain;">
+                <div class="quiz-title-container">
+                  <h3 class="quiz-title"><%=quiz.title%></h3>
+                </div>
+              </li>
+            </a>
         <%}%>
-      </ol>
+      </ul>
     </section>
+  </div>
   </body>
 </html>
