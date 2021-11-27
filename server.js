@@ -48,6 +48,12 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
+app.post("/new-quiz", (req, res) => {
+  console.log('hello');
+  return res.redirect("/new-quiz");
+});
+
+
 app.get("/", (req, res) => {
   db.query(`SELECT * from quizzes;`)
     .then((data) => {
@@ -62,6 +68,10 @@ app.get("/", (req, res) => {
       console.log("this is the error", err.message);
       return err.message;
     });
+});
+
+app.get("/new-quiz", (req, res) => {
+  res.render("create-quiz");
 });
 
 app.listen(PORT, () => {
