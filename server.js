@@ -37,6 +37,7 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const quizzesRoutes = require("./routes/quizzes");
+const createquizRoutes = require("./routes/create-quiz");
 const widgetsRoutes = require("./routes/widgets");
 
 // Mount all resource routes
@@ -50,19 +51,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-app.post("/new-quiz", (req, res) => {
-  //console.log('hello');
-  console.log(req.body);
-  const isPublic = req.body.public || false;
-  db.query(`INSERT INTO quizzes (creator_id, title, isPublic, category, cover_image_url)
-  VALUES($1, $2, $3, $4 , $5)
-  RETURNING *;`,
-  [2, req.body.title, isPublic, req.body.category,req.body.image_url])
-    .then(result => result.rows[0])
-    .catch(err => console.error(err.message));
-  return res.redirect("/new-quiz");
-});
-
+app.use("/new-quiz", createquizRoutes(db));
 
 app.get("/", (req, res) => {
   db.query(`SELECT * from quizzes LIMIT 15;`)
@@ -78,10 +67,6 @@ app.get("/", (req, res) => {
       console.log("this is the error", err.message);
       return err.message;
     });
-});
-
-app.get("/new-quiz", (req, res) => {
-  res.render("create-quiz");
 });
 
 app.get("/quizzes/:quizid", (req, res) => {
