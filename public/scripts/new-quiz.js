@@ -1,9 +1,9 @@
 const loadQuestions = function(questionNum) {
-  const $questions = createTweetElement(questionNum);
+  const $questions = createQuestionElement(questionNum);
   $('#question-container').append($questions);
 };
 
-const createTweetElement = function(num) {
+const createQuestionElement = function(num) {
   let $questions = `
     <article class="q${num}-box">
       <label for="q${num}-question">Title: </label>
@@ -26,9 +26,9 @@ const createTweetElement = function(num) {
       <input type="text" id="q${num}-choice2" name="q${num}-choice2" required><br>
 
       <label for="q${num}-choice3">C: </label>
-      <input type="text" id="q${num}-choice3" name="q${num}-choice3" required><br>
+      <input type="text" id="q${num}-choice3" name="q${num}-choice3"><br>
       <label for="q${num}-choice4">D: </label>
-      <input type="text" id="q${num}-choice4" name="q${num}-choice4" required><br><br>
+      <input type="text" id="q${num}-choice4" name="q${num}-choice4"><br><br>
     </article>
   `;
   return $questions;
