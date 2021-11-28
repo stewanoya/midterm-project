@@ -9,7 +9,7 @@ $(".answers-quiz").on('click', function(){
     //   backgroundColor: "red"
     // })
     $(this).css({
-      backgroundColor: "green"
+      backgroundColor: "lime"
     })
 
 
