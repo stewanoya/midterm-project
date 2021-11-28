@@ -16,7 +16,7 @@ CREATE TABLE quizzes (
   isPublic BOOLEAN NOT NULL DEFAULT TRUE,
   category VARCHAR(255) NOT NULL,
   cover_image_url TEXT,
-  created_at TIMESTAMP
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 DROP TABLE IF EXISTS questions_answers CASCADE;
@@ -38,5 +38,5 @@ CREATE TABLE results (
   score INTEGER,
   quiz_id INTEGER REFERENCES quizzes(id) ON DELETE CASCADE,
   user_id INTEGER REFERENCES quizzes(id) ON DELETE CASCADE,
-  finish_at TIMESTAMP
+  finish_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
