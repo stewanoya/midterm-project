@@ -51,7 +51,15 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.post("/new-quiz", (req, res) => {
-  console.log('hello');
+  //console.log('hello');
+  console.log(req.body);
+  const isPublic = req.body.public || false;
+  db.query(`INSERT INTO quizzes (creator_id, title, isPublic, category, cover_image_url)
+  VALUES($1, $2, $3, $4 , $5)
+  RETURNING *;`,
+  [2, req.body.title, isPublic, req.body.category,req.body.image_url])
+    .then(result => result.rows[0])
+    .catch(err => console.error(err.message));
   return res.redirect("/new-quiz");
 });
 
