@@ -15,6 +15,7 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="/scripts/quizzes.js"></script>
   </head>
 
   <body>
@@ -28,6 +29,7 @@
            <div class="img-div-quiz">
             <img src="<%=quiz.image_url%>" width="200" height="200" />
             </div>
+            <input id="correct-answer" value="<%=quiz.answer%>" type="hidden">
            <p class= "question-quiz"><%=quiz.question%></p>
            <p class="answers-quiz"><%=quiz.choice_1%></p>
            <p class="answers-quiz"><%=quiz.choice_2%></p>
@@ -37,7 +39,6 @@
           </div>
         <%}%>
         <div class="controls">
-          <button id="start-btn" class="start-btn btn">Start</button>
           <button id="next-btn" class="next-btn btn hide">Next</button>
         </div>
 
