@@ -1,9 +1,6 @@
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
   background: rgb(163, 208, 219);
   background: linear-gradient(
     227deg,
@@ -14,4 +11,123 @@ body {
     rgba(163, 208, 219, 1) 74%,
     rgba(163, 208, 219, 1) 100%
   );
+}
+a {
+  text-decoration: none;
+}
+.spacer{
+  height: 50px;
+}
+
+.container {
+  max-width: 95%;
+  margin: 1.2rem;
+  height: 30vh;
+}
+.slogan {
+  color:rgb(220, 219, 255);
+  text-shadow:0 0 5px rgba(163, 173, 219, 1);
+}
+p {
+  margin: 1.2rem;
+  line-height: 2rem;
+  font-size: .95rem;
+  text-align: center;
+}
+
+// CHANGE THIS TO DISPLAY NONE ON BIG SCREENS
+.btn-primary {
+  border: none;
+  width: 10rem;
+  padding: 0.5rem 1rem;
+  margin-top: .75rem;
+  background-color: rgba(163, 173, 219, 1);
+  box-shadow: 0 0 3px 0 black;
+}
+
+.btn-primary:hover {
+  cursor: pointer;
+  background-color: rgb(127, 143, 212);
+
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+}
+
+.jumbotron{
+  flex-grow: 2;
+  max-width: 60rem;
+  margin: 1.2rem;
+  display: flex;
+  height: 55vh;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(226, 231, 255);
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px 1px black;
+}
+
+.call-to-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quiz-container {
+  flex-grow: 2;
+  max-width: 60rem;
+  margin: 1.2rem;
+  background-color: rgba(231, 231, 231, 0.644);
+  border-radius: 5px;
+}
+
+.quiz-list-title {
+  margin-top: 1.2rem;
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.quiz-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: .8rem;
+}
+
+.quiz-card {
+  border: 2px solid rgba(163, 208, 219, 1);
+  display: flex;
+  max-width: 100%;
+  aspect-ratio: 1;
+  align-items: flex-end;
+  transition: transform .1s, box-shadow .5s;
+  transition-timing-function: ease;
+  margin: 1rem;
+}
+
+.quiz-card:hover {
+  transition: transform .3s, box-shadow .3s;
+  transition-timing-function: ease;
+  transform: translateY(-1.5rem);
+  box-shadow: 0px 0px 5px 1px black;
+}
+
+.quiz-title-container {
+  background-color: rgba(14, 15, 36, 0.623);
+  height: 2rem;
+  width: 100%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quiz-title {
+  text-align: center;
+  color: white;
+  font-size: 80%;
 }
