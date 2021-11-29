@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const emailCheck = require("../helpers/emailCheck.js");
 const bcrypt = require("bcryptjs");
+const emailTakenError = require("../public/scripts/registerNotice");
 
 const registerUser = (db) => {
   router.get("/", (req, res) => {
@@ -31,7 +32,7 @@ const registerUser = (db) => {
           //for now will redirect to homepage with no notice
           res.redirect("/");
         }
-        res.send("email taken");
+        emailTakenError();
       })
       .catch((err) => {
         console.error({ error: err.message });
