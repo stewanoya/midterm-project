@@ -8,10 +8,11 @@ module.exports = (db) => {
     // use loop to group the questions and insert into questions_answers table
     while (question[`q${count}-question`]) {
       const queryString = `INSERT INTO questions_answers
-        (quiz_id, image_url, question, answer, choice_1, choice_2, choice_3, choice_4)
+        (quiz_id, image_url, question, question_number, answer, choice_1, choice_2, choice_3, choice_4)
         VALUES($1, $2, $3, $4 , $5, $6, $7, $8)`;
       const queryParams = [quiz_id, question[`q${count}-image_url`],
-        question[`q${count}-question`], question[`q${count}-answer`],
+        question[`q${count}-question`], question[`q${count}-question_number`],
+        question[`q${count}-answer`],
         question[`q${count}-choice1`], question[`q${count}-choice2`],
         question[`q${count}-choice3`], question[`q${count}-choice4`]];
 
@@ -28,6 +29,8 @@ module.exports = (db) => {
       VALUES($1, $2, $3, $4 , $5) RETURNING *;`;
     // check 2 in user id when login is added
     const queryParams = [2, req.body.title, isPublic, req.body.category,req.body.image_url];
+
+    console.log("checkingg", req.body);
 
     // insert to the quiz table for the db
     db.query(queryString, queryParams)
