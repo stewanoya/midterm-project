@@ -3,7 +3,7 @@ const router = express.Router();
 const emailCheck = require("../helpers/emailCheck.js");
 const bcrypt = require("bcryptjs");
 const emailTakenError = require("../public/scripts/registerNotice");
-var cookieSession = require("cookie-session");
+const cookieSession = require("cookie-session");
 const app = express();
 
 app.use(
@@ -13,12 +13,16 @@ app.use(
     keys: ["The Temp at Night."],
   })
 );
+
 const registerUser = (db) => {
   router.get("/", (req, res) => {
     const session = req.session.id;
+    // checks to see if user is signed in
     if (session) {
+      // will redirect to the homepage if they are signed in
       res.redirect("/");
     }
+    //passing the cookie to the page, so the header has it
     const templateVars = { session };
     res.render("register", templateVars);
   });
@@ -26,7 +30,6 @@ const registerUser = (db) => {
   router.post("/", (req, res) => {
     const userEmail = req.body.email;
     const userName = req.body.name;
-    // need to be encrypted
     const userPassword = req.body.password;
 
     const queryString = `INSERT into USERS (name, email, password)
