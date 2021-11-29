@@ -1,7 +1,7 @@
 .register-form-container {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  min-width: 80%;
   align-items: center;
   background-color: rgb(122, 175, 211);
   padding: 2rem 4rem;
@@ -24,4 +24,13 @@
 label {
   margin: 0 1.2rem;
   font-size: 1.2rem;
+}
+
+@media (max-width: 1000px) {
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    margin: 1.2rem;
+    align-items: flex-start;
+  }
 }
