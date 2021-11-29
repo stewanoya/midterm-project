@@ -1,5 +1,5 @@
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   background: rgb(163, 208, 219);
   background: linear-gradient(
@@ -15,7 +15,7 @@ body {
 a {
   text-decoration: none;
 }
-.spacer{
+.spacer {
   height: 50px;
 }
 
@@ -25,14 +25,17 @@ a {
   height: 30vh;
 }
 .slogan {
-  color:rgb(220, 219, 255);
-  text-shadow:0 0 5px rgba(163, 173, 219, 1);
+  color: rgb(220, 219, 255);
+  text-shadow: 0 0 5px rgba(163, 173, 219, 1);
+  font-size: 3rem;
 }
 p {
   margin: 1.2rem;
   line-height: 2rem;
-  font-size: .95rem;
+  font-size: 1.2rem;
   text-align: center;
+  color: white;
+  font-weight: bolder;
 }
 
 // CHANGE THIS TO DISPLAY NONE ON BIG SCREENS
@@ -40,15 +43,15 @@ p {
   border: none;
   width: 10rem;
   padding: 0.5rem 1rem;
-  margin-top: .75rem;
-  background-color: rgba(163, 173, 219, 1);
+  margin-top: 0.75rem;
+  background-color: rgb(144, 157, 218);
   box-shadow: 0 0 3px 0 black;
+  color: white;
 }
 
 .btn-primary:hover {
   cursor: pointer;
   background-color: rgb(127, 143, 212);
-
 }
 
 .flex-container {
@@ -56,15 +59,17 @@ p {
   justify-content: center;
 }
 
-.jumbotron{
+.jumbotron {
   flex-grow: 2;
-  max-width: 60rem;
+  max-width: 90rem;
   margin: 1.2rem;
   display: flex;
-  height: 55vh;
+  height: 50vh;
   justify-content: center;
   align-items: center;
-  background-color: rgb(226, 231, 255);
+  background-image: url("https://images.unsplash.com/photo-1535813547-99c456a41d4a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2064&q=80");
+  background-size: contain;
+  background-position-x: center;
   border-radius: 5px;
   box-shadow: 1px 1px 5px 1px black;
 }
@@ -75,9 +80,27 @@ p {
   align-items: center;
 }
 
+.icons {
+  margin: 3rem auto;
+  max-width: 90rem;
+}
+
+.flex-container-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 20rem;
+}
+
+.icon-title {
+  margin-top: 1rem;
+  text-align: center;
+}
+
 .quiz-container {
   flex-grow: 2;
-  max-width: 60rem;
+  max-width: 90rem;
   margin: 1.2rem;
   background-color: rgba(231, 231, 231, 0.644);
   border-radius: 5px;
@@ -96,7 +119,7 @@ ul {
 .quiz-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: .8rem;
+  gap: 0.8rem;
 }
 
 .quiz-card {
@@ -105,13 +128,13 @@ ul {
   max-width: 100%;
   aspect-ratio: 1;
   align-items: flex-end;
-  transition: transform .1s, box-shadow .5s;
+  transition: transform 0.1s, box-shadow 0.5s;
   transition-timing-function: ease;
   margin: 1rem;
 }
 
 .quiz-card:hover {
-  transition: transform .3s, box-shadow .3s;
+  transition: transform 0.3s, box-shadow 0.3s;
   transition-timing-function: ease;
   transform: translateY(-1.5rem);
   box-shadow: 0px 0px 5px 1px black;
@@ -121,7 +144,7 @@ ul {
   background-color: rgba(14, 15, 36, 0.623);
   height: 2rem;
   width: 100%;
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -130,4 +153,8 @@ ul {
   text-align: center;
   color: white;
   font-size: 80%;
+}
+
+.quiz-title:hover {
+  color: rgb(163, 208, 219);
 }
