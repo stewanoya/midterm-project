@@ -18,10 +18,25 @@ $(".answers-quiz").on('click', function(){
       backgroundColor: "red"
     })
 
-
   }
-
-
+})
 })
 
-})
+
+
+// $(function() {
+//   $(".next-btn").on('click', function(){
+//     const choice =  $(this).text()
+//     const answer = $(this).siblings(".correct-answer").val()
+
+//     $(this).siblings(".answers-quiz").off("click");
+
+//     questionid =
+
+
+
+
+
+
+//   })
+//   })
