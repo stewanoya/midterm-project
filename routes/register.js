@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const emailCheck = require("../helpers/emailCheck.js");
+const bcrypt = require("bcryptjs");
 
 const registerUser = (db) => {
   router.get("/", (req, res) => {
@@ -15,7 +16,11 @@ const registerUser = (db) => {
     const queryString = `INSERT into USERS (name, email, password)
     VALUES($1, $2, $3)`;
 
-    const queryValues = [userName, userEmail, userPassword];
+    const queryValues = [
+      userName,
+      userEmail,
+      bcrypt.hashSync(userPassword, 10),
+    ];
 
     //calling asynchronous email check function
     emailCheck(userEmail, db)
