@@ -23,9 +23,11 @@ a {
   color: white;
   text-shadow: 0 0 5px rgba(163, 173, 219, 1);
   font-size: 3rem;
+  text-align: center;
 }
 
 .slogan-text {
+  margin-top: 1rem;
   color: rgb(220, 219, 255);
   text-shadow: 0 0 5px rgba(163, 173, 219, 1);
 }
@@ -39,12 +41,17 @@ p {
   font-weight: bolder;
 }
 
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
 // CHANGE THIS TO DISPLAY NONE ON BIG SCREENS
 .btn-primary {
   border: none;
   width: 10rem;
   padding: 0.5rem 1rem;
-  margin-top: 0.75rem;
+  margin: 1rem;
   background-color: rgb(144, 157, 218);
   box-shadow: 0 0 3px 0 black;
   color: white;
