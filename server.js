@@ -85,27 +85,27 @@ app.get("/", (req, res) => {
     });
 });
 
-app.get("/quizzes/:quizid", (req, res) => {
+app.get("/quizzes/:short_url", (req, res) => {
   let sqlQuery;
   let variables;
 
   if (req.query.questionid) {
-    sqlQuery = `SELECT quizzes.category, quizzes.title, questions_answers.*
+    sqlQuery = `SELECT quizzes.short_url, quizzes.category, quizzes.title, questions_answers.*
   FROM questions_answers
   JOIN quizzes ON quizzes.id = quiz_id
-  WHERE quiz_id = $1
+  WHERE short_url = $1
   AND questions_answers.id > $2
   LIMIT 1;`;
 
-    variables = [req.params.quizid, req.query.questionid];
+    variables = [req.params.short_url, req.query.questionid];
   } else {
-    sqlQuery = `SELECT quizzes.category, quizzes.title, questions_answers.*
+    sqlQuery = `SELECT quizzes.short_url, quizzes.category, quizzes.title, questions_answers.*
       FROM questions_answers
       JOIN quizzes ON quizzes.id = quiz_id
-      WHERE quiz_id = $1
+      WHERE short_url = $1
       LIMIT 1;`;
 
-    variables = [req.params.quizid];
+    variables = [req.params.short_url];
   }
 
   db.query(sqlQuery, variables)
