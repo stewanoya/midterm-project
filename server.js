@@ -39,7 +39,7 @@ const usersRoutes = require("./routes/users");
 const quizzesRoutes = require("./routes/quizzes");
 const createquizRoutes = require("./routes/create-quiz");
 const widgetsRoutes = require("./routes/widgets");
-const registerUser = require("./routes/register");
+const registerUserRoutes = require("./routes/register");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -53,7 +53,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.use("/new-quiz", createquizRoutes(db));
-app.use("/register", registerUser(db));
+app.use("/register", registerUserRoutes(db));
 
 app.get("/", (req, res) => {
   db.query(`SELECT * from quizzes LIMIT 15;`)
