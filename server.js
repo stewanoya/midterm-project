@@ -94,9 +94,11 @@ app.get("/quizzes/:quizid", (req, res) => {
     [req.params.quizid]
   )
     .then((data) => {
+      const session = req.session.id;
       const quizzes = data.rows;
       const templateVars = {
         quizzes,
+        session,
       };
       res.render("quizzes", templateVars);
     })
