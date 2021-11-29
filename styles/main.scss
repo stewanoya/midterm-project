@@ -92,6 +92,11 @@ p {
   max-width: 90rem;
 }
 
+.fa-10x {
+  color: rgba(163, 208, 219, 1);
+  filter: drop-shadow(0 0 4px white);
+}
+
 .flex-container-column {
   display: flex;
   flex-direction: column;
