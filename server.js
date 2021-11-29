@@ -65,13 +65,14 @@ app.use("/new-quiz", createquizRoutes(db));
 app.use("/register", registerUserRoutes(db));
 
 app.get("/", (req, res) => {
+  const session = req.session["id"];
   db.query(`SELECT * from quizzes LIMIT 15;`)
     .then((data) => {
       const quizzes = data.rows;
       return quizzes;
     })
     .then((quizzes) => {
-      const templateVars = { quizzes };
+      const templateVars = { quizzes, session };
       res.render("index", templateVars);
     })
     .catch((err) => {
@@ -98,6 +99,11 @@ app.get("/quizzes/:quizid", (req, res) => {
     .catch((err) => {
       res.status(500).json({ error: err.message });
     });
+});
+
+app.post("/logout", (req, res) => {
+  req.session = null;
+  res.redirect(302, `/`);
 });
 
 app.listen(PORT, () => {
