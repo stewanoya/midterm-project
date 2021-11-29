@@ -94,3 +94,5 @@ app.get("/quizzes/:quizid", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+exports.db = db;
