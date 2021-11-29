@@ -49,6 +49,7 @@ const quizzesRoutes = require("./routes/quizzes");
 const createquizRoutes = require("./routes/create-quiz");
 const widgetsRoutes = require("./routes/widgets");
 const registerUserRoutes = require("./routes/register");
+const logoutRoutes = require("./routes/logout");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -63,6 +64,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 
 app.use("/new-quiz", createquizRoutes(db));
 app.use("/register", registerUserRoutes(db));
+app.use("/logout", logoutRoutes());
 
 app.get("/", (req, res) => {
   const session = req.session["id"];
@@ -99,11 +101,6 @@ app.get("/quizzes/:quizid", (req, res) => {
     .catch((err) => {
       res.status(500).json({ error: err.message });
     });
-});
-
-app.post("/logout", (req, res) => {
-  req.session = null;
-  res.redirect(302, `/`);
 });
 
 app.listen(PORT, () => {
