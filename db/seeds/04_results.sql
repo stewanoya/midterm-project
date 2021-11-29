@@ -1,5 +1,5 @@
 INSERT INTO results (score, quiz_id, user_id)
-VALUES (95, 1, 1, );
+VALUES (95, 1, 1);
 
 INSERT INTO results (score, quiz_id, user_id)
 VALUES (40, 2, 2);

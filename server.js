@@ -70,16 +70,37 @@ app.get("/", (req, res) => {
 });
 
 app.get("/quizzes/:quizid", (req, res) => {
-  db.query(`SELECT quizzes.category, quizzes.title, questions_answers.*
+
+  let sqlQuery
+  let variables
+
+  if (req.query.questionid){
+    sqlQuery = `SELECT quizzes.category, quizzes.title, questions_answers.*
   FROM questions_answers
   JOIN quizzes ON quizzes.id = quiz_id
-  WHERE quiz_id = $1;`,
-  [req.params.quizid])
+  WHERE quiz_id = $1
+  AND questions_answers.id > $2
+  LIMIT 1;`
+
+    variables = [req.params.quizid, req.query.questionid]
+  }
+    else {
+      sqlQuery = `SELECT quizzes.category, quizzes.title, questions_answers.*
+      FROM questions_answers
+      JOIN quizzes ON quizzes.id = quiz_id
+      WHERE quiz_id = $1
+      LIMIT 1;`
+
+      variables = [req.params.quizid]
+
+    }
+
+  db.query(sqlQuery, variables)
     .then(data => {
 
-      const quizzes = data.rows
+      const quiz = data.rows
       const templateVars = {
-        quizzes
+        quiz
       };
       res.render( "quizzes", templateVars);
     })
@@ -88,8 +109,7 @@ app.get("/quizzes/:quizid", (req, res) => {
         .status(500)
         .json({ error: err.message });
     });
-});
-
+  });
 
 
 app.listen(PORT, () => {
