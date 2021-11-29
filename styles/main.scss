@@ -16,7 +16,7 @@ a {
   text-decoration: none;
 }
 .spacer {
-  height: 50px;
+  height: 100px;
 }
 
 .slogan {
@@ -161,12 +161,15 @@ ul {
 .quiz-card {
   border: 2px solid rgba(163, 208, 219, 1);
   display: flex;
+  flex-direction: column;
   max-width: 100%;
   aspect-ratio: 1;
   align-items: flex-end;
+  justify-content: space-between;
   transition: transform 0.1s, box-shadow 0.5s;
   transition-timing-function: ease;
   margin: 1rem;
+  position: relative;
 }
 
 .quiz-card:hover {
@@ -183,6 +186,13 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.quiz-category {
+  background-color: yellow;
+  margin: 5px;
+  padding: 2px 4px;
+  border-radius: 10px;
 }
 
 .quiz-title {
