@@ -8,7 +8,8 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const bcrypt = require("bcryptjs");
-
+var cookieSession = require("cookie-session");
+const bodyParser = require("body-parser");
 // PG database client/connection setup
 const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
@@ -34,6 +35,13 @@ app.use(
 
 app.use(express.static("public"));
 
+app.use(
+  cookieSession({
+    name: "session",
+    // shoutout to anyone that gets the reference
+    keys: ["The Temp at Night."],
+  })
+);
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
