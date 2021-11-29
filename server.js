@@ -74,8 +74,13 @@ app.get("/quizzes/:quizid", (req, res) => {
   let sqlQuery
   let variables
 
+
   if (req.query.questionid){
-    sqlQuery = `SELECT quizzes.category, quizzes.title, questions_answers.*
+    sqlQuery = `SELECT quizzes.category, quizzes.title, questions_answers.*,
+      (SELECT COUNT(questions_answers.quiz_id)
+      FROM questions_answers
+      JOIN quizzes ON quizzes.id = quiz_id
+      WHERE quiz_id = $1) as total
   FROM questions_answers
   JOIN quizzes ON quizzes.id = quiz_id
   WHERE quiz_id = $1
@@ -85,7 +90,12 @@ app.get("/quizzes/:quizid", (req, res) => {
     variables = [req.params.quizid, req.query.questionid]
   }
     else {
-      sqlQuery = `SELECT quizzes.category, quizzes.title, questions_answers.*
+      sqlQuery = `SELECT quizzes.category, quizzes.title, questions_answers.*,
+      (SELECT COUNT(questions_answers.quiz_id)
+      FROM questions_answers
+      JOIN quizzes ON quizzes.id = quiz_id
+      WHERE quiz_id = $1) as total
+
       FROM questions_answers
       JOIN quizzes ON quizzes.id = quiz_id
       WHERE quiz_id = $1
@@ -95,13 +105,18 @@ app.get("/quizzes/:quizid", (req, res) => {
 
     }
 
+
   db.query(sqlQuery, variables)
     .then(data => {
 
       const quiz = data.rows
       const templateVars = {
         quiz
+
       };
+
+      console.log(templateVars.quiz);
+
       res.render( "quizzes", templateVars);
     })
     .catch(err => {
