@@ -13,6 +13,12 @@ nav {
   justify-content: space-between;
   align-items: center;
 
+  .logo-icon {
+    color: rgba(163, 176, 219, 1);
+    filter: drop-shadow(0 0 1px white);
+    margin-left: 0.5rem;
+  }
+
   h3 {
     color: white;
     margin: 1rem;
