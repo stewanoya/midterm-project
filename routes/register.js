@@ -15,7 +15,12 @@ app.use(
 );
 const registerUser = (db) => {
   router.get("/", (req, res) => {
-    res.render("register");
+    const session = req.session.id;
+    if (session) {
+      res.redirect("/");
+    }
+    const templateVars = { session };
+    res.render("register", templateVars);
   });
 
   router.post("/", (req, res) => {
@@ -45,9 +50,9 @@ const registerUser = (db) => {
               req.session.id = data.rows[0].id;
             })
             .then(() => {
+              //for now will redirect to homepage with no notice
               res.redirect("/");
             });
-          //for now will redirect to homepage with no notice
         }
         emailTakenError();
       })
