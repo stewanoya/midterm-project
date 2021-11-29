@@ -1,13 +1,11 @@
 $(function () {
   $(".answers-quiz").on("click", function () {
-    const x = $(this).text();
-    const answer = $("#correct-answer").val();
+    const choice = $(this).text();
+    const answer = $(this).siblings(".correct-answer").val();
 
-    console.log(x, answer);
-    if (x == answer) {
-      // $(".answers-quiz").css({
-      //   backgroundColor: "red"
-      // })
+    $(this).siblings(".answers-quiz").off("click");
+
+    if (choice == answer) {
       $(this).css({
         backgroundColor: "lime",
       });
