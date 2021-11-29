@@ -9,10 +9,22 @@ const registerUser = (db) => {
   });
 
   router.post("/", (req, res) => {
-    const email = req.body.email;
-    emailCheck(email)
+    const userEmail = req.body.email;
+    const userName = req.body.name;
+    // need to be encrypted
+    const userPassword = req.body.password;
+
+    const queryString = `INSERT into USERS (name, email, password)
+    VALUES($1, $2, $3)`;
+
+    const queryValues = [userName, userEmail, userPassword];
+
+    //calling asynchronous email check function
+    emailCheck(userEmail)
       .then((result) => {
+        // if there is no result, it means the email doesn't exist in the database
         if (!result) {
+          db.query(queryString, queryValues);
           res.send("email is good");
         }
         res.send("email taken");
@@ -25,10 +37,12 @@ const registerUser = (db) => {
   const emailCheck = (email) => {
     const queryString = `SELECT * FROM users
     WHERE email = $1`;
-    const values = [email];
+    const queryValues = [email];
+    // db query to return data if the email exists
     return db
-      .query(queryString, values)
+      .query(queryString, queryValues)
       .then((data) => {
+        // set data to null if query returns empty array
         if (data.rows[0] === undefined) {
           return (data.rows = null);
         }
