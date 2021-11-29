@@ -39,6 +39,7 @@ const usersRoutes = require("./routes/users");
 const quizzesRoutes = require("./routes/quizzes");
 const createquizRoutes = require("./routes/create-quiz");
 const widgetsRoutes = require("./routes/widgets");
+const registerUser = require("./routes/register");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -52,6 +53,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.use("/new-quiz", createquizRoutes(db));
+app.use("/register", registerUser(db));
 
 app.get("/", (req, res) => {
   db.query(`SELECT * from quizzes LIMIT 15;`)
@@ -70,27 +72,24 @@ app.get("/", (req, res) => {
 });
 
 app.get("/quizzes/:quizid", (req, res) => {
-  db.query(`SELECT quizzes.category, quizzes.title, questions_answers.*
+  db.query(
+    `SELECT quizzes.category, quizzes.title, questions_answers.*
   FROM questions_answers
   JOIN quizzes ON quizzes.id = quiz_id
   WHERE quiz_id = $1;`,
-  [req.params.quizid])
-    .then(data => {
-
-      const quizzes = data.rows
+    [req.params.quizid]
+  )
+    .then((data) => {
+      const quizzes = data.rows;
       const templateVars = {
-        quizzes
+        quizzes,
       };
-      res.render( "quizzes", templateVars);
+      res.render("quizzes", templateVars);
     })
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
     });
 });
-
-
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
