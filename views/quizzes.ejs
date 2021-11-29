@@ -22,25 +22,29 @@
     <%- include('partials/_header') %>
 
 
-        <% for (quiz of quizzes) { %>
+        <% for (question of quiz) { %>
 
           <div class="quiz">
-            <p class="category-quiz"><%=quiz.category%></p>
+            <p class="category-quiz"><%=question.category%></p>
+
            <div class="img-div-quiz">
-            <img src="<%=quiz.image_url%>" width="200" height="200" />
+            <img src="<%=question.image_url%>" width="200" height="200" />
             </div>
-            <input id="correct-answer" value="<%=quiz.answer%>" type="hidden">
-           <p class= "question-quiz"><%=quiz.question%></p>
-           <p class="answers-quiz"><%=quiz.choice_1%></p>
-           <p class="answers-quiz"><%=quiz.choice_2%></p>
-           <p class="answers-quiz"><%=quiz.choice_3%></p>
-           <p class="answers-quiz"><%=quiz.choice_4%></p>
-           <p class="title-quiz"><%=quiz.title%></p>
+            <input class="correct-answer" value="<%=question.answer%>" type=hidden>
+           <p class= "question-quiz"><%=question.question%></p>
+           <p class="answers-quiz"><%=question.choice_1%></p>
+           <p class="answers-quiz"><%=question.choice_2%></p>
+           <p class="answers-quiz"><%=question.choice_3%></p>
+           <p class="answers-quiz"><%=question.choice_4%></p>
           </div>
-        <%}%>
+
         <div class="controls">
+          <a href="/quizzes/<%=question.quiz_id%>?questionid=<%=question.id%>">
           <button id="next-btn" class="next-btn btn hide">Next</button>
+        </a>
+
         </div>
+        <%}%>
 
     </div>
   </div>
