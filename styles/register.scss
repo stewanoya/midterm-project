@@ -1,0 +1,27 @@
+.register-form-container {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  align-items: center;
+  background-color: rgb(122, 175, 211);
+  padding: 2rem 4rem;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 black;
+}
+
+.register-form {
+  display: flex;
+  margin: 1.2rem;
+  align-items: flex-start;
+}
+
+.flex-container {
+  height: 100vh;
+  align-items: center;
+}
+
+.form-control,
+label {
+  margin: 0 1.2rem;
+  font-size: 1.2rem;
+}
