@@ -1,5 +1,5 @@
 // nav bar
-@import '_global-var';
+@import "_global-var";
 
 nav {
   width: 100%;
@@ -74,5 +74,25 @@ nav {
     color: white;
     transition: all 0.3s;
     cursor: pointer;
+  }
+
+  form {
+    display: inline;
+  }
+
+  #search {
+    width: 0;
+    height: 1.8rem;
+    transition: width 0.5s;
+    padding: 0;
+    border: none;
+    border-radius: 8px;
+  }
+
+  .navbar-nav {
+    flex-grow: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

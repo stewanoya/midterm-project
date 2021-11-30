@@ -1,4 +1,7 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
 <nav>
   <div class="logo-container">
     <a class="logo-home" href="/"
@@ -9,21 +12,19 @@
 
   <div class="navbar-nav">
     <a class="home" href="/">Quiz</a>
-    <a href="/api/users">API</a>
-    <a href="/new-quiz">Create Quiz</a>
-    <a href="/my-quizzes">My Quizzes</a>
-  </div>
-
-  <div class="search-nav">
-    <form method="GET" action="/search">
-      <input type="text" placeholder="Search.." name="search">
-      <button type="submit"><i class="fa fa-search">
-      </i></button>
-    </form>
+    <a href="/new-quiz">Create sQuiz</a>
+    <a href="/my-quizzes">My sQuizzes</a>
+    <div class="search-nav">
+      <form method="GET" action="/search">
+        <input type="text" placeholder="Search.." name="search" id="search" />
+        <button type="submit">
+          <i class="fa fa-search search-button"> </i>
+        </button>
+      </form>
+    </div>
   </div>
 
   <div class="user-container">
-
     <% if (!session) { %>
     <a class="register btn-secondary" href="/register">Register</a>
     <a class="login btn-secondary" href="/login">Login</a>
