@@ -38,7 +38,7 @@ const login = (db) => {
       res.render("login", templateVars);
     }
 
-    emailCheck(userEmail, db)
+    emailCheck(userEmail.toLowerCase(), db)
       .then((result) => {
         if (!result) {
           const session = req.session.id;

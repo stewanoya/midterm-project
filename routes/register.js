@@ -28,7 +28,7 @@ const registerUser = (db) => {
   });
 
   router.post("/", (req, res) => {
-    const userEmail = req.body.email;
+    const userEmail = req.body.email.toLowerCase();
     const userName = req.body.name;
     const userPassword = req.body.password;
 
