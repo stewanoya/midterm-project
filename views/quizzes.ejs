@@ -34,7 +34,7 @@
         <% for (let q = 0; q < quiz.length; q++) { %>
 
           <div class="quiz">
-            <p class="category-quiz"><%=quiz[q].category%> ---- Question <%=quiz[q].question_number%> / <%=quiz[q].total%></p>
+            <p class="category-quiz"><%=quiz[q].category%> - Question <%=quiz[q].question_number%> / <%=quiz[q].total%></p>
 
            <div class="img-div-quiz">
             <img src="<%=quiz[q].image_url%>" width="200" height="200" />
@@ -49,7 +49,13 @@
 
         <div class="controls">
           <a href="/quizzes/<%=quiz[q].short_url%>?questionid=<%=quiz[q].id%>">
-          <button id="next-btn" class="next-btn btn hide">Next</button>
+          <button id="next-btn" class="next-btn btn hide">
+            <%if (quiz[q].question_number == quiz[q].total){%>
+              <p id="submit">Finish</p>
+              <%} else {%>
+                <p id="next-q">Next</p>
+                <%}%>
+          </button>
         </a>
 
         <%}%>
