@@ -2,7 +2,7 @@
 
 // generate a string that is 8 char long
 const generateRandomString = function() {
-  return (Math.random() + 1).toString(36).substring(8);
+  return (Math.random() + 1).toString(36).substring(4);
 };
 
 

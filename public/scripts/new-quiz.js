@@ -7,9 +7,6 @@ const createQuestionElement = function(num) {
   let $questions = `
     <article class="q${num}-box">
       <div class='info'>
-
-      <input type="text" id="q${num}-question-number" name="question-number" value="${num}" hidden>
-
         <label for="q${num}-question">Question ${num}: </label>
         <input type="text" id="q${num}-question" name="q${num}-question" required>
 
