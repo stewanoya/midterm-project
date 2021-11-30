@@ -27,43 +27,47 @@
   <body>
     <%- include('partials/_header') %>
     <div class="spacer"></div>
-    <h2 class="slogan">My Quizzes</h2>
+    <h2 class="slogan">My sQuizzes</h2>
     <div class="my-quizzes-container">
       <section class="public-container">
-        <h3 class='public-title'>Public Quizzes</h3>
+        <h3 class='public-title'>Public sQuizzes</h3>
         <ul class="public-grid">
         <% for (quiz of quizzes) { %>
 
 
          <% if (quiz.ispublic == true) { %>
-
-          <a href="/quizzes/<%=quiz.short_url%>" method="GET">
+        <div class="details-container">
+            <a href="/quizzes/<%=quiz.short_url%>" method="GET">
             <li
-            class="quiz-card"
-            style="
+              class="quiz-card"
+              style="
               background-image: url('<%=quiz.cover_image_url%>');
               background-size: cover;
               background-position: center;
               background-repeat: no-repeat;
-            "
-           >
-            <div class="quiz-category"><%=quiz.category%></div>
-            <div class="quiz-title-container">
+              "
+              >
+          <div class="quiz-category"><%=quiz.category%></div>
+          <div class="quiz-title-container">
               <h3 class="quiz-title"><%=quiz.title%></h3>
-            </div>
-          </li>
-        </a>
+          </div>
+            </li>
+            <%const date = quiz.created_at.toString()%>
 
+            </a>
+            <p class="date">Created on <strong><%=date.slice(0, 16)%></strong></p>
+        </div>
         <% } %>
         <%}%>
         </ul>
       </section>
 
       <section class="private-container">
-        <h3 class='private-title'>Private Quizzes</h3>
-    <ul class="private-grid">
+        <h3 class='private-title'>Private sQuizzes</h3>
+      <ul class="private-grid">
             <% for (quiz of quizzes) { %>
           <% if (quiz.ispublic != true) { %>
+            <div class="details-container">
             <a href="/quizzes/<%=quiz.short_url%>" method="GET">
               <li
             class="quiz-card"
@@ -79,10 +83,21 @@
               <h3 class="quiz-title"><%=quiz.title%></h3>
             </div>
           </li>
+
         </a>
+        <p class="date">Created on <strong><%=date.slice(0, 16)%></strong></p>
+        </div>
         <% } %>
         <% } %>
       </ul>
+    </div>
+
+    <div class="flex-container">
+      <section class="my-results">
+        <h3 class="results-title">
+          Results
+        </h3>
+      </section>
     </div>
   </body>
 </html>
