@@ -29,9 +29,12 @@
     <div class="spacer"></div>
     <h2 class="slogan">My Quizzes</h2>
     <div class="flex-container my-quizzes">
+      <% for (quiz of quizzes) { %>
+      <h5>Public Quizzes</h5>
       <ul id="my-quizzes-grid">
-        <% for (quiz of quizzes) { %>
         <!-- replace anchor link with the link id url -->
+        <% if (quiz.ispublic === 't') { %>
+
         <a href="/quizzes/<%=quiz.short_url%>" method="GET">
           <li
             class="quiz-card"
@@ -48,7 +51,28 @@
             </div>
           </li>
         </a>
+        <% } %>
         <%}%>
+        <% for (quiz of quizzes) { %>
+          <% if (quiz.ispublic !=='t') { %>
+        <h5>Private Quizzes</h5>
+        <a href="/quizzes/<%=quiz.short_url%>" method="GET">
+          <li
+            class="quiz-card"
+            style="
+              background-image: url('<%=quiz.cover_image_url%>');
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+            "
+          >
+            <div class="quiz-category"><%=quiz.category%></div>
+            <div class="quiz-title-container">
+              <h3 class="quiz-title"><%=quiz.title%></h3>
+            </div>
+          </li>
+        </a>
+        <% } %>
       </ul>
     </div>
   </body>
