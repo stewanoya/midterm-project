@@ -10,15 +10,31 @@
   form {
     width: 90%;
   }
+
+  .quiz-detail {
+    border: solid 1px #333;
+    padding: 1rem;
+
+    flex-grow: 2;
+    max-width: 90rem;
+    margin: .5rem;
+    background-color: rgba(231, 231, 231, 0.644);
+    border-radius: 5px;
+  }
 }
 
 #question-container {
   width: 100%;
 
   article {
-    margin: 1rem;
     border: solid 1px #333;
     padding: 1rem;
+
+    flex-grow: 2;
+    max-width: 90rem;
+    margin: .5rem;
+    background-color: rgba(231, 231, 231, 0.644);
+    border-radius: 5px;
 
     display: flex;
     align-items: flex-start;

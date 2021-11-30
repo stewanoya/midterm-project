@@ -38,7 +38,7 @@ module.exports = (db) => {
       req.body.image_url,
     ];
 
-    console.log("checkingg", req.body);
+    //console.log("checkingg", req.body);
 
     // insert to the quiz table for the db
     db.query(queryString, queryParams)
