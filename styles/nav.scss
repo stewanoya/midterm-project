@@ -77,7 +77,10 @@ nav {
   }
 
   form {
-    display: inline;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    align-self: center;
   }
 
   #search {
@@ -97,5 +100,10 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .user-container {
+    display: flex;
+    flex-direction: row;
   }
 }

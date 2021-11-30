@@ -16,16 +16,18 @@
     <a href="/my-quizzes">My sQuizzes</a>
     <a href="/my-results">Results</a>
     <div class="search-nav">
-      <form method="GET" action="/search">
-        <input type="text" placeholder="Search.." name="search" id="search" />
-        <button type="submit" class="search-button">
-          <i class="fa fa-search search-button"> </i>
-        </button>
-      </form>
+
     </div>
   </div>
 
   <div class="user-container">
+    <form method="GET" action="/search">
+      <input type="text" placeholder="Search.." name="search" id="search" required />
+      <button type="submit" class="search-button">
+        <i class="fa fa-search search-button"> </i>
+      </button>
+    </form>
+
     <% if (!session) { %>
     <a class="register btn-secondary" href="/register">Register</a>
     <a class="login btn-secondary" href="/login">Login</a>
