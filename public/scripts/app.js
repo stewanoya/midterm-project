@@ -1,5 +1,7 @@
 // Client facing scripts here
 $(document).ready(function () {
+  $(`.search-button`).css("display", "inline");
+
   searchAnimation();
 });
 
