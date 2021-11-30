@@ -30,7 +30,7 @@ const login = (db) => {
 
   router.post("/", (req, res) => {
     const session = req.session.id;
-    const userEmail = req.body.email;
+    const userEmail = req.body.email.toLowerCase();
     const enteredPassword = req.body.password;
     const errorMsg = `<p class="error">Please make sure all fields are filled out and try again!</p>`;
     if (!userEmail || !enteredPassword) {

@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const emailCheck = require("../helpers/emailCheck.js");
 const bcrypt = require("bcryptjs");
-const emailTakenError = require("../public/scripts/registerNotice");
 const cookieSession = require("cookie-session");
 const app = express();
 
@@ -46,7 +45,7 @@ const registerUser = (db) => {
 
     const queryValues = [
       userName,
-      userEmail,
+      userEmail.toLowerCase(),
       bcrypt.hashSync(userPassword, 10),
     ];
 
