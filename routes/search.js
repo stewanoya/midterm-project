@@ -15,7 +15,9 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     const session = req.session["id"];
     db.query(
-      `SELECT * from quizzes WHERE title LIKE $1 OR category LIKE $1 LIMIT 15;`,
+      `SELECT * FROM quizzes
+      WHERE LOWER(title) LIKE LOWER($1)
+      OR LOWER(category) LIKE LOWER($1) LIMIT 15;`,
       [`%${req.query.search}%`]
     )
       .then((data) => {

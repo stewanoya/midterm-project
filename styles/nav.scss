@@ -79,7 +79,7 @@ nav {
   form {
     height: 50%;
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     align-self: center;
   }
 
@@ -105,5 +105,15 @@ nav {
   .user-container {
     display: flex;
     flex-direction: row;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  nav {
+    background-color: red;
+
+    .btn-secondary {
+      display: none;
+    }
   }
 }
