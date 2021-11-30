@@ -48,6 +48,7 @@ const usersRoutes = require("./routes/users");
 const quizzesRoutes = require("./routes/quizzes");
 const createquizRoutes = require("./routes/create-quiz");
 const widgetsRoutes = require("./routes/widgets");
+const searchRoutes = require("./routes/search");
 const registerUserRoutes = require("./routes/register");
 const logoutRoutes = require("./routes/logout");
 const loginRoutes = require("./routes/login");
@@ -65,6 +66,7 @@ app.use("/api", usersRoutes(db));
 
 app.use("/new-quiz", createquizRoutes(db));
 app.use("/register", registerUserRoutes(db));
+app.use("/search", searchRoutes(db));
 app.use("/logout", logoutRoutes());
 app.use("/login", loginRoutes(db));
 
@@ -78,23 +80,6 @@ app.get("/", (req, res) => {
     .then((quizzes) => {
       const templateVars = { quizzes, session };
       res.render("index", templateVars);
-    })
-    .catch((err) => {
-      console.log("this is the error", err.message);
-      return err.message;
-    });
-});
-
-app.get("/search", (req, res) => {
-  const session = req.session["id"];
-  db.query(`SELECT * from quizzes WHERE title LIKE $1 OR category LIKE $1 LIMIT 15;`, [`%${req.query.search}%`])
-    .then((data) => {
-      const quizzes = data.rows;
-      return quizzes;
-    })
-    .then((quizzes) => {
-      const templateVars = { quizzes, session };
-      res.render("search-result", templateVars);
     })
     .catch((err) => {
       console.log("this is the error", err.message);
