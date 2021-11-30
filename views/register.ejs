@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>sQuiz Gam - Register</title>
+    <title>sQuiz Game - Register</title>
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -28,6 +28,7 @@
     <div class="flex-container">
       <div class="register-form-container">
         <h3>Registration Form</h3>
+        <% if (errorMsg) { %> <%- errorMsg %> <% } %>
         <form action="/register" method="POST" class="register-form">
           <div class="name">
             <label for="name">Name</label><br />

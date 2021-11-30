@@ -26,6 +26,7 @@ CREATE TABLE questions_answers (
   quiz_id INTEGER REFERENCES quizzes(id) ON DELETE CASCADE,
   image_url TEXT NOT NULL,
   question TEXT NOT NULL,
+  question_number INTEGER,
   answer TEXT NOT NULL,
   choice_1 TEXT NOT NULL,
   choice_2 TEXT NOT NULL,
