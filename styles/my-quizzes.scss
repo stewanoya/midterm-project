@@ -42,3 +42,38 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+
+.results-container {
+  height: 100%;
+  background-color: rgb(171, 211, 223);
+  margin: 1.2rem;
+}
+
+.details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 0 1.2rem;
+}
+
+.details {
+  font-size: 1rem;
+  font-weight: 100;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 2rem;
+  background-color: rgb(0, 145, 189);
+  padding: 0 5px;
+  margin-bottom: 1.2rem;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+strong {
+  font-weight: bold;
+}
+
+.spacer {
+  margin-left: 5px;
+}
