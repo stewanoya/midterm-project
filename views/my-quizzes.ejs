@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/styles/main.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/my-quizzes.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
@@ -26,5 +27,29 @@
   <body>
     <%- include('partials/_header') %>
     <div class="spacer"></div>
+    <h2 class="slogan">My Quizzes</h2>
+    <div class="flex-container my-quizzes">
+      <ul id="my-quizzes-grid">
+        <% for (quiz of quizzes) { %>
+        <!-- replace anchor link with the link id url -->
+        <a href="/quizzes/<%=quiz.short_url%>" method="GET">
+          <li
+            class="quiz-card"
+            style="
+              background-image: url('<%=quiz.cover_image_url%>');
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+            "
+          >
+            <div class="quiz-category"><%=quiz.category%></div>
+            <div class="quiz-title-container">
+              <h3 class="quiz-title"><%=quiz.title%></h3>
+            </div>
+          </li>
+        </a>
+        <%}%>
+      </ul>
+    </div>
   </body>
 </html>
