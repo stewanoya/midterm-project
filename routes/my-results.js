@@ -9,7 +9,7 @@ const myResults = (db) => {
       res.status(304).redirect("/login");
     }
 
-    const queryString = `SELECT name, score, title, cover_image_url, category, finish_at as date_completed
+    const queryString = `SELECT name, score, title, cover_image_url, category, finish_at as date_completed, short_url
     FROM users
     JOIN results ON users.id = user_id
     JOIN quizzes on quizzes.id = quiz_id
