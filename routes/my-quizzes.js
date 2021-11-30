@@ -6,7 +6,7 @@ const myQuizzes = (db) => {
     const session = req.session.id;
 
     if (!session) {
-      res.redirect("/login");
+      res.status(304).redirect("/login");
     }
 
     const queryString = `SELECT * FROM users

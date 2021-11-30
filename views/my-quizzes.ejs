@@ -31,11 +31,11 @@
     <div class="my-quizzes-container">
       <section class="public-container">
         <h3 class='public-title'>Public Quizzes</h3>
+        <ul class="public-grid">
         <% for (quiz of quizzes) { %>
 
-           <ul class="public-grid">
-          <!-- replace anchor link with the link id url -->
-         <% if (quiz.ispublic === 't') { %>
+
+         <% if (quiz.ispublic == true) { %>
 
           <a href="/quizzes/<%=quiz.short_url%>" method="GET">
             <li
@@ -63,7 +63,7 @@
         <h3 class='private-title'>Private Quizzes</h3>
     <ul class="private-grid">
             <% for (quiz of quizzes) { %>
-          <% if (quiz.ispublic !=='t') { %>
+          <% if (quiz.ispublic != true) { %>
             <a href="/quizzes/<%=quiz.short_url%>" method="GET">
               <li
             class="quiz-card"
