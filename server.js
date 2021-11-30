@@ -53,6 +53,7 @@ const registerUserRoutes = require("./routes/register");
 const logoutRoutes = require("./routes/logout");
 const loginRoutes = require("./routes/login");
 const myQuizzesRoutes = require("./routes/my-quizzes");
+const myResultsRoutes = require("./routes/my-results");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -71,6 +72,7 @@ app.use("/search", searchRoutes(db));
 app.use("/logout", logoutRoutes());
 app.use("/login", loginRoutes(db));
 app.use("/my-quizzes", myQuizzesRoutes(db));
+app.use("/my-results", myResultsRoutes(db));
 
 app.get("/", (req, res) => {
   const session = req.session["id"];
@@ -90,12 +92,10 @@ app.get("/", (req, res) => {
 });
 
 app.get("/quizzes/:short_url", (req, res) => {
-
   let sqlQuery;
   let variables;
 
-
-  if (req.query.questionid){
+  if (req.query.questionid) {
     sqlQuery = `SELECT quizzes.category, quizzes.short_url, quizzes.title, questions_answers.*,
       (SELECT COUNT(questions_answers.quiz_id)
       FROM questions_answers
@@ -107,11 +107,9 @@ app.get("/quizzes/:short_url", (req, res) => {
   AND questions_answers.id > $2
   LIMIT 1;`;
 
-    variables = [req.params.short_url, req.query.questionid]
-
-  }
-    else {
-      sqlQuery = `SELECT quizzes.category, quizzes.short_url, quizzes.title, questions_answers.*,
+    variables = [req.params.short_url, req.query.questionid];
+  } else {
+    sqlQuery = `SELECT quizzes.category, quizzes.short_url, quizzes.title, questions_answers.*,
       (SELECT COUNT(questions_answers.quiz_id)
       FROM questions_answers
       JOIN quizzes ON quizzes.id = quiz_id
@@ -122,9 +120,8 @@ app.get("/quizzes/:short_url", (req, res) => {
       WHERE short_url = $1
       LIMIT 1;`;
 
-      variables = [req.params.short_url]
+    variables = [req.params.short_url];
   }
-
 
   db.query(sqlQuery, variables)
     .then((data) => {
@@ -132,7 +129,7 @@ app.get("/quizzes/:short_url", (req, res) => {
       const session = req.session.id;
       const templateVars = {
         quiz,
-        session
+        session,
       };
       res.render("quizzes", templateVars);
     })
