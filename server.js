@@ -74,7 +74,7 @@ app.use("/logout", logoutRoutes());
 app.use("/login", loginRoutes(db));
 app.use("/my-quizzes", myQuizzesRoutes(db));
 app.use("/my-results", myResultsRoutes(db));
-app.use("/delete/:id", deleteQuizRoutes(db));
+app.use("/delete/", deleteQuizRoutes(db));
 
 app.get("/", (req, res) => {
   const session = req.session["id"];
