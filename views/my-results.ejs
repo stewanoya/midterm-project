@@ -28,39 +28,41 @@
     <%- include('partials/_header') %>
     <div class="spacer"></div>
     <h2 class="slogan">My Results</h2>
-    <section class="results-container">
-      <ul class="quiz-grid">
-        <% for (quiz of quizzes) { %>
-        <!-- replace anchor link with the link id url -->
-        <a>
-          <li
-            class="quiz-card"
-            style="
-              background-image: url('<%=quiz.cover_image_url%>');
-              background-size: cover;
-              background-position: center;
-              background-repeat: no-repeat;
-            "
-          >
-            <div class="quiz-category"><%=quiz.category%></div>
-            <div class="quiz-title-container">
-              <h3 class="quiz-title"><%=quiz.title%></h3>
+    <div class="flex-container">
+      <section class="results-container">
+        <ul class="quiz-grid">
+          <% for (quiz of quizzes) { %>
+          <!-- replace anchor link with the link id url -->
+          <a>
+            <li
+              class="quiz-card"
+              style="
+                background-image: url('<%=quiz.cover_image_url%>');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+              "
+            >
+              <div class="quiz-category"><%=quiz.category%></div>
+              <div class="quiz-title-container">
+                <h3 class="quiz-title"><%=quiz.title%></h3>
+              </div>
+            </li>
+            <div class="details-container">
+              <%const date = quiz.date_completed.toString()%>
+              <p class="details">
+                <strong> Completed on:</strong>
+                <span class="spacer"> <%=date.slice(0, 16)%></span>
+              </p>
+              <p class="details">
+                <strong> Score: </strong>
+                <span class="spacer"> <%= quiz.score %></span>
+              </p>
             </div>
-          </li>
-          <div class="details-container">
-            <%const date = quiz.date_completed.toString()%>
-            <p class="details">
-              <strong> Completed on:</strong>
-              <span class="spacer"> <%=date.slice(0, 16)%></span>
-            </p>
-            <p class="details">
-              <strong> Score: </strong>
-              <span class="spacer"> <%= quiz.score %></span>
-            </p>
-          </div>
-        </a>
-        <%}%>
-      </ul>
-    </section>
+          </a>
+          <%}%>
+        </ul>
+      </section>
+    </div>
   </body>
 </html>
