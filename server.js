@@ -86,40 +86,39 @@ app.get("/", (req, res) => {
 });
 
 app.get("/quizzes/:short_url", (req, res) => {
+
   let sqlQuery;
   let variables;
 
-  let sqlQuery
-  let variables
-
 
   if (req.query.questionid){
-    sqlQuery = `SELECT quizzes.category, quizzes.title, questions_answers.*,
+    sqlQuery = `SELECT quizzes.category, quizzes.short_url, quizzes.title, questions_answers.*,
       (SELECT COUNT(questions_answers.quiz_id)
       FROM questions_answers
       JOIN quizzes ON quizzes.id = quiz_id
-      WHERE quiz_id = $1) as total
+      WHERE short_url = $1) as total
   FROM questions_answers
   JOIN quizzes ON quizzes.id = quiz_id
   WHERE short_url = $1
   AND questions_answers.id > $2
   LIMIT 1;`;
 
-    variables = [req.params.quizid, req.query.questionid]
+    variables = [req.params.short_url, req.query.questionid]
+
   }
     else {
-      sqlQuery = `SELECT quizzes.category, quizzes.title, questions_answers.*,
+      sqlQuery = `SELECT quizzes.category, quizzes.short_url, quizzes.title, questions_answers.*,
       (SELECT COUNT(questions_answers.quiz_id)
       FROM questions_answers
       JOIN quizzes ON quizzes.id = quiz_id
-      WHERE quiz_id = $1) as total
+      WHERE short_url = $1) as total
 
       FROM questions_answers
       JOIN quizzes ON quizzes.id = quiz_id
       WHERE short_url = $1
       LIMIT 1;`;
 
-    variables = [req.params.short_url];
+      variables = [req.params.short_url]
   }
 
 
@@ -128,13 +127,10 @@ app.get("/quizzes/:short_url", (req, res) => {
       const quiz = data.rows;
       const session = req.session.id;
       const templateVars = {
-        quiz
-
+        quiz,
+        session
       };
-
-      console.log(templateVars.quiz);
-
-      res.render( "quizzes", templateVars);
+      res.render("quizzes", templateVars);
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });
