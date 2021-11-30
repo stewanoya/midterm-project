@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>sQuiz Game</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script
+      src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+      data-auto-a11y="true"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <%- include('partials/_header') %>
+
+    <!-- utility div to provide spacing for fixed header -->
+    <div class="spacer"></div>
+    <div class="flex-container">
+      <section class="jumbotron">
+        <section class="call-to-action">
+          <!-- might change color for contrast -->
+          <h2 class="slogan">Welcome to sQuiz Game!</h2>
+          <p class="slogan-text">
+            The #1 way to test your knowledge on any subject. <br />
+            Get started by creating your own Quiz, or check out our selection
+            below!
+          </p>
+          <div class="button-container">
+            <button class="btn-primary">Get Started</button>
+            <button class="btn-primary">Search Quizzes</button>
+          </div>
+        </section>
+      </section>
+    </div>
+
+    <div class="flex-container icons">
+      <div class="flex-container-column">
+        <i class="fas fa-bolt fa-10x"></i>
+        <h3 class="icon-title">Compete</h3>
+        <p>
+          Challenge your friends to do sQuizzes and see who gets the best
+          result!
+        </p>
+      </div>
+      <div class="flex-container-column">
+        <i class="fas fa-brain fa-10x"></i>
+        <h3 class="icon-title">Train</h3>
+        <p>
+          Train your mind by creating practice tests to help learn a topic of
+          your choice!
+        </p>
+      </div>
+      <div class="flex-container-column">
+        <i class="fab fa-octopus-deploy fa-10x"></i>
+        <h3 class="icon-title">Get sQuizzy!</h3>
+        <p>Have fun with sQuiz Game!</p>
+      </div>
+    </div>
+
+    <div class="flex-container">
+      <section class="quiz-container">
+        <h2 class="quiz-list-title">Featured sQuizzes</h2>
+        <ul class="quiz-grid">
+          <% for (quiz of quizzes) { %>
+          <!-- replace anchor link with the link id url -->
+          <a href="/quizzes/<%=quiz.short_url%>" method="GET">
+            <li
+              class="quiz-card"
+              style="
+                background-image: url('<%=quiz.cover_image_url%>');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+              "
+            >
+              <div class="quiz-category"><%=quiz.category%></div>
+              <div class="quiz-title-container">
+                <h3 class="quiz-title"><%=quiz.title%></h3>
+              </div>
+            </li>
+          </a>
+          <%}%>
+        </ul>
+      </section>
+    </div>
+  </body>
+</html>

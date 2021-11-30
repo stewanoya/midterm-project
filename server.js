@@ -85,6 +85,24 @@ app.get("/", (req, res) => {
     });
 });
 
+app.get("/search", (req, res) => {
+  const session = req.session["id"];
+  console.log("from here:", req.query.search);
+  db.query(`SELECT * from quizzes WHERE title LIKE $1 LIMIT 15;`, [`%${req.query.search}%`])
+    .then((data) => {
+      const quizzes = data.rows;
+      return quizzes;
+    })
+    .then((quizzes) => {
+      const templateVars = { quizzes, session };
+      res.render("search-result", templateVars);
+    })
+    .catch((err) => {
+      console.log("this is the error", err.message);
+      return err.message;
+    });
+});
+
 app.get("/quizzes/:short_url", (req, res) => {
   let sqlQuery;
   let variables;
