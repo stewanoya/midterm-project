@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>sQuiz Game - Results</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/my-quizzes.css" type="text/css" />
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script
+      src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+      data-auto-a11y="true"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <%- include('partials/_header') %>
+    <div class="spacer"></div>
+    <h2 class="slogan">My Results</h2>
+    <section class="results-container">
+      <ul class="quiz-grid">
+        <% for (quiz of quizzes) { %>
+        <!-- replace anchor link with the link id url -->
+        <a>
+          <li
+            class="quiz-card"
+            style="
+              background-image: url('<%=quiz.cover_image_url%>');
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+            "
+          >
+            <div class="quiz-category"><%=quiz.category%></div>
+            <div class="quiz-title-container">
+              <h3 class="quiz-title"><%=quiz.title%></h3>
+            </div>
+          </li>
+          <div class="details-container">
+            <%const date = quiz.date_completed.toString()%>
+            <p class="details">
+              <strong> Completed on:</strong>
+              <span class="spacer"> <%=date.slice(0, 16)%></span>
+            </p>
+            <p class="details">
+              <strong> Score: </strong>
+              <span class="spacer"> <%= quiz.score %></span>
+            </p>
+          </div>
+        </a>
+        <%}%>
+      </ul>
+    </section>
+  </body>
+</html>
