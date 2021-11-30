@@ -38,9 +38,9 @@
            <p class="answers-quiz"><%=quiz[q].choice_4%></p>
           </div>
 
-
-          <a href="/quizzes/<%=quiz[q].quiz_id%>?questionid=<%=quiz[q].id%>">
-          <button id="next-btn">Next</button>
+        <div class="controls">
+          <a href="/quizzes/<%=quiz[q].short_url%>?questionid=<%=quiz[q].id%>">
+          <button id="next-btn" class="next-btn btn hide">Next</button>
         </a>
 
         <%}%>
