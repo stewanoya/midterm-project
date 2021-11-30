@@ -56,7 +56,13 @@
             </p>
             <div class="options-container">
               <button href="#" class="edit">Edit</button>
-              <button href="#" class="delete">Delete</button>
+              <form
+                method="POST"
+                action="/delete/<%=quiz.id%>"
+                class="d-inline"
+              >
+                <button class="delete">Delete</button>
+              </form>
             </div>
           </div>
           <% } %> <%}%>
@@ -66,7 +72,7 @@
         <ul class="private-grid">
           <% for (quiz of quizzes) { %> <% if (quiz.ispublic != true) { %>
           <div class="details-container">
-            <a href="/quizzes/<%=quiz.short_url%>" method="GET">
+            <a href="/quizzes/<%=quiz.short_url%>" method="POST">
               <li
                 class="quiz-card"
                 style="
@@ -87,8 +93,13 @@
               Created on <strong><%=date.slice(0, 16)%></strong>
             </p>
             <div class="options-container">
-              <button href="#" class="edit">Edit</but>
-              <button href="#" class="delete">Delete</but>
+              <form
+                method="POST"
+                action="/delete/<%=quiz.id%>"
+                class="d-inline"
+              >
+                <button class="delete">Delete</button>
+              </form>
             </div>
           </div>
           <% } %> <% } %>
