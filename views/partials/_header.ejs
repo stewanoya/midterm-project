@@ -1,10 +1,23 @@
 <nav>
-  <h3 class="logo-text">sQuiz Game</h3>
-  <i class="fab fa-octopus-deploy fa-2x"></i>
-  <a class="home" href="/">Quiz</a>
-
+  <div class="logo-container">
+    <a class="logo-home" href="/"
+      ><h3 class="logo-text">sQuiz Game</h3>
+      <i class="fab fa-octopus-deploy fa-2x logo-icon"></i
+    ></a>
+  </div>
   <div class="navbar-nav">
+    <a class="home" href="/">Quiz</a>
     <a href="/api/users">API</a>
     <a href="/new-quiz">Create Quiz</a>
+  </div>
+  <div class="user-container">
+    <% if (!session) { %>
+    <a class="register btn-secondary" href="/register">Register</a>
+    <a class="login btn-secondary" href="/login">Login</a>
+    <% } else {%>
+    <form method="POST" action="/logout" class="">
+      <button class="btn-secondary" type="submit">Logout</button>
+    </form>
+    <%}%>
   </div>
 </nav>

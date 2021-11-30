@@ -7,7 +7,9 @@ const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
-
+const bcrypt = require("bcryptjs");
+var cookieSession = require("cookie-session");
+const bodyParser = require("body-parser");
 // PG database client/connection setup
 const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
@@ -33,18 +35,28 @@ app.use(
 
 app.use(express.static("public"));
 
+app.use(
+  cookieSession({
+    name: "session",
+    // shoutout to anyone that gets the reference
+    keys: ["The Temp at Night."],
+  })
+);
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const quizzesRoutes = require("./routes/quizzes");
 const createquizRoutes = require("./routes/create-quiz");
 const widgetsRoutes = require("./routes/widgets");
+const registerUserRoutes = require("./routes/register");
+const logoutRoutes = require("./routes/logout");
+const loginRoutes = require("./routes/login");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/api/users", usersRoutes(db));
+app.use("/api", usersRoutes(db));
 // app.use("/quizzes", quizzesRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
+// app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -52,15 +64,19 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.use("/new-quiz", createquizRoutes(db));
+app.use("/register", registerUserRoutes(db));
+app.use("/logout", logoutRoutes());
+app.use("/login", loginRoutes(db));
 
 app.get("/", (req, res) => {
+  const session = req.session["id"];
   db.query(`SELECT * from quizzes LIMIT 15;`)
     .then((data) => {
       const quizzes = data.rows;
       return quizzes;
     })
     .then((quizzes) => {
-      const templateVars = { quizzes };
+      const templateVars = { quizzes, session };
       res.render("index", templateVars);
     })
     .catch((err) => {
@@ -69,7 +85,9 @@ app.get("/", (req, res) => {
     });
 });
 
-app.get("/quizzes/:quizid", (req, res) => {
+app.get("/quizzes/:short_url", (req, res) => {
+  let sqlQuery;
+  let variables;
 
   let sqlQuery
   let variables
@@ -83,9 +101,9 @@ app.get("/quizzes/:quizid", (req, res) => {
       WHERE quiz_id = $1) as total
   FROM questions_answers
   JOIN quizzes ON quizzes.id = quiz_id
-  WHERE quiz_id = $1
+  WHERE short_url = $1
   AND questions_answers.id > $2
-  LIMIT 1;`
+  LIMIT 1;`;
 
     variables = [req.params.quizid, req.query.questionid]
   }
@@ -98,18 +116,17 @@ app.get("/quizzes/:quizid", (req, res) => {
 
       FROM questions_answers
       JOIN quizzes ON quizzes.id = quiz_id
-      WHERE quiz_id = $1
-      LIMIT 1;`
+      WHERE short_url = $1
+      LIMIT 1;`;
 
-      variables = [req.params.quizid]
-
-    }
+    variables = [req.params.short_url];
+  }
 
 
   db.query(sqlQuery, variables)
-    .then(data => {
-
-      const quiz = data.rows
+    .then((data) => {
+      const quiz = data.rows;
+      const session = req.session.id;
       const templateVars = {
         quiz
 
@@ -119,14 +136,13 @@ app.get("/quizzes/:quizid", (req, res) => {
 
       res.render( "quizzes", templateVars);
     })
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
     });
-  });
-
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+exports.db = db;

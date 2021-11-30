@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>sQuiz Gam - Register</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/register.css" type="text/css" />
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="/scripts/registerNotice.js"></script>
+    <script
+      src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+      data-auto-a11y="true"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <%- include('partials/_header') %>
+
+    <div class="flex-container">
+      <div class="register-form-container">
+        <h3>Login Form</h3>
+        <form action="/login" method="POST" class="register-form">
+          <div class="email">
+            <label for="email">Email</label><br />
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              label="Email"
+            />
+          </div>
+          <div class="password">
+            <label for="password">Password</label><br />
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              label="Password"
+            />
+          </div>
+          <button type="submit" class="btn-primary">Login!</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
