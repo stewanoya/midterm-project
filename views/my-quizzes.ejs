@@ -55,7 +55,9 @@
               Created on <strong><%=date.slice(0, 16)%></strong>
             </p>
             <div class="options-container">
-              <button href="#" class="edit">Edit</button>
+              <form method="GET" action="/edit/<%=quiz.id%>" class="d-inline">
+                <button class="edit">Edit</button>
+              </form>
               <form
                 method="POST"
                 action="/delete/<%=quiz.id%>"
@@ -93,6 +95,9 @@
               Created on <strong><%=date.slice(0, 16)%></strong>
             </p>
             <div class="options-container">
+              <form method="GET" action="/edit/<%=quiz.id%>" class="d-inline">
+                <button class="edit">Edit</button>
+              </form>
               <form
                 method="POST"
                 action="/delete/<%=quiz.id%>"
