@@ -78,3 +78,28 @@ strong {
 .spacer {
   margin-left: 5px;
 }
+
+button.edit,
+button.delete {
+  padding: 1rem 2.5rem;
+  color: rgb(43, 42, 87);
+  border: 1px solid rgb(34, 147, 252);
+  margin: 0.4rem;
+}
+
+button.delete {
+  background-color: rgb(226, 96, 96);
+}
+
+button.edit {
+  background-color: rgb(168, 123, 240);
+}
+
+button.delete:hover {
+  background-color: rgb(190, 49, 49);
+  cursor: pointer;
+}
+button.edit:hover {
+  background-color: rgb(122, 54, 230);
+  cursor: pointer;
+}
