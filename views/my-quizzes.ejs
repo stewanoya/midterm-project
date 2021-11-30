@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>sQuiz Game</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/my-quizzes.css" type="text/css" />
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script
+      src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+      data-auto-a11y="true"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <%- include('partials/_header') %>
+    <div class="spacer"></div>
+    <h2 class="slogan">My Quizzes</h2>
+    <div class="my-quizzes-container">
+      <section class="public-container">
+        <h3 class='public-title'>Public Quizzes</h3>
+        <ul class="public-grid">
+        <% for (quiz of quizzes) { %>
+
+
+         <% if (quiz.ispublic == true) { %>
+
+          <a href="/quizzes/<%=quiz.short_url%>" method="GET">
+            <li
+            class="quiz-card"
+            style="
+              background-image: url('<%=quiz.cover_image_url%>');
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+            "
+           >
+            <div class="quiz-category"><%=quiz.category%></div>
+            <div class="quiz-title-container">
+              <h3 class="quiz-title"><%=quiz.title%></h3>
+            </div>
+          </li>
+        </a>
+
+        <% } %>
+        <%}%>
+        </ul>
+      </section>
+
+      <section class="private-container">
+        <h3 class='private-title'>Private Quizzes</h3>
+    <ul class="private-grid">
+            <% for (quiz of quizzes) { %>
+          <% if (quiz.ispublic != true) { %>
+            <a href="/quizzes/<%=quiz.short_url%>" method="GET">
+              <li
+            class="quiz-card"
+            style="
+              background-image: url('<%=quiz.cover_image_url%>');
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+            "
+          >
+            <div class="quiz-category"><%=quiz.category%></div>
+            <div class="quiz-title-container">
+              <h3 class="quiz-title"><%=quiz.title%></h3>
+            </div>
+          </li>
+        </a>
+        <% } %>
+        <% } %>
+      </ul>
+    </div>
+  </body>
+</html>
