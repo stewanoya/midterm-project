@@ -11,7 +11,7 @@ const createQuestionElement = function(num) {
         <input type="text" id="q${num}-question" name="q${num}-question" required>
 
         <label for="q${num}-image_url">Image URL: </label>
-        <input type="url" id="q${num}-image_url" name="q${num}-image_url">
+        <input type="url" id="q${num}-image_url" name="q${num}-image_url" placeholder='example.com/image.png'>
 
         <label for="q${num}-answer">Answer: </label>
         <select id="q${num}-answer" name="q${num}-answer">
