@@ -71,4 +71,4 @@ VALUES (6, 'Which one of the following is a weak acid?', 3, 'HClO3₃', 'https:/
 INSERT INTO questions_answers (quiz_id, question, question_number, answer, image_url, choice_1, choice_2, choice_3, choice_4)
 VALUES (6, 'Which of the following has a positive charge?', 4, 'Proton', 'https://previews.123rf.com/images/winyu/winyu1609/winyu160900148/62699053-transparent-question-marks.jpg', 'Neutron', 'Anion', 'Electron', 'Proton');
 INSERT INTO questions_answers (quiz_id, question, question_number, answer, image_url, choice_1, choice_2, choice_3, choice_4)
-VALUES (6, 'How many p electrons are there in an atom of rubidium?', 5, '18', 'https://previews.123rf.com/images/winyu/winyu1609/winyu160900148/62699053-transparent-question-marks.jpg', '12', '18', '6', '9');
+VALUES (6, 'How many electrons are there in an atom of rubidium?', 5, '37', 'https://previews.123rf.com/images/winyu/winyu1609/winyu160900148/62699053-transparent-question-marks.jpg', '12', '37', '6', '9');
