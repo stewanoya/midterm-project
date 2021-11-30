@@ -28,6 +28,7 @@
     <div class="flex-container">
       <div class="register-form-container">
         <h3>Login Form</h3>
+        <% if (errorMsg) { %> <%- errorMsg %> <% } %>
         <form action="/login" method="POST" class="register-form">
           <div class="email">
             <label for="email">Email</label><br />

@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const emailCheck = require("../helpers/emailCheck.js");
 const bcrypt = require("bcryptjs");
-const emailTakenError = require("../public/scripts/registerNotice");
 const cookieSession = require("cookie-session");
 const app = express();
 
@@ -17,20 +16,28 @@ app.use(
 const registerUser = (db) => {
   router.get("/", (req, res) => {
     const session = req.session.id;
+    const errorMsg = ``;
     // checks to see if user is signed in
     if (session) {
       // will redirect to the homepage if they are signed in
       res.redirect("/");
     }
     //passing the cookie to the page, so the header has it
-    const templateVars = { session };
+    const templateVars = { session, errorMsg };
     res.render("register", templateVars);
   });
 
   router.post("/", (req, res) => {
-    const userEmail = req.body.email;
+    const userEmail = req.body.email.toLowerCase();
     const userName = req.body.name;
     const userPassword = req.body.password;
+
+    if (!userEmail || !userName || !userPassword) {
+      const errorMsg = `<p class="error">Please make sure all fields are filled out and try again!</p>`;
+      const session = req.session.id;
+      const templateVars = { errorMsg, session };
+      res.render("register", templateVars);
+    }
 
     const queryString = `INSERT into USERS (name, email, password)
     VALUES($1, $2, $3)
@@ -38,7 +45,7 @@ const registerUser = (db) => {
 
     const queryValues = [
       userName,
-      userEmail,
+      userEmail.toLowerCase(),
       bcrypt.hashSync(userPassword, 10),
     ];
 
@@ -57,7 +64,10 @@ const registerUser = (db) => {
               res.redirect("/");
             });
         }
-        emailTakenError();
+        const errorMsg = `<p class="error">Sorry that email is taken, please try again!</p>`;
+        const session = req.session.id;
+        const templateVars = { errorMsg, session };
+        res.render("register", templateVars);
       })
       .catch((err) => {
         console.error({ error: err.message });

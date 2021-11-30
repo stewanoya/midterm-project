@@ -16,25 +16,35 @@ app.use(
 
 const login = (db) => {
   router.get("/", (req, res) => {
-    let session = req.session.id;
+    const session = req.session.id;
+    const errorMsg = "";
     // checks to see if user is signed in
     if (session) {
       // will redirect to the homepage if they are signed in
       res.redirect("/");
     } else {
-      const templateVars = { session };
+      const templateVars = { session, errorMsg };
       res.render("login", templateVars);
     }
   });
 
   router.post("/", (req, res) => {
-    const userEmail = req.body.email;
+    const session = req.session.id;
+    const userEmail = req.body.email.toLowerCase();
     const enteredPassword = req.body.password;
+    const errorMsg = `<p class="error">Please make sure all fields are filled out and try again!</p>`;
+    if (!userEmail || !enteredPassword) {
+      const templateVars = { session, errorMsg };
+      res.render("login", templateVars);
+    }
 
-    emailCheck(userEmail, db)
+    emailCheck(userEmail.toLowerCase(), db)
       .then((result) => {
         if (!result) {
-          res.send("email not found");
+          const session = req.session.id;
+          const errorMsg = `<p class="error">You sure that Email is correct?</p>`;
+          const templateVars = { session, errorMsg };
+          res.render("login", templateVars);
         }
         return result;
       })
@@ -44,8 +54,14 @@ const login = (db) => {
           req.session.id = result.id;
           res.redirect("/");
         } else {
-          res.send("password incorrect");
+          const session = req.session.id;
+          const errorMsg = `<p class="error">You sure that Password is correct?</p>`;
+          const templateVars = { session, errorMsg };
+          res.render("login", templateVars);
         }
+      })
+      .catch((e) => {
+        return console.error(e);
       });
   });
 
