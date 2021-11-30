@@ -162,6 +162,18 @@ ul {
   gap: 0.8rem;
 }
 
+@media (max-width: 850px) {
+  .quiz-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 570px) {
+  .quiz-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .quiz-card {
   border: 2px solid rgba(163, 208, 219, 1);
   display: flex;
