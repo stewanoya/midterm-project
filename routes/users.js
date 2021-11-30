@@ -9,17 +9,31 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
-      .then(data => {
-        const users = data.rows;
-        res.json({ users });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+  const getApi = function(queryString, res) {
+    db.query(queryString)
+    .then(data => {
+      const users = data.rows;
+      res.json({ users });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+  }
+
+  router.get("/users", (req, res) => {
+    getApi(`SELECT * FROM users;`, res);
   });
+  router.get("/quizzes", (req, res) => {
+    getApi(`SELECT * FROM quizzes;`, res);
+  });
+  router.get("/q_and_a", (req, res) => {
+    getApi(`SELECT * FROM questions_answers;`, res);
+  });
+  router.get("/results", (req, res) => {
+    getApi(`SELECT * FROM results;`, res);
+  });
+
   return router;
 };

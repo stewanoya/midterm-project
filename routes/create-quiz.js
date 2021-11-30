@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const generateRandomString = require("../helpers/generateRandomString.js");
 
 module.exports = (db) => {
   const insertQuestion = function (question, quiz_id) {
@@ -30,12 +31,13 @@ module.exports = (db) => {
   router.post("/", (req, res) => {
     const isPublic = req.body.public || false;
     const queryString = `INSERT INTO quizzes
-      (creator_id, title, isPublic, category, cover_image_url)
-      VALUES($1, $2, $3, $4 , $5) RETURNING *;`;
+      (creator_id, title, shorl_url, isPublic, category, cover_image_url)
+      VALUES($1, $2, $3, $4, $5, $6) RETURNING *;`;
     // check 2 in user id when login is added
     const queryParams = [
       2,
       req.body.title,
+      generateRandomString(),
       isPublic,
       req.body.category,
       req.body.image_url,
