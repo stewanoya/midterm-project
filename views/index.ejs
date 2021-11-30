@@ -74,7 +74,7 @@
       <section class="quiz-container">
         <h2 class="quiz-list-title">Featured sQuizzes</h2>
         <ul class="quiz-grid">
-          <% for (quiz of quizzes) { %>
+          <% for (quiz of quizzes) { %> <% if (quiz.ispublic == true) { %>
           <!-- replace anchor link with the link id url -->
           <a href="/quizzes/<%=quiz.short_url%>" method="GET">
             <li
@@ -92,7 +92,7 @@
               </div>
             </li>
           </a>
-          <%}%>
+          <%}%> <% } %>
         </ul>
       </section>
     </div>

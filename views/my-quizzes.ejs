@@ -28,12 +28,44 @@
     <%- include('partials/_header') %>
     <div class="spacer"></div>
     <h2 class="slogan">My Quizzes</h2>
-    <div class="flex-container my-quizzes">
-      <ul id="my-quizzes-grid">
+    <div class="my-quizzes-container">
+      <section class="public-container">
+        <h3 class='public-title'>Public Quizzes</h3>
+        <ul class="public-grid">
         <% for (quiz of quizzes) { %>
-        <!-- replace anchor link with the link id url -->
-        <a href="/quizzes/<%=quiz.short_url%>" method="GET">
-          <li
+
+
+         <% if (quiz.ispublic == true) { %>
+
+          <a href="/quizzes/<%=quiz.short_url%>" method="GET">
+            <li
+            class="quiz-card"
+            style="
+              background-image: url('<%=quiz.cover_image_url%>');
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+            "
+           >
+            <div class="quiz-category"><%=quiz.category%></div>
+            <div class="quiz-title-container">
+              <h3 class="quiz-title"><%=quiz.title%></h3>
+            </div>
+          </li>
+        </a>
+
+        <% } %>
+        <%}%>
+        </ul>
+      </section>
+
+      <section class="private-container">
+        <h3 class='private-title'>Private Quizzes</h3>
+    <ul class="private-grid">
+            <% for (quiz of quizzes) { %>
+          <% if (quiz.ispublic != true) { %>
+            <a href="/quizzes/<%=quiz.short_url%>" method="GET">
+              <li
             class="quiz-card"
             style="
               background-image: url('<%=quiz.cover_image_url%>');
@@ -48,7 +80,8 @@
             </div>
           </li>
         </a>
-        <%}%>
+        <% } %>
+        <% } %>
       </ul>
     </div>
   </body>
