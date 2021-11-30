@@ -17,8 +17,6 @@ const myQuizzes = (db) => {
 
     return db.query(queryString, queryValues).then((data) => {
       const quizzes = data.rows;
-      console.log(quizzes);
-
       const templateVars = { session, quizzes };
       res.render("my-quizzes", templateVars);
     });
