@@ -3,15 +3,6 @@ const router = express.Router();
 const emailCheck = require("../helpers/emailCheck.js");
 const bcrypt = require("bcryptjs");
 const cookieSession = require("cookie-session");
-const app = express();
-
-app.use(
-  cookieSession({
-    name: "session",
-    // shoutout to anyone that gets the reference
-    keys: ["The Temp at Night."],
-  })
-);
 
 const registerUser = (db) => {
   router.get("/", (req, res) => {
