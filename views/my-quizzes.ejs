@@ -28,8 +28,8 @@
     <%- include('partials/_header') %>
     <div class="spacer"></div>
     <h2 class="slogan">My sQuizzes</h2>
-    <div class="my-quizzes-container">
-      <section class="public-container">
+    <div class="flex-container">
+      <section class="my-squizzes-container">
         <h3 class="public-title">Public sQuizzes</h3>
         <ul class="public-grid">
           <% for (quiz of quizzes) { %> <% if (quiz.ispublic == true) { %>
@@ -54,12 +54,14 @@
             <p class="date">
               Created on <strong><%=date.slice(0, 16)%></strong>
             </p>
+            <div class="options-container">
+              <a href="#" class="edit">Edit</a>
+              <a href="#" class="delete">Delete</a>
+            </div>
           </div>
           <% } %> <%}%>
         </ul>
-      </section>
-
-      <section class="private-container">
+        <div class="divider"></div>
         <h3 class="private-title">Private sQuizzes</h3>
         <ul class="private-grid">
           <% for (quiz of quizzes) { %> <% if (quiz.ispublic != true) { %>
@@ -84,11 +86,14 @@
             <p class="date">
               Created on <strong><%=date.slice(0, 16)%></strong>
             </p>
+            <div class="options-container">
+              <a href="#" class="edit">Edit</a>
+              <a href="#" class="delete">Delete</a>
+            </div>
           </div>
           <% } %> <% } %>
         </ul>
       </section>
-    </div>
     </div>
   </body>
 </html>
