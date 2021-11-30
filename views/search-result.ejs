@@ -26,9 +26,9 @@
   <body>
     <%- include('partials/_header') %>
 
-    <div class="flex-container">
+    <div class="flex-container search-results">
       <section class="quiz-container">
-        <h2 class="quiz-list-title">Featured sQuizzes</h2>
+        <h2 class="quiz-list-title">Search sQuizzes Results</h2>
         <ul class="quiz-grid">
           <% for (quiz of quizzes) { %>
           <!-- replace anchor link with the link id url -->
@@ -52,5 +52,6 @@
         </ul>
       </section>
     </div>
+
   </body>
 </html>
