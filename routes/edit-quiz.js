@@ -6,7 +6,7 @@ const editQuiz = (db) => {
   router.get("/:id", (req, res) => {
     const session = req.session.id;
     //grabbing just the cover image for the entire quiz, not sure if image in question_answers is supposed to be different per question.
-    const queryString = `SELECT quizzes.id, quizzes.cover_image_url, quizzes.title, question_number, question, answer, choice_1, choice_2, choice_3, choice_4
+    const queryString = `SELECT quizzes.id, quizzes.cover_image_url, quizzes.title, question_number, question, answer, choice_1, choice_2, choice_3, choice_4, questions_answers.id as questionID
     FROM quizzes
     JOIN questions_answers ON quizzes.id = quiz_id
     WHERE quizzes.id = $1;`;
@@ -16,6 +16,7 @@ const editQuiz = (db) => {
 
     return db.query(queryString, queryValues).then((data) => {
       const quizzes = data.rows;
+      console.log(data.rows);
       if (quizzes.length === 0) {
         res.redirect("/");
         return;
@@ -26,9 +27,48 @@ const editQuiz = (db) => {
   });
 
   router.post("/:id", (req, res) => {
-    const session = req.session.id;
-    console.log("HERE IS THE REQ", req.body);
-    res.redirect("/my-quizzes");
+    const quiz = req.body;
+    const quizID = req.params.id;
+
+    console.log(req.body);
+
+    const queryString = `UPDATE quizzes
+    SET title = $1,
+    cover_image_url = $2
+    WHERE quizzes.id = $3;
+    `;
+    const queryValues = [quiz.title, quiz.cover_image_url, quizID];
+    return db
+      .query(queryString, queryValues)
+      .then(() => {
+        for (let i = 0; i < req.body.question.length; i++) {
+          let queryString = `UPDATE questions_answers
+        SET question = $1,
+        choice_1 = $2,
+        choice_2 = $3`;
+
+          if (req.body.choice_3) {
+            queryString += `, choice_3 = $5`;
+            if (req.body.choice_4) {
+              queryString += `, choice_4 = $6`;
+            }
+          }
+          queryString += `WHERE questions_answers.id = $4`;
+          const queryValues = [
+            req.body.question[i],
+            req.body.choice_1[i],
+            req.body.choice_2[i],
+            req.body.questionid[i],
+            req.body.choice_3[i],
+            req.body.choice_4[i],
+          ];
+          db.query(queryString, queryValues);
+        }
+      })
+      .then(() => {
+        res.redirect("/my-quizzes");
+      })
+      .catch((e) => console.log(e));
   });
 
   return router;
