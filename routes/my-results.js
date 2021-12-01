@@ -21,7 +21,6 @@ const myResults = (db) => {
 
     return db.query(queryString, queryValues).then((data) => {
       const quizzes = data.rows;
-      console.log("data from results page", data.rows);
       const templateVars = { session, quizzes };
       res.render("my-results", templateVars);
     });

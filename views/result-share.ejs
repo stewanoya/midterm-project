@@ -26,6 +26,40 @@
   <body>
     <%- include('partials/_header') %>
     <div class="spacer"></div>
-    <div class="result-card-container"></div>
+    <div class="whole-screen">
+      <div class="result-card-container">
+        <section class="result-card">
+          <div class="card-header">
+            <div
+              class="card-image"
+              style="
+                background-image: url('<%=result.cover_image_url%>');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+              "
+            ></div>
+            <div class="quiz-details">
+              <h1 class="result-title"><%=result.title%></h1>
+              <p class="result-category"><%=result.category%></p>
+              <!-- storing date as variable to splice -->
+              <%const date = result.date_completed.toString()%>
+              <p class="date-taken">
+                Taken on: <span class="spacer"></span><%=date.slice(0, 16)%>
+              </p>
+              <a href="" class="btn-primary" id="take-quiz">Take Quiz</a>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="result-message">
+              <%=result.name%><span class="spacer"> scored </span>
+              <%=result.score%>/<%=result.count%> on this sQuiz!!
+            </p>
+            <p class="result-meme">Someone get them a cookie!</p>
+            <p class="result-meme">🍪</p>
+          </div>
+        </section>
+      </div>
+    </div>
   </body>
 </html>
