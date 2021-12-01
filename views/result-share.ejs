@@ -48,7 +48,6 @@
                 Taken on: <span class="spacer"></span><%=date.slice(0, 16)%>
               </p>
             </div>
-            <a href="" class="btn-primary" id="take-quiz">Take Quiz</a>
           </div>
           <div class="card-body">
             <p class="result-message">
@@ -58,6 +57,12 @@
             <p class="result-meme">Someone get them a cookie!</p>
             <p class="result-meme">🍪</p>
           </div>
+          <a
+            href="/quizzes/<%=result.short_url%>"
+            class="btn-primary"
+            id="take-quiz"
+            >Try Quiz</a
+          >
         </section>
       </div>
     </div>

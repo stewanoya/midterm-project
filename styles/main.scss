@@ -366,6 +366,15 @@ form.edit-form::after {
   align-items: center;
 }
 
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 .result-card-container {
   background: linear-gradient(
     rgba(163, 173, 219, 0.5) 0%,
@@ -375,6 +384,7 @@ form.edit-form::after {
   width: 50%;
   border-radius: 10px;
   box-shadow: 1px 2px 5px 0 rgb(19, 19, 43);
+  animation: 1s ease-in-out 0s 1 slideIn;
 }
 
 .result-card {
@@ -431,6 +441,7 @@ form.edit-form::after {
   margin-left: 1rem;
   margin-top: -1.5rem;
   margin-bottom: 1rem;
+  text-shadow: 0 0 5px #251b42;
 }
 .card-body {
   height: 100%;
@@ -450,10 +461,12 @@ form.edit-form::after {
 .result-meme {
   text-align: center;
   font-weight: 100;
-  text-shadow: 0 0 5px #0c0814;
+  color: rgb(10, 10, 10);
+  text-shadow: 0 0 5px #a67aff;
 }
 
 #take-quiz {
+  text-align: center;
   display: block;
   padding: 1rem 2rem;
   font-size: 1rem;
