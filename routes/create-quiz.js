@@ -10,12 +10,28 @@ module.exports = (db) => {
 
     // use loop to group the questions and insert into questions_answers table
     while (question[`q${count}-question`]) {
+      console.log( question[`q${count}-answer`]);
+      let answer;
+      switch(question[`q${count}-answer`]) {
+        case 'a':
+          answer =  question[`q${count}-choice1`];
+          break;
+        case 'b':
+          answer =  question[`q${count}-choice2`];
+          break;
+        case 'c':
+          answer =  question[`q${count}-choice3`];
+          break;
+        case 'd':
+          answer =  question[`q${count}-choice4`];
+          break;
+      }
+
       const queryString = `INSERT INTO questions_answers
         (quiz_id, image_url, question, question_number, answer, choice_1, choice_2, choice_3, choice_4)
         VALUES($1, $2, $3, $4 , $5, $6, $7, $8, $9)`;
       const queryParams = [quiz_id, question[`q${count}-image_url`],
-        question[`q${count}-question`], count,
-        question[`q${count}-answer`],
+        question[`q${count}-question`], count, answer,
         question[`q${count}-choice1`], question[`q${count}-choice2`],
         question[`q${count}-choice3`], question[`q${count}-choice4`]];
 
