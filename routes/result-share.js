@@ -18,7 +18,7 @@ const resultShare = (db) => {
     const queryValues = [session, shortURL];
 
     return db.query(queryString, queryValues).then((data) => {
-      const result = data.rows;
+      const result = data.rows[0];
       const templateVars = { session, result };
       res.render("result-share", templateVars);
     });
