@@ -1,5 +1,5 @@
 
-// let questionsAnswered = false;
+let questionsAnswered = false;
 
 $(function() {
   $(".answers-quiz").on('click', function(){
@@ -9,7 +9,7 @@ $(function() {
     $(this).siblings(".answers-quiz").off("click");
     $("#answer").val(choice);
 
-    // questionsAnswered = true;
+    questionsAnswered = true;
 
     if (choice == answer){
 
