@@ -39,6 +39,7 @@ const editQuiz = (db) => {
     ispublic = $3`;
 
     const queryValues = [quiz.title, quiz.cover_image_url, isPublic, quizID];
+
     // Will check to see if category has changed, if it has, it will add query and push value to array
     if (req.body.category) {
       queryString += `, category = $5`;
