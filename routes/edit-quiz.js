@@ -9,7 +9,8 @@ const editQuiz = (db) => {
     const queryString = `SELECT quizzes.id, quizzes.cover_image_url, quizzes.title, quizzes.category, question_number, question, answer, choice_1, choice_2, choice_3, choice_4, questions_answers.id as questionID, image_url, ispublic
     FROM quizzes
     JOIN questions_answers ON quizzes.id = quiz_id
-    WHERE quizzes.id = $1;`;
+    WHERE quizzes.id = $1
+    ORDER BY questions_answers.id;`;
     const editQuizID = req.params.id;
 
     const queryValues = [editQuizID];
@@ -52,21 +53,26 @@ const editQuiz = (db) => {
     return db
       .query(queryString, queryValues)
       .then(() => {
-        for (let i = 0; i < req.body.question.length; i++) {
-          let answer = "";
+        const type = typeof req.body.question;
+        const length = (type === "string") ? 1 : req.body.question.length;
+        for (let i = 0; i < length; i++) {
+          let answer = (type === "string") ? req.body.answer: req.body.answer[i];
           let queryString = `UPDATE questions_answers
-        SET question = $1,
-        image_url = $2,
-        choice_1 = $3,
-        choice_2 = $4
-        `;
-          const queryValues = [
-            req.body.question[i],
-            req.body.image_url[i],
-            req.body.choice_1[i],
-            req.body.choice_2[i],
-            req.body.questionid[i],
+            SET question = $1,
+            image_url = $2,
+            choice_1 = $3,
+            choice_2 = $4
+            `;
+          let queryValues = [];
+          queryValues = [
+            question = (type === "string") ? req.body.question: req.body.question[i],
+            image_url = (type === "string") ? req.body.image_url: req.body.image_url[i],
+            choice_1 = (type === "string") ?  req.body.choice_1: req.body.choice_1[i],
+            choice_2 = (type === "string") ? req.body.choice_2: req.body.choice_2[i],
+            questionid = (type === "string") ? req.body.questionid: req.body.questionid[i]
           ];
+
+          console.log('answer', answer);
 
           // will check if there are more than 2 choices, and add the queries incrementally along with queryValues to array
           // because some questions have less than 2 choices, there is logic that checks if those choices exist in the ejs
@@ -74,11 +80,13 @@ const editQuiz = (db) => {
           // better as in easier to work with
           if (req.body.choice_3[i] !== "x") {
             queryString += `, choice_3 = $6`;
-            queryValues.push(req.body.choice_3[i]);
+            const choice_3 = (type === "string") ? req.body.choice_3: req.body.choice_3[i];
+            queryValues.push(choice_3);
           }
           if (req.body.choice_4[i] !== "x") {
             queryString += `, choice_4 = $7`;
-            queryValues.push(req.body.choice_4[i]);
+            const choice_4 = (type === "string") ? req.body.choice_4: req.body.choice_4[i];
+            queryValues.push(choice_4);
           }
 
           // will check the answer input against the choice,
@@ -86,28 +94,29 @@ const editQuiz = (db) => {
           // we adjust query accordingly and push value to array
           // if no value is passed, we assume user doesn't want to change answer
           // can refactor this into switch case
-          if (req.body.answer[i] === "choice1") {
-            answer = req.body.choice_1[i];
-            queryString += `, answer = $8`;
+          if (answer === "choice1") {
+            answer = queryValues[2];
+            queryString += `, answer = $8 `;
             queryValues.push(answer);
           }
-          if (req.body.answer[i] === "choice2") {
-            answer = req.body.choice_2[i];
-            queryString += `, answer = $8`;
+          if (answer === "choice2") {
+            answer = queryValues[3];
+            queryString += `, answer = $8 `;
             queryValues.push(answer);
           }
-          if (req.body.answer[i] === "choice3") {
-            answer = req.body.choice_3[i];
-            queryString += `, answer = $8`;
+          if (answer === "choice3") {
+            answer = queryValues[5];
+            queryString += `, answer = $8 `;
             queryValues.push(answer);
           }
-          if (req.body.answer[i] === "choice4") {
-            answer = req.body.choice_4[i];
-            queryString += `, answer = $8`;
+          if (answer === "choice4") {
+            answer = queryValues[6];
+            queryString += `, answer = $8 `;
             queryValues.push(answer);
           }
           queryString += `WHERE questions_answers.id = $5;`;
 
+          console.log(queryString, queryValues);
           db.query(queryString, queryValues);
         }
       })
