@@ -30,12 +30,15 @@
     <div class="spacer"></div>
 
     <div class="edit-container">
-      <h2 class="slogan-text">Editing: <%= quizzes[0].title %></h2>
+      <h2 class="slogan-text">
+        Editing:
+        <h3 class="edit-title-container"><%= quizzes[0].title %></h3>
+      </h2>
 
       <img
         src="<%=quizzes[0].cover_image_url%>"
         alt="Cover-image"
-        class="image-edit"
+        class="image-edit-cover"
       />
       <form class="edit-form" action="/edit/<%=quizzes[0].id%>" method="POST">
         <div class="title-container">
@@ -48,8 +51,28 @@
             name="cover_image_url"
           />
           <br />
-
+          <label for="category">Category: </label>
+          <select id="category" name="category">
+            <option value="" selected disabled hidden>
+              <%= quizzes[0].category %>
+            </option>
+            <option value="Math">Math</option>
+            <option value="English">English</option>
+            <option value="Science">Science</option>
+            <option value="History">History</option>
+            <option value="Other">Other</option>
+          </select>
+          <% if (quizzes[0].ispublic == false) {%>
           <input type="checkbox" id="isPublic" name="ispublic" value="True" />
+          <% } else { %>
+          <input
+            type="checkbox"
+            id="isPublic"
+            name="ispublic"
+            value="True"
+            checked
+          />
+          <% } %>
           <label for="isPublic">Viewable by everyone</label>
         </div>
         <!-- counter for questions -->
@@ -60,19 +83,24 @@
           <input
             class="question-input"
             type="text"
-            value="<%= quiz.question %> "
+            value="<%= quiz.question %>"
             name="question"
+          />
+          <img
+            src="<%=quiz.image_url%>"
+            alt="question-image"
+            class="image-edit-question"
           />
           <label for="question">Image URL for Question <%=qCounter%>:</label>
           <input
             class="question-input"
             type="text"
-            value="<%= quiz.image_url %> "
+            value="<%= quiz.image_url %>"
             name="image_url"
           />
           <input
             type="hidden"
-            value="<%= quiz.questionid %> "
+            value="<%= quiz.questionid %>"
             name="questionid"
           />
           <li class="choices-container">
@@ -80,14 +108,14 @@
             <input
               class="choice-input"
               type="text"
-              value="<%= quiz.choice_1 %> "
+              value="<%= quiz.choice_1 %>"
               name="choice_1"
             />
             <label for="choice_2">Choice 2:</label>
             <input
               class="choice-input"
               type="text"
-              value="<%= quiz.choice_2 %> "
+              value="<%= quiz.choice_2 %>"
               name="choice_2"
             />
             <% if (quiz.choice_3) { %>
@@ -95,7 +123,7 @@
             <input
               class="choice-input"
               type="text"
-              value="<%= quiz.choice_3 %> "
+              value="<%= quiz.choice_3 %>"
               name="choice_3"
             />
             <% } %> <% if (quiz.choice_4) { %>
@@ -103,12 +131,14 @@
             <input
               class="choice-input"
               type="text"
-              value="<%= quiz.choice_4 %> "
+              value="<%= quiz.choice_4 %>"
               name="choice_4"
             />
             <% } %>
             <label for="answer">Answer:</label>
+
             <select class="answer-input" name="answer">
+              <option value="x" selected><%= quiz.answer %></option>
               <option value="choice1">Choice 1</option>
               <option value="choice2">Choice 2</option>
               <% if (quiz.choice_3) { %>
