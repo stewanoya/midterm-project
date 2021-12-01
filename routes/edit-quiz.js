@@ -39,7 +39,6 @@ const editQuiz = (db) => {
     ispublic = $3`;
 
     const queryValues = [quiz.title, quiz.cover_image_url, isPublic, quizID];
-    console.log(req.body);
     // Will check to see if category has changed, if it has, it will add query and push value to array
     if (req.body.category) {
       queryString += `, category = $5`;
@@ -83,22 +82,22 @@ const editQuiz = (db) => {
           }
           if (req.body.answer[i] === "choice1") {
             answer = req.body.choice_1[i];
-            queryString += `, answer = $9`;
+            queryString += `, answer = $8`;
             queryValues.push(answer);
           }
           if (req.body.answer[i] === "choice2") {
             answer = req.body.choice_2[i];
-            queryString += `, answer = $9`;
+            queryString += `, answer = $8`;
             queryValues.push(answer);
           }
           if (req.body.answer[i] === "choice3") {
             answer = req.body.choice_3[i];
-            queryString += `, answer = $9`;
+            queryString += `, answer = $8`;
             queryValues.push(answer);
           }
           if (req.body.answer[i] === "choice4") {
             answer = req.body.choice_4[i];
-            queryString += `, answer = $9`;
+            queryString += `, answer = $8`;
             queryValues.push(answer);
           }
           queryString += `WHERE questions_answers.id = $5;`;
