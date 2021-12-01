@@ -2,32 +2,31 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 />
-<nav>
-  <div class="logo-container">
-    <a class="logo-home" href="/"
-      ><h3 class="logo-text">sQuiz Game</h3>
-      <i class="fab fa-octopus-deploy fa-2x logo-icon"></i
-    ></a>
+<nav onmouseleave='LeaveNav()'>
+  <div class='display-mode'>
+    <div class="logo-container">
+      <a class="logo-home" href="/"
+        ><h3 class="logo-text">sQuiz Game</h3>
+        <i class="fab fa-octopus-deploy fa-2x logo-icon"></i>
+      </a>
+    </div>
+
+    <div class="navbar-nav">
+      <a href="/new-quiz">Create sQuiz</a>
+      <a href="/my-quizzes">My sQuizzes</a>
+      <a href="/my-results">Results</a>
+    </div>
+
+
+    <form method="GET" action="/search">
+      <input type="text" placeholder="Search.." name="search" id="search" required />
+      <button type="submit" class="search-button">
+        <i class="fa fa-search search-button"> </i>
+      </button>
+    </form>
   </div>
-
-  <div class="navbar-nav">
-    <a class="home" href="/">Quiz</a>
-    <a href="/new-quiz">Create sQuiz</a>
-    <a href="/my-quizzes">My sQuizzes</a>
-    <a href="/my-results">Results</a>
-  </div>
-
-
-  <form method="GET" action="/search">
-    <input type="text" placeholder="Search.." name="search" id="search" required />
-    <button type="submit" class="search-button">
-      <i class="fa fa-search search-button"> </i>
-    </button>
-  </form>
 
   <div class="user-container">
-
-
     <% if (!session) { %>
     <a class="register btn-secondary" href="/register">Register</a>
     <a class="login btn-secondary" href="/login">Login</a>
@@ -39,12 +38,21 @@
   </div>
 
   <span id="myLinks">
-    <a href="#news">News</a>
-    <a href="#contact">Contact</a>
-    <a href="#about">About</a>
+    <a href="/new-quiz">Create sQuiz</a>
+    <a href="/my-quizzes">My sQuizzes</a>
+    <a href="/my-results">Results</a>
+
+    <% if (!session) { %>
+      <a href="/register">Register</a>
+      <a href="/login">Login</a>
+    <% } else {%>
+      <form method="POST" action="/logout">
+        <a type="submit">Logout</a>
+      </form>
+    <%}%>
   </span>
 
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+  <a href="javascript:void(0);" class="icon" onclick="HamburgerMenu()">
     <i class="fa fa-bars"></i>
   </a>
 </nav>

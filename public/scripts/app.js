@@ -13,11 +13,18 @@ const searchAnimation = () => {
   });
 };
 
-function myFunction() {
-  var x = document.getElementById("myLinks");
-  if (x.style.display === "block") {
-    x.style.display = "none";
+function LeaveNav() {
+  const menu = document.getElementById("myLinks");
+  setTimeout(() => {
+    menu.style.display = "none";
+  }, 500);
+}
+
+function HamburgerMenu() {
+  const menu = document.getElementById("myLinks");
+  if (menu.style.display === "block") {
+    menu.style.display = "none";
   } else {
-    x.style.display = "block";
+    menu.style.display = "block";
   }
 }
