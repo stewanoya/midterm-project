@@ -19,9 +19,9 @@ INSERT INTO quizzes (creator_id, title, short_url, isPublic, category,cover_imag
   VALUES(6, 'Hard Quiz', 'e0v3c0ug', TRUE, 'Chemistry', 'https://res.cloudinary.com/grand-canyon-university/image/fetch/w_750,h_564,c_fill,g_faces,q_auto,f_auto/https://www.gcu.edu/sites/default/files/media/images/Blog/engineering-and-technology/chemistry-materials.jpg');
 
 
-INSERT INTO quizzes (creator_id, title, short_url, isPublic, category,cover_image_url)
-  VALUES(1, 'Another Quiz', 'e0v3c0ug', FALSE, 'Chemistry', 'https://res.cloudinary.com/grand-canyon-university/image/fetch/w_750,h_564,c_fill,g_faces,q_auto,f_auto/https://www.gcu.edu/sites/default/files/media/images/Blog/engineering-and-technology/chemistry-materials.jpg');
+INSERT INTO quizzes (creator_id, title, short_url, isPublic, category, cover_image_url)
+  VALUES(1, 'Another Quiz', '62jls9f9', TRUE, 'Astronomy', 'https://astronomy.com/-/media/Images/News%20and%20Observing/News/2020/09/Outlooknbehqb2r.png?mw=600');
 
 
-INSERT INTO quizzes (creator_id, title, short_url, isPublic, category,cover_image_url)
-  VALUES(1, 'Testing these Quizzes', 'xxd5payq', FALSE, 'Biology', 'https://www.thoughtco.com/thmb/gOEbyq2I6Wwh3CB1KR1_5zCr-9k=/768x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/3-D_DNA-56a09ae45f9b58eba4b20266.jpg');
+INSERT INTO quizzes (creator_id, title, short_url, isPublic, category, cover_image_url)
+  VALUES(1, 'Omg so many test quizzes', '62jlc9f9', FALSE, 'Astronomy', 'https://astronomy.com/-/media/Images/News%20and%20Observing/News/2020/09/Outlooknbehqb2r.png?mw=600');

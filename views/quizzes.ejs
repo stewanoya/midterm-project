@@ -3,7 +3,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script
+      src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+      data-auto-a11y="true"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap"
+      rel="stylesheet"
+    />
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -25,7 +34,7 @@
         <% for (let q = 0; q < quiz.length; q++) { %>
 
           <div class="quiz">
-            <p class="category-quiz"><%=quiz[q].category%> ---- Question <%=quiz[q].question_number%> / <%=quiz[q].total%></p>
+            <p class="category-quiz"><%=quiz[q].category%> - Question <%=quiz[q].question_number%> / <%=quiz[q].total%></p>
 
            <div class="img-div-quiz">
             <img src="<%=quiz[q].image_url%>" width="200" height="200" />
@@ -39,12 +48,27 @@
           </div>
 
         <div class="controls">
-          <a href="/quizzes/<%=quiz[q].short_url%>?questionid=<%=quiz[q].id%>">
-          <button id="next-btn" class="next-btn btn hide">Next</button>
-        </a>
+
+
+         <form action="/quizzes/<%=quiz[q].short_url%>?questionid=<%=quiz[q].id%>" id="form_for_answer" method="POST">
+        <input id="answer" name="answer" type="text" hidden>
+        <input id="last-question" name="last_question" type="text" value="<%=quiz[q].question_number == quiz[q].total%>" hidden>
+        <input id="questionid" name="questionid"  type="text" value="<%= quiz[q].id%>" hidden>
+
+
+
+         <button id= "next_question"type="submit">
+          <%if (quiz[q].question_number == quiz[q].total){%>
+            Finish
+            <%} else {%>
+              Next
+              <%}%>
+        </button>
+
+
 
         <%}%>
-
+      </form>
     </div>
   </div>
   </body>

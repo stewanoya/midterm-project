@@ -8,7 +8,7 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const bcrypt = require("bcryptjs");
-var cookieSession = require("cookie-session");
+let cookieSession = require("cookie-session");
 const bodyParser = require("body-parser");
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -55,6 +55,7 @@ const loginRoutes = require("./routes/login");
 const myQuizzesRoutes = require("./routes/my-quizzes");
 const myResultsRoutes = require("./routes/my-results");
 const deleteQuizRoutes = require("./routes/delete-quiz");
+const editQuizRoutes = require("./routes/edit-quiz");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -75,6 +76,7 @@ app.use("/login", loginRoutes(db));
 app.use("/my-quizzes", myQuizzesRoutes(db));
 app.use("/my-results", myResultsRoutes(db));
 app.use("/delete/", deleteQuizRoutes(db));
+app.use("/edit/", editQuizRoutes(db));
 
 app.get("/", (req, res) => {
   const session = req.session["id"];
@@ -93,6 +95,62 @@ app.get("/", (req, res) => {
     });
 });
 
+
+app.get("/quizzes/:short_url/results", (req, res) => {
+
+  sqlQuery = `SELECT COUNT(*)
+  FROM questions_answers
+  WHERE quiz_id IN (SELECT id FROM quizzes WHERE short_url =$1);`
+
+  db.query(sqlQuery, [req.params.short_url])
+  .then((data) => {
+    console.log("checking data", data);
+
+  const score = req.session.score;
+  const total = data.rows[0].count;
+  const templateVars = {
+    score,
+    session: req.session.id,
+    total
+
+  };
+
+  res.render("quiz-results", templateVars);
+  })
+});
+
+app.post("/quizzes/:short_url", (req, res) => {
+
+  sqlQuery = `SELECT questions_answers.* FROM questions_answers
+  WHERE id = $1
+  ;`;
+
+  db.query(sqlQuery, [req.body.questionid])
+    .then((data) => {
+      const question = data.rows[0];
+      console.log("helloooo", question);
+      const answer = question.answer;
+
+      if (answer == req.body.answer) {
+        req.session.score = req.session.score + 1;
+
+      }
+
+      if (req.body.last_question === "true") {
+
+        res.redirect(`/quizzes/${req.params.short_url}/results`);
+        return;
+
+      }
+      res.redirect(`/quizzes/${req.params.short_url}?questionid=${req.body.questionid}`);
+
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+
+});
+
 app.get("/quizzes/:short_url", (req, res) => {
   let sqlQuery;
   let variables;
@@ -103,14 +161,18 @@ app.get("/quizzes/:short_url", (req, res) => {
       FROM questions_answers
       JOIN quizzes ON quizzes.id = quiz_id
       WHERE short_url = $1) as total
-  FROM questions_answers
-  JOIN quizzes ON quizzes.id = quiz_id
-  WHERE short_url = $1
-  AND questions_answers.id > $2
-  LIMIT 1;`;
+
+      FROM questions_answers
+      JOIN quizzes ON quizzes.id = quiz_id
+      WHERE short_url = $1
+      AND questions_answers.id > $2
+      LIMIT 1;`;
 
     variables = [req.params.short_url, req.query.questionid];
   } else {
+
+    req.session.score = 0;
+
     sqlQuery = `SELECT quizzes.category, quizzes.short_url, quizzes.title, questions_answers.*,
       (SELECT COUNT(questions_answers.quiz_id)
       FROM questions_answers
@@ -139,6 +201,8 @@ app.get("/quizzes/:short_url", (req, res) => {
       res.status(500).json({ error: err.message });
     });
 });
+
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
