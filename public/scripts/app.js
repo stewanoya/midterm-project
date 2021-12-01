@@ -12,3 +12,12 @@ const searchAnimation = () => {
     $(`#search`).css("width", "80%");
   });
 };
+
+function myFunction() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}

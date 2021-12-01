@@ -15,18 +15,18 @@
     <a href="/new-quiz">Create sQuiz</a>
     <a href="/my-quizzes">My sQuizzes</a>
     <a href="/my-results">Results</a>
-    <div class="search-nav">
-
-    </div>
   </div>
 
+
+  <form method="GET" action="/search">
+    <input type="text" placeholder="Search.." name="search" id="search" required />
+    <button type="submit" class="search-button">
+      <i class="fa fa-search search-button"> </i>
+    </button>
+  </form>
+
   <div class="user-container">
-    <form method="GET" action="/search">
-      <input type="text" placeholder="Search.." name="search" id="search" required />
-      <button type="submit" class="search-button">
-        <i class="fa fa-search search-button"> </i>
-      </button>
-    </form>
+
 
     <% if (!session) { %>
     <a class="register btn-secondary" href="/register">Register</a>
@@ -37,4 +37,14 @@
     </form>
     <%}%>
   </div>
+
+  <span id="myLinks">
+    <a href="#news">News</a>
+    <a href="#contact">Contact</a>
+    <a href="#about">About</a>
+  </span>
+
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
 </nav>
