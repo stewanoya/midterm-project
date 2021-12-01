@@ -33,7 +33,7 @@ VALUES (3, 'What is three fifth of 100?', 2, '60', 'https://previews.123rf.com/i
 INSERT INTO questions_answers (quiz_id, question, question_number, answer, image_url, choice_1, choice_2, choice_3, choice_4)
 VALUES (3, 'What is the square of 15?', 3, '225', 'https://previews.123rf.com/images/winyu/winyu1609/winyu160900148/62699053-transparent-question-marks.jpg', '30', '225', '106', '252');
 INSERT INTO questions_answers (quiz_id, question, question_number, answer, image_url, choice_1, choice_2, choice_3, choice_4)
-VALUES (3, 'In a century how many months are there?', 1200, '216', 'https://previews.123rf.com/images/winyu/winyu1609/winyu160900148/62699053-transparent-question-marks.jpg', '12', '120', '1200', '12000');
+VALUES (3, 'In a century how many months are there?', 4, '216', 'https://previews.123rf.com/images/winyu/winyu1609/winyu160900148/62699053-transparent-question-marks.jpg', '12', '120', '1200', '12000');
 
 
 
