@@ -41,12 +41,16 @@
         <div class="title-container">
           <label for="title">Title:</label>
           <input type="text" value="<%= quizzes[0].title %>" name="title" />
-          <label for="title">Image URL:</label>
+          <label for="title">Cover Image URL:</label>
           <input
             type="text"
             value="<%= quizzes[0].cover_image_url %>"
             name="cover_image_url"
           />
+          <br />
+
+          <input type="checkbox" id="isPublic" name="ispublic" value="True" />
+          <label for="isPublic">Viewable by everyone</label>
         </div>
         <!-- counter for questions -->
         <% let qCounter = 1; %> <% for (quiz of quizzes) {%>
@@ -58,6 +62,13 @@
             type="text"
             value="<%= quiz.question %> "
             name="question"
+          />
+          <label for="question">Image URL for Question <%=qCounter%>:</label>
+          <input
+            class="question-input"
+            type="text"
+            value="<%= quiz.image_url %> "
+            name="image_url"
           />
           <input
             type="hidden"
@@ -88,7 +99,7 @@
               name="choice_3"
             />
             <% } %> <% if (quiz.choice_4) { %>
-            <label for="choice_4">Choice 3:</label>
+            <label for="choice_4">Choice 4:</label>
             <input
               class="choice-input"
               type="text"
@@ -97,12 +108,16 @@
             />
             <% } %>
             <label for="answer">Answer:</label>
-            <input
-              class="answer-input"
-              type="text"
-              value="<%= quiz.answer %> "
-              name="answer"
-            />
+            <select class="answer-input" name="answer">
+              <option value="choice1">Choice 1</option>
+              <option value="choice2">Choice 2</option>
+              <% if (quiz.choice_3) { %>
+              <option value="choice3">Choice 3</option>
+              <%}%> <% if (quiz.choice_4) { %>
+              <option value="choice4">Choice 4</option>
+              <% } %>
+            </select>
+
             <% qCounter++; %>
           </li>
         </ul>
