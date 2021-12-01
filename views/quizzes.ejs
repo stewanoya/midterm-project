@@ -39,18 +39,27 @@
           </div>
 
         <div class="controls">
-          <a href="/quizzes/<%=quiz[q].short_url%>?questionid=<%=quiz[q].id%>">
-          <button id="next-btn" class="next-btn btn hide">
-            <%if (quiz[q].question_number == quiz[q].total){%>
-              <p id="submit">Finish</p>
-              <%} else {%>
-                <p id="next-q">Next</p>
-                <%}%>
-          </button>
-        </a>
+
+
+         <form action="/quizzes/<%=quiz[q].short_url%>?questionid=<%=quiz[q].id%>" id="form_for_answer" method="POST">
+        <input id="answer" name="answer" type="text" hidden>
+        <input id="last-question" name="last_question" type="text" value="<%=quiz[q].question_number == quiz[q].total%>" hidden>
+        <input id="questionid" name="questionid"  type="text" value="<%= quiz[q].id%>" hidden>
+
+
+
+         <button id= "next_question"type="submit">
+          <%if (quiz[q].question_number == quiz[q].total){%>
+            Finish
+            <%} else {%>
+              Next
+              <%}%>
+        </button>
+
+
 
         <%}%>
-
+      </form>
     </div>
   </div>
   </body>
