@@ -90,10 +90,12 @@ strong {
 
 button.edit,
 button.delete {
-  padding: 1rem 2.5rem;
-  color: rgb(43, 42, 87);
-  border: 1px solid rgb(34, 147, 252);
-  margin: 0.4rem;
+  border: none;
+  width: 10rem;
+  padding: 0.5rem 1rem;
+  margin: 1rem;
+  background-color: rgb(144, 157, 218);
+  box-shadow: 0 0 3px 0 black;
 }
 
 button.delete {

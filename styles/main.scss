@@ -213,7 +213,7 @@ ul {
 }
 
 .quiz-category {
-  background-color: yellow;
+  background-color: rgb(255, 255, 95);
   margin: 5px;
   padding: 2px 4px;
   border-radius: 10px;
@@ -259,11 +259,26 @@ ul {
   align-items: center;
 }
 
-.image-edit {
+.image-edit-cover {
+  max-width: 60%;
+  height: auto;
+  margin-bottom: 1rem;
+}
+.image-edit-question {
   width: 20rem;
   height: auto;
+  margin: 2rem auto;
 }
-
+.edit-title-container {
+  font-size: 2rem;
+  background-color: rgb(144, 157, 218);
+  padding: 1rem 2rem;
+  margin: 1rem 0;
+  border-radius: 10px;
+}
+#isPublic {
+  margin-left: 12%;
+}
 .questions-container {
   display: flex;
   flex-direction: column;
