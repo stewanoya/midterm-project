@@ -2,7 +2,7 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 />
-<nav onmouseleave="LeaveNav()">
+<nav>
   <div class="display-mode">
     <div class="logo-container">
       <a class="logo-home" href="/"
@@ -37,7 +37,7 @@
     <a class="login btn-secondary" href="/login">Login</a>
     <% } else {%>
     <form method="POST" action="/logout" class="">
-      <button class="logout btn-secondary" type="submit">Logout</button>
+      <button class="btn-secondary" type="submit">Logout</button>
     </form>
     <%}%>
   </div>
@@ -51,7 +51,7 @@
     <a href="/register">Register</a>
     <a href="/login">Login</a>
     <% } else {%>
-    <form method="POST" name="logout" action="/logout">
+    <form class="logout" method="POST" name="logout" action="/logout">
       <a href="javascript: submitform()">Logout</a>
     </form>
     <%}%>
