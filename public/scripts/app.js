@@ -28,3 +28,7 @@ function HamburgerMenu() {
     menu.style.display = "block";
   }
 }
+
+function submitform() {
+  document.logout.submit();
+}

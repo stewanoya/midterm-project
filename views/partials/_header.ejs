@@ -46,8 +46,8 @@
       <a href="/register">Register</a>
       <a href="/login">Login</a>
     <% } else {%>
-      <form method="POST" action="/logout">
-        <button class="btn-primary" type="submit">Logout</button>
+      <form method="POST" name='logout' action="/logout">
+        <a href="javascript: submitform()">Logout</a>
       </form>
     <%}%>
   </span>
