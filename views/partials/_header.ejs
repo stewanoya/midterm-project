@@ -2,8 +2,8 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 />
-<nav onmouseleave='LeaveNav()'>
-  <div class='display-mode'>
+<nav onmouseleave="LeaveNav()">
+  <div class="display-mode">
     <div class="logo-container">
       <a class="logo-home" href="/"
         ><h3 class="logo-text">sQuiz Game</h3>
@@ -17,9 +17,14 @@
       <a href="/my-results">Results</a>
     </div>
 
-
     <form method="GET" action="/search">
-      <input type="text" placeholder="Search.." name="search" id="search" required />
+      <input
+        type="text"
+        placeholder="Search.."
+        name="search"
+        id="search"
+        required
+      />
       <button type="submit" class="search-button">
         <i class="fa fa-search search-button"> </i>
       </button>
@@ -32,7 +37,7 @@
     <a class="login btn-secondary" href="/login">Login</a>
     <% } else {%>
     <form method="POST" action="/logout" class="">
-      <button class="btn-secondary" type="submit">Logout</button>
+      <button class="logout btn-secondary" type="submit">Logout</button>
     </form>
     <%}%>
   </div>
@@ -43,12 +48,12 @@
     <a href="/my-results">Results</a>
 
     <% if (!session) { %>
-      <a href="/register">Register</a>
-      <a href="/login">Login</a>
+    <a href="/register">Register</a>
+    <a href="/login">Login</a>
     <% } else {%>
-      <form method="POST" name='logout' action="/logout">
-        <a href="javascript: submitform()">Logout</a>
-      </form>
+    <form method="POST" name="logout" action="/logout">
+      <a href="javascript: submitform()">Logout</a>
+    </form>
     <%}%>
   </span>
 

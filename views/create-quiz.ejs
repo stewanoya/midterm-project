@@ -16,21 +16,24 @@
       src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
       data-auto-a11y="true"
     ></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="text/javascript" src="/scripts/new-quiz.js"></script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap" rel="stylesheet"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <%- include('partials/_header') %>
 
     <main id="main-create">
       <form action="/new-quiz" method="POST">
-        <div class='quiz-detail'>
+        <div class="quiz-detail">
           <label for="title">Title: </label>
           <input type="text" id="title" name="title" required /><br />
 
@@ -40,16 +43,15 @@
             <option value="English">English</option>
             <option value="Science">Science</option>
             <option value="History">History</option>
-            <option value="Other">Other</option>
-          </select><br/>
+            <option value="Other">Other</option></select
+          ><br />
 
           <label for="image_url">Image URL: </label>
           <input type="url" id="image_url" name="image_url" /><br />
 
           <input type="checkbox" id="isPublic" name="public" value="True" />
-          <label for="isPublic">View by everyone</label><br/>
+          <label for="isPublic">Viewable by everyone</label><br />
         </div>
-
 
         <div id="question-container"></div>
         <button type="submit" class="btn" id="send-q">Done</button>

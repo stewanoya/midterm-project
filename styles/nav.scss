@@ -123,7 +123,6 @@ nav {
     flex-direction: row;
     justify-content: space-between;
   }
-
 }
 
 @media only screen and (max-width: 1024px) {
@@ -148,6 +147,8 @@ nav {
       margin-right: 7rem;
       align-self: center;
     }
-
+  }
+  .logout {
+    width: 100%;
   }
 }
