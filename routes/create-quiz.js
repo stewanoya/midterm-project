@@ -42,13 +42,19 @@ module.exports = (db) => {
   };
 
   router.post("/", (req, res) => {
+    const session = req.session.id;
+
+    if (!session) {
+      res.status(304).redirect("/login");
+    }
+
     const isPublic = req.body.public || false;
     const queryString = `INSERT INTO quizzes
       (creator_id, title, short_url, isPublic, category, cover_image_url)
       VALUES($1, $2, $3, $4, $5, $6) RETURNING *;`;
     // check 2 in user id when login is added
     const queryParams = [
-      2,
+      session,
       req.body.title,
       generateRandomString(),
       isPublic,
@@ -72,6 +78,10 @@ module.exports = (db) => {
 
   router.get("/", (req, res) => {
     const session = req.session.id;
+
+    if (!session) {
+      res.status(304).redirect("/login");
+    }
     const templateVars = { session };
     return res.render("create-quiz", templateVars);
   });
