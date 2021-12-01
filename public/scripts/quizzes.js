@@ -1,7 +1,8 @@
 $(function() {
   $(".answers-quiz").on('click', function(){
-    const choice =  $(this).text()
-    const answer = $(this).siblings(".correct-answer").val()
+    const choice =  $(this).text();
+    $('#answer').val(choice);
+    const answer = $(this).siblings(".correct-answer").val();
 
     $(this).siblings(".answers-quiz").off("click");
 
