@@ -28,10 +28,11 @@ const editQuiz = (db) => {
   router.post("/:id", (req, res) => {
     const quiz = req.body;
     const quizID = req.params.id;
-    let isPublic = `TRUE`;
+    let isPublic = `FALSE`;
     if (!req.body.ispublic) {
-      isPublic = `FALSE`;
+      isPublic = `TRUE`;
     }
+    console.log("HERE IS REQ BODY", req.body);
 
     let queryString = `UPDATE quizzes
     SET title = $1,
@@ -67,20 +68,24 @@ const editQuiz = (db) => {
             req.body.questionid[i],
           ];
 
+          // will check if there are more than 2 choices, and add the queries incrementally along with queryValues to array
+          // because some questions have less than 2 choices, there is logic that checks if those choices exist in the ejs
+          // if they don't the field is hidden and x is returned in order to create a better map of req.body
+          // better as in easier to work with
+          if (req.body.choice_3[i] !== "x") {
+            queryString += `, choice_3 = $6`;
+            queryValues.push(req.body.choice_3[i]);
+          }
+          if (req.body.choice_4[i] !== "x") {
+            queryString += `, choice_4 = $7`;
+            queryValues.push(req.body.choice_4[i]);
+          }
+
           // will check the answer input against the choice,
           //and set the value to the exact same as the matching choice field
           // we adjust query accordingly and push value to array
           // if no value is passed, we assume user doesn't want to change answer
-
-          // will check if there are more than 2 choices, and add the queries incrementally along with queryValues to array
-          if (req.body.choice_3) {
-            queryString += `, choice_3 = $6`;
-            queryValues.push(req.body.choice_3[i]);
-            if (req.body.choice_4) {
-              queryString += `, choice_4 = $7`;
-              queryValues.push(req.body.choice_4[i]);
-            }
-          }
+          // can refactor this into switch case
           if (req.body.answer[i] === "choice1") {
             answer = req.body.choice_1[i];
             queryString += `, answer = $8`;

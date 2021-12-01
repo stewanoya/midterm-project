@@ -102,32 +102,34 @@ app.get("/quizzes/:short_url/results", (req, res) => {
 
   sqlQuery = `SELECT COUNT(*)
   FROM questions_answers
-  WHERE quiz_id IN (SELECT id FROM quizzes WHERE short_url =$1);`
+  WHERE quiz_id IN (SELECT id FROM quizzes WHERE short_url =$1);`;
 
   db.query(sqlQuery, [req.params.short_url])
   .then((data) => {
 
-  const score = req.session.score;
-  const total = data.rows[0].count;
-  const templateVars = {
-    score,
-    session: req.session.id,
-    total
+    const score = req.session.score;
+    const total = data.rows[0].count;
+    const templateVars = {
+      score,
+      session: req.session.id,
+      total,
+    };
 
-  };
+    res.render("quiz-results", templateVars);
+  });
 
-  res.render("quiz-results", templateVars);
-  })
 });
 
 
 
 //quiz taking and incrementing score with correct answer//
 app.post("/quizzes/:short_url", (req, res) => {
-
   sqlQuery = `SELECT questions_answers.* FROM questions_answers
   WHERE id = $1
   ;`;
+
+  sqlQuery2 = `INSERT INTO results (short_url, score, quiz_id, user_id)
+  VALUES ($1, $2, $3, $4)`
 
   db.query(sqlQuery, [req.body.questionid])
     .then((data) => {
@@ -136,22 +138,33 @@ app.post("/quizzes/:short_url", (req, res) => {
 
       if (answer == req.body.answer) {
         req.session.score = req.session.score + 1;
-
       }
         //if on last question redirect to results page //
       if (req.body.last_question === "true") {
 
-        res.redirect(`/quizzes/${req.params.short_url}/results`);
-        return;
+        console.log("testingggg", [req.params.short_url, req.session.score, req.body.questionid, 1])
 
-      } //if not on last question, redirect to next question //
+        db.query(sqlQuery2, [req.params.short_url, req.session.score, req.session.quizid, req.session.id])
+
+        .then(() => {
+          console.log("???sajdkajsd");
+          res.redirect(`/quizzes/${req.params.short_url}/results`);
+          return;
+
+        })
+        .catch((err) => {
+          res.status(500).json({ error: err.message });
+        });
+
+      } else {//if not on last question, redirect to next question //
+
       res.redirect(`/quizzes/${req.params.short_url}?questionid=${req.body.questionid}`);
+      };
 
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });
     });
-
 });
 
 
@@ -161,7 +174,7 @@ app.get("/quizzes/:short_url", (req, res) => {
   let variables;
 
   if (req.query.questionid) {
-    sqlQuery = `SELECT quizzes.category, quizzes.short_url, quizzes.title, questions_answers.*,
+    sqlQuery = `SELECT quizzes.category, quizzes.short_url, quizzes.id, quizzes.title, questions_answers.*,
       (SELECT COUNT(questions_answers.quiz_id)
       FROM questions_answers
       JOIN quizzes ON quizzes.id = quiz_id
@@ -171,14 +184,14 @@ app.get("/quizzes/:short_url", (req, res) => {
       JOIN quizzes ON quizzes.id = quiz_id
       WHERE short_url = $1
       AND questions_answers.id > $2
+      ORDER BY questions_answers.id
       LIMIT 1;`;
 
     variables = [req.params.short_url, req.query.questionid];
   } else {
-
     req.session.score = 0;
 
-    sqlQuery = `SELECT quizzes.category, quizzes.short_url, quizzes.title, questions_answers.*,
+    sqlQuery = `SELECT quizzes.category, quizzes.id, quizzes.short_url, quizzes.title, questions_answers.*,
       (SELECT COUNT(questions_answers.quiz_id)
       FROM questions_answers
       JOIN quizzes ON quizzes.id = quiz_id
@@ -187,6 +200,7 @@ app.get("/quizzes/:short_url", (req, res) => {
       FROM questions_answers
       JOIN quizzes ON quizzes.id = quiz_id
       WHERE short_url = $1
+      ORDER BY questions_answers.id
       LIMIT 1;`;
 
     variables = [req.params.short_url];
@@ -195,6 +209,9 @@ app.get("/quizzes/:short_url", (req, res) => {
   db.query(sqlQuery, variables)
     .then((data) => {
       const quiz = data.rows;
+
+      console.log("finding data.rows", data.rows)
+      req.session.quizid = data.rows[0] ? data.rows[0].quiz_id: 0;
       const session = req.session.id;
       const templateVars = {
         quiz,
@@ -211,7 +228,8 @@ app.get("/quizzes/:short_url", (req, res) => {
 //storing results after quiz-taking in my-reselts page //
 
 // app.post("/:quiz_id/results/:user_id", (req, res) => {
-//   req.session = req.body;
+//   const resultsInfo = req.body;
+//   conso
 
 //   sqlQuery = (`INSERT INTO results (score, short_url, user_id) VALUES ($1, $2) RETURNING *;
 //   `, [req.params.short_url, req.params.userid])

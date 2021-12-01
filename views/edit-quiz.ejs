@@ -42,38 +42,50 @@
       />
       <form class="edit-form" action="/edit/<%=quizzes[0].id%>" method="POST">
         <div class="title-container">
-          <label for="title">Title:</label>
-          <input type="text" value="<%= quizzes[0].title %>" name="title" />
-          <label for="title">Cover Image URL:</label>
-          <input
-            type="text"
-            value="<%= quizzes[0].cover_image_url %>"
-            name="cover_image_url"
-          />
-          <br />
-          <label for="category">Category: </label>
-          <select id="category" name="category">
-            <option value="" selected disabled hidden>
-              <%= quizzes[0].category %>
-            </option>
-            <option value="Math">Math</option>
-            <option value="English">English</option>
-            <option value="Science">Science</option>
-            <option value="History">History</option>
-            <option value="Other">Other</option>
-          </select>
-          <% if (quizzes[0].ispublic == false) {%>
-          <input type="checkbox" id="isPublic" name="ispublic" value="True" />
-          <% } else { %>
-          <input
-            type="checkbox"
-            id="isPublic"
-            name="ispublic"
-            value="True"
-            checked
-          />
-          <% } %>
-          <label for="isPublic">Viewable by everyone</label>
+          <div class="edit-option-container">
+            <label for="title">Title:</label>
+            <input type="text" value="<%= quizzes[0].title %>" name="title" />
+          </div>
+          <div class="edit-option-container">
+            <label for="title">Cover Image URL:</label>
+            <input
+              type="text"
+              value="<%= quizzes[0].cover_image_url %>"
+              name="cover_image_url"
+            />
+          </div>
+          <div class="edit-option-container">
+            <label for="category">Category: </label>
+            <select id="category" name="category">
+              <option value="" selected disabled hidden>
+                <%= quizzes[0].category %>
+              </option>
+              <option value="Math">Math</option>
+              <option value="English">English</option>
+              <option value="Science">Science</option>
+              <option value="History">History</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="edit-option-container">
+            <% if (quizzes[0].ispublic == true) {%>
+            <input
+              type="checkbox"
+              id="isPublic"
+              name="ispublic"
+              value="false"
+            />
+            <% } else { %>
+            <input
+              type="checkbox"
+              id="isPublic"
+              name="ispublic"
+              value="false"
+              checked
+            />
+            <% } %>
+            <label for="isPublic">Private</label>
+          </div>
         </div>
         <!-- counter for questions -->
         <% let qCounter = 1; %> <% for (quiz of quizzes) {%>
@@ -110,6 +122,7 @@
               type="text"
               value="<%= quiz.choice_1 %>"
               name="choice_1"
+              required
             />
             <label for="choice_2">Choice 2:</label>
             <input
@@ -117,6 +130,7 @@
               type="text"
               value="<%= quiz.choice_2 %>"
               name="choice_2"
+              required
             />
             <% if (quiz.choice_3) { %>
             <label for="choice_3">Choice 3:</label>
@@ -125,6 +139,14 @@
               type="text"
               value="<%= quiz.choice_3 %>"
               name="choice_3"
+              required
+            />
+            <% } else { %>
+            <input
+              class="choice-input"
+              type="hidden"
+              value="x"
+              name="choice_3"
             />
             <% } %> <% if (quiz.choice_4) { %>
             <label for="choice_4">Choice 4:</label>
@@ -132,6 +154,14 @@
               class="choice-input"
               type="text"
               value="<%= quiz.choice_4 %>"
+              name="choice_4"
+              required
+            />
+            <% } else { %>
+            <input
+              class="choice-input"
+              type="hidden"
+              value="x"
               name="choice_4"
             />
             <% } %>
