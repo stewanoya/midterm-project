@@ -395,6 +395,12 @@ form.edit-form::after {
   justify-content: flex-start;
 }
 
+.quiz-details {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
 .card-image {
   height: 15rem;
   aspect-ratio: 1;
@@ -448,6 +454,7 @@ form.edit-form::after {
 }
 
 #take-quiz {
+  display: block;
   padding: 1rem 2rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
