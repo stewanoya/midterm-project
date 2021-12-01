@@ -1,7 +1,6 @@
-
 #main-create {
   width: 90%;
-  margin-top:  100px;
+  margin-top: 100px;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -17,9 +16,16 @@
 
     flex-grow: 2;
     max-width: 90rem;
-    margin: .5rem;
-    background-color: rgba(231, 231, 231, 0.644);
-    border-radius: 5px;
+    margin: 0.5rem;
+    background-image: url("http://www.transparenttextures.com/patterns/cartographer.png");
+    border-radius: 10px;
+    box-shadow: 0 0 5px 0 black;
+  }
+
+  label {
+    color: white;
+    font-size: 1.2rem;
+    text-shadow: 0 0 4px black;
   }
 }
 
@@ -32,13 +38,14 @@
 
     flex-grow: 2;
     max-width: 90rem;
-    margin: .5rem;
-    background-color: rgba(231, 231, 231, 0.644);
-    border-radius: 5px;
+    margin: 0.5rem;
 
     display: flex;
     align-items: flex-start;
     justify-content: space-evenly;
+    background-image: url("http://www.transparenttextures.com/patterns/cartographer.png");
+    border-radius: 10px;
+    box-shadow: 0 0 5px 0 black;
   }
 
   .info {
