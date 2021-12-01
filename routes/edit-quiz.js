@@ -28,9 +28,9 @@ const editQuiz = (db) => {
   router.post("/:id", (req, res) => {
     const quiz = req.body;
     const quizID = req.params.id;
-    let isPublic = `TRUE`;
+    let isPublic = `FALSE`;
     if (!req.body.ispublic) {
-      isPublic = `FALSE`;
+      isPublic = `TRUE`;
     }
 
     let queryString = `UPDATE quizzes
