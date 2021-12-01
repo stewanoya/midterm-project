@@ -45,19 +45,21 @@ const editQuiz = (db) => {
           let queryString = `UPDATE questions_answers
         SET question = $1,
         choice_1 = $2,
-        choice_2 = $3`;
+        choice_2 = $3,
+        answer = $4`;
 
           if (req.body.choice_3) {
-            queryString += `, choice_3 = $5`;
+            queryString += `, choice_3 = $6`;
             if (req.body.choice_4) {
-              queryString += `, choice_4 = $6`;
+              queryString += `, choice_4 = $7`;
             }
           }
-          queryString += `WHERE questions_answers.id = $4`;
+          queryString += `WHERE questions_answers.id = $5`;
           const queryValues = [
             req.body.question[i],
             req.body.choice_1[i],
             req.body.choice_2[i],
+            req.body.answer[i],
             req.body.questionid[i],
             req.body.choice_3[i],
             req.body.choice_4[i],

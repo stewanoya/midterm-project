@@ -20,8 +20,8 @@ INSERT INTO quizzes (creator_id, title, short_url, isPublic, category,cover_imag
 
 
 INSERT INTO quizzes (creator_id, title, short_url, isPublic, category, cover_image_url)
-  VALUES(1, 'Another Quiz', '62jll9f9', TRUE, 'Astronomy', 'https://astronomy.com/-/media/Images/News%20and%20Observing/News/2020/09/Outlooknbehqb2r.png?mw=600');
+  VALUES(1, 'Another Quiz', '62jls9f9', TRUE, 'Astronomy', 'https://astronomy.com/-/media/Images/News%20and%20Observing/News/2020/09/Outlooknbehqb2r.png?mw=600');
 
 
 INSERT INTO quizzes (creator_id, title, short_url, isPublic, category, cover_image_url)
-  VALUES(1, 'Omg so many test quizzes', '62jll9f9', FALSE, 'Astronomy', 'https://astronomy.com/-/media/Images/News%20and%20Observing/News/2020/09/Outlooknbehqb2r.png?mw=600');
+  VALUES(1, 'Omg so many test quizzes', '62jlc9f9', FALSE, 'Astronomy', 'https://astronomy.com/-/media/Images/News%20and%20Observing/News/2020/09/Outlooknbehqb2r.png?mw=600');
