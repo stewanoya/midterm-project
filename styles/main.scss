@@ -122,7 +122,12 @@ p {
 }
 
 .icons-container {
-  justify-content: space-evenly;
+  max-width: 90rem;
+  margin: 0 auto;
+  justify-content: space-between;
+  box-shadow: 1px 1px 5px 1px black;
+  padding-bottom: 1.5rem;
+  border-radius: 10px;
 }
 
 .fa-10x {
@@ -336,4 +341,13 @@ form.edit-form::after {
 
 .title-container {
   z-index: 15;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.edit-option-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
