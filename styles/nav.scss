@@ -107,6 +107,14 @@ nav {
 
   #myLinks {
     display: none;
+    width: 100%;
+
+    form {
+      margin: 0;
+      a {
+        width: 100%;
+      }
+    }
   }
 
   a.icon {
