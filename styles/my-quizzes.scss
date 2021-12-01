@@ -36,12 +36,8 @@
   margin-bottom: 1rem;
 }
 
-.my-squizzes-container {
-  margin: 1.2rem;
-  height: 100%;
-  flex-basis: 100%;
-  background-color: rgba(168, 123, 240, 0.397);
-  border-radius: 10px;
+.quiz-container {
+  box-shadow: 0 0 5px 0 rgb(10, 5, 22);
 }
 
 .divider {
