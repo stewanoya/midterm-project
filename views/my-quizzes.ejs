@@ -55,12 +55,10 @@
               Created on <strong><%=date.slice(0, 16)%></strong>
             </p>
             <div class="options-container">
-              <button href="#" class="edit">Edit</button>
-              <form
-                method="POST"
-                action="/delete/<%=quiz.id%>"
-                class="d-inline"
-              >
+              <form method="GET" action="/edit/<%=quiz.id%>">
+                <button class="edit">Edit</button>
+              </form>
+              <form method="POST" action="/delete/<%=quiz.id%>">
                 <button class="delete">Delete</button>
               </form>
             </div>
@@ -93,6 +91,9 @@
               Created on <strong><%=date.slice(0, 16)%></strong>
             </p>
             <div class="options-container">
+              <form method="GET" action="/edit/<%=quiz.id%>">
+                <button class="edit">Edit</button>
+              </form>
               <form
                 method="POST"
                 action="/delete/<%=quiz.id%>"

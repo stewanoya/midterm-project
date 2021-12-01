@@ -17,3 +17,11 @@ INSERT INTO quizzes (creator_id, title, short_url, isPublic, category,cover_imag
 
 INSERT INTO quizzes (creator_id, title, short_url, isPublic, category,cover_image_url)
   VALUES(6, 'Hard Quiz', 'e0v3c0ug', TRUE, 'Chemistry', 'https://res.cloudinary.com/grand-canyon-university/image/fetch/w_750,h_564,c_fill,g_faces,q_auto,f_auto/https://www.gcu.edu/sites/default/files/media/images/Blog/engineering-and-technology/chemistry-materials.jpg');
+
+
+INSERT INTO quizzes (creator_id, title, short_url, isPublic, category, cover_image_url)
+  VALUES(1, 'Another Quiz', '62jls9f9', TRUE, 'Astronomy', 'https://astronomy.com/-/media/Images/News%20and%20Observing/News/2020/09/Outlooknbehqb2r.png?mw=600');
+
+
+INSERT INTO quizzes (creator_id, title, short_url, isPublic, category, cover_image_url)
+  VALUES(1, 'Omg so many test quizzes', '62jlc9f9', FALSE, 'Astronomy', 'https://astronomy.com/-/media/Images/News%20and%20Observing/News/2020/09/Outlooknbehqb2r.png?mw=600');
