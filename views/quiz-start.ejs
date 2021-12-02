@@ -11,7 +11,32 @@
 
     <!-- utility div to provide spacing for fixed header -->
     <div class="spacer"></div>
-
+    <div class="flex-container">
+      <h1 class="slogan">sQuiz Time!</h1>
+      <section class="quiz-start-card">
+        <div class="quiz-start-header">
+          <div
+          class="card-image"
+          style="
+            background-image: url('<%=quiz.cover_image_url%>');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+          "
+        ></div>
+        <h2 class="slogan-text"><%=quiz.title%></h2>
+        </div>
+        <div class="quiz-start-body">
+    <p class="created-by">Created By: <span class="spacer"></span><%=quiz.name%></p>
+          <p class="quiz-start-category">Category: <span class="spacer"></span><%=quiz.category%></p>
+          <p class="total-questions">Number of Questions: <span class="spacer"></span><%=quiz.count%></p>
+        </div>
+        <div class="quiz-start-footer">
+            <p class="result-meme">Ready to get sQuizzy?</p>
+            <a href="" class="btn-secondary">Let the Game Begin!</a>
+        </div>
+      </section>
+    </div>
     </div>
   </body>
 </html>
