@@ -27,9 +27,14 @@
            <p class= "question-quiz"><%=quiz[q].question%></p>
            <p class="answers-quiz"><%=quiz[q].choice_1%></p>
            <p class="answers-quiz"><%=quiz[q].choice_2%></p>
-           <p class="answers-quiz"><%=quiz[q].choice_3%></p>
-           <p class="answers-quiz"><%=quiz[q].choice_4%></p>
 
+           <% if(quiz[q].choice_3) { %>
+
+           <p class="answers-quiz"><%=quiz[q].choice_3%></p>
+        <% } %>
+        <% if(quiz[q].choice_4) { %>
+           <p class="answers-quiz"><%=quiz[q].choice_4%></p>
+           <% } %>
 
         <div class="controls">
 
