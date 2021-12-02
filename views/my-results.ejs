@@ -48,16 +48,17 @@
               </div>
             </div>
             <p class="result-share-label">Share your results!</p>
+
             <div class="share-result-link">
               <input
-                type="text"
-                name="result-share"
+                id="copylink" type="text" name="result-share"
                 value="localhost:8080/result/<%=quiz.result_id%>/<%=quiz.short_url%>"
               />
-              <div class="copy-container" onclick="clipboard()">
-                <i class="fas fa-copy"></i>
-              </div>
+              <button class="copy-container" onclick="clipboard()">
+                <i class="fas fa-copy" ></i>
+              </button>
             </div>
+
           </div>
           <%}%>
         </ul>

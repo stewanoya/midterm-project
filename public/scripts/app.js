@@ -31,6 +31,7 @@ const clipboard = function() {
   const clipboardText = document.getElementById("copylink");
 
   clipboardText.select();
+  clipboardText.setSelectionRange(0, 99999);
 
   navigator.clipboard.writeText(clipboardText.value);
 }
