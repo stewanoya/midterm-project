@@ -9,15 +9,22 @@ const myResults = (db) => {
       res.status(304).redirect("/login");
     }
 
-    const queryString = `SELECT name, score, title, cover_image_url, category, finish_at as date_completed, quizzes.short_url
-    FROM users
-    JOIN results ON users.id = user_id
-    JOIN quizzes on quizzes.id = quiz_id
-    WHERE users.id = $1;`;
+  //   `SELECT COUNT(*)
+  // FROM questions_answers
+  // WHERE quiz_id IN (SELECT id FROM quizzes WHERE short_url =$1);`;
+
+    const queryString = `SELECT results.*, quizzes.*, count(questions_answers.id) AS total
+    FROM results
+    JOIN quizzes on quizzes.id = results.quiz_id
+    JOIN questions_answers ON quizzes.id = questions_answers.quiz_id
+    WHERE user_id = $1
+    GROUP BY results.id, quizzes.id;`;
     const queryValues = [session];
 
     return db.query(queryString, queryValues).then((data) => {
       const quizzes = data.rows;
+      console.log("---->", quizzes[0].total)
+      // const total =
       const templateVars = { session, quizzes };
       res.render("my-results", templateVars);
     });
