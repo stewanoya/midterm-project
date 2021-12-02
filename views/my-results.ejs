@@ -51,10 +51,10 @@
 
             <div class="share-result-link">
               <input
-                id="copylink" type="text" name="result-share"
+                id="copylink<%=quiz.result_id%><%=quiz.short_url%>" type="text" name="result-share"
                 value="localhost:8080/result/<%=quiz.result_id%>/<%=quiz.short_url%>"
               />
-              <button class="copy-container" onclick="clipboard()">
+              <button class="copy-container" onclick="clipboard('<%=quiz.result_id%><%=quiz.short_url%>')">
                 <i class="fas fa-copy" ></i>
               </button>
             </div>

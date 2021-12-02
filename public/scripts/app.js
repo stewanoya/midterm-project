@@ -27,8 +27,8 @@ const submitform = function() {
   document.logout.submit();
 }
 
-const clipboard = function() {
-  const clipboardText = document.getElementById("copylink");
+const clipboard = function(id) {
+  const clipboardText = document.getElementById(`copylink${id}`);
 
   clipboardText.select();
   clipboardText.setSelectionRange(0, 99999);
