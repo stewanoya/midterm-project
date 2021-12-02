@@ -1,7 +1,7 @@
 // See: https://sass-lang.com/
 
 @import "_global-var";
-//@import "_main";
+@import "_main";
 
 /* Box sizing rules */
 *,
@@ -71,4 +71,4 @@ select {
   }
 }
 
-//@import "_nav";
+@import "_nav";
