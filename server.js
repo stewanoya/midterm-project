@@ -131,7 +131,7 @@ app.post("/quizzes/:short_url", (req, res) => {
   ;`;
 
   sqlQuery2 = `INSERT INTO results (short_url, score, quiz_id, user_id)
-  VALUES ($1, $2, $3, $4)`
+  VALUES ($1, $2, $3, $4) RETURNING *`
 
   db.query(sqlQuery, [req.body.questionid])
     .then((data) => {
@@ -144,12 +144,12 @@ app.post("/quizzes/:short_url", (req, res) => {
         //if on last question redirect to results page //
       if (req.body.last_question === "true") {
 
+        const user_id = req.session.id || 0;
+        db.query(sqlQuery2, [req.params.short_url, req.session.score, req.session.quizid, user_id])
 
-        db.query(sqlQuery2, [req.params.short_url, req.session.score, req.session.quizid, req.session.id])
-
-        .then(() => {
-          console.log("???sajdkajsd");
-          res.redirect(`/quizzes/${req.params.short_url}/results`);
+        .then((data) => {
+          // console.log("???sajdkajsd", data.rows);
+          res.redirect(`/result/${data.rows[0].id}/${req.params.short_url}`);
           return;
 
         })

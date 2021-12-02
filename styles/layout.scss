@@ -1,5 +1,8 @@
 // See: https://sass-lang.com/
 
+@import "_global-var";
+@import "_main";
+
 /* Box sizing rules */
 *,
 *::before,
@@ -8,16 +11,9 @@
 }
 
 /* Remove default margin */
-body,
-h1,
-h2,
-h3,
-h4,
-p,
-figure,
-blockquote,
-dl,
-dd {
+body, h1, h2, h3, h4,
+p, figure, blockquote,
+dl, dd {
   margin: 0;
 }
 
@@ -75,3 +71,4 @@ select {
   }
 }
 
+@import "_nav";

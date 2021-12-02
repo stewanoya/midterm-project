@@ -13,22 +13,25 @@ const searchAnimation = () => {
   });
 };
 
-function LeaveNav() {
-  const menu = document.getElementById("myLinks");
+const LeaveNav = function() {
   setTimeout(() => {
-    menu.style.display = "none";
+    $( "#myLinks" ).hide('fast');
   }, 500);
 }
 
-function HamburgerMenu() {
-  const menu = document.getElementById("myLinks");
-  if (menu.style.display === "block") {
-    menu.style.display = "none";
-  } else {
-    menu.style.display = "block";
-  }
+const HamburgerMenu = function() {
+  $( "#myLinks" ).toggle('fast');
 }
 
-function submitform() {
+const submitform = function() {
   document.logout.submit();
+}
+
+const clipboard = function(id) {
+  const clipboardText = document.getElementById(`copylink${id}`);
+
+  clipboardText.select();
+  clipboardText.setSelectionRange(0, 99999);
+
+  navigator.clipboard.writeText(clipboardText.value);
 }

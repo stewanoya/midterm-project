@@ -1,4 +1,5 @@
 -- Users table seeds here (Example)
+INSERT INTO users (id, name, email, password) VALUES (0, 'Guest', 'guest@gmail.com', '$2a$10$KdKP9AuelF.3j0UBi5dwUe8c3py8P24THzx2Z5HxlBJgvUNX3lM56' );
 INSERT INTO users (name, email, password) VALUES ('Alice James', 'alice.james@gmail.com', '$2a$10$KdKP9AuelF.3j0UBi5dwUe8c3py8P24THzx2Z5HxlBJgvUNX3lM56' );
 INSERT INTO users (name, email, password) VALUES ('Kira Johnson', 'kira.johnson@gmail.com', '$2a$10$KdKP9AuelF.3j0UBi5dwUe8c3py8P24THzx2Z5HxlBJgvUNX3lM56');
 INSERT INTO users (name, email, password) VALUES ('Frank Frank', 'frank.frank@gmail.com', '$2a$10$KdKP9AuelF.3j0UBi5dwUe8c3py8P24THzx2Z5HxlBJgvUNX3lM56');
