@@ -44,7 +44,7 @@ app.use(
 );
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/users");
+const usersRoutes = require("./routes/api");
 const quizzesRoutes = require("./routes/quizzes");
 const createquizRoutes = require("./routes/create-quiz");
 const widgetsRoutes = require("./routes/widgets");

@@ -8,8 +8,8 @@ module.exports = (db) => {
 
   router.get("/:short_url/results", (req, res) => {
     sqlQuery = `SELECT COUNT(*)
-  FROM questions_answers
-  WHERE quiz_id IN (SELECT id FROM quizzes WHERE short_url =$1);`;
+      FROM questions_answers
+      WHERE quiz_id IN (SELECT id FROM quizzes WHERE short_url =$1);`;
 
     db.query(sqlQuery, [req.params.short_url]).then((data) => {
       const score = req.session.score;
@@ -28,11 +28,10 @@ module.exports = (db) => {
   //quiz taking and incrementing score with correct answer//
   router.post("/:short_url", (req, res) => {
     sqlQuery = `SELECT questions_answers.* FROM questions_answers
-  WHERE id = $1
-  ;`;
+      WHERE id = $1;`;
 
     sqlQuery2 = `INSERT INTO results (short_url, score, quiz_id, user_id)
-  VALUES ($1, $2, $3, $4) RETURNING *`;
+      VALUES ($1, $2, $3, $4) RETURNING *`;
 
     db.query(sqlQuery, [req.body.questionid])
       .then((data) => {
@@ -51,7 +50,6 @@ module.exports = (db) => {
             req.session.quizid,
             user_id,
           ])
-
             .then((data) => {
             // console.log("???sajdkajsd", data.rows);
               res.redirect(`/result/${data.rows[0].id}/${req.params.short_url}`);
@@ -61,11 +59,8 @@ module.exports = (db) => {
               res.status(500).json({ error: err.message });
             });
         } else {
-        //if not on last question, redirect to next question //
-
-          res.redirect(
-            `/quizzes/${req.params.short_url}?questionid=${req.body.questionid}`
-          );
+          //if not on last question, redirect to next question //
+          res.redirect(`/quizzes/${req.params.short_url}?questionid=${req.body.questionid}`);
         }
       })
       .catch((err) => {
@@ -80,34 +75,33 @@ module.exports = (db) => {
 
     if (req.query.questionid) {
       sqlQuery = `SELECT quizzes.category, quizzes.short_url, quizzes.id, quizzes.title, questions_answers.*,
-      (SELECT COUNT(questions_answers.quiz_id)
-      FROM questions_answers
-      JOIN quizzes ON quizzes.id = quiz_id
-      WHERE short_url = $1) as total
+        (SELECT COUNT(questions_answers.quiz_id)
+        FROM questions_answers
+        JOIN quizzes ON quizzes.id = quiz_id
+        WHERE short_url = $1) as total
 
-      FROM questions_answers
-      JOIN quizzes ON quizzes.id = quiz_id
-      WHERE short_url = $1
-      AND questions_answers.id > $2
-      ORDER BY questions_answers.id
-      LIMIT 1;`;
+        FROM questions_answers
+        JOIN quizzes ON quizzes.id = quiz_id
+        WHERE short_url = $1
+        AND questions_answers.id > $2
+        ORDER BY questions_answers.id
+        LIMIT 1;`;
 
       variables = [req.params.short_url, req.query.questionid];
     } else {
-
       req.session.score = 0;
 
       sqlQuery = `SELECT quizzes.category, quizzes.id, quizzes.short_url, quizzes.title, questions_answers.*,
-      (SELECT COUNT(questions_answers.quiz_id)
-      FROM questions_answers
-      JOIN quizzes ON quizzes.id = quiz_id
-      WHERE short_url = $1) as total
+        (SELECT COUNT(questions_answers.quiz_id)
+        FROM questions_answers
+        JOIN quizzes ON quizzes.id = quiz_id
+        WHERE short_url = $1) as total
 
-      FROM questions_answers
-      JOIN quizzes ON quizzes.id = quiz_id
-      WHERE short_url = $1
-      ORDER BY questions_answers.id
-      LIMIT 1;`;
+        FROM questions_answers
+        JOIN quizzes ON quizzes.id = quiz_id
+        WHERE short_url = $1
+        ORDER BY questions_answers.id
+        LIMIT 1;`;
 
       variables = [req.params.short_url];
     }
