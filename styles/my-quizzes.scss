@@ -58,7 +58,9 @@
 .options-container {
   display: flex;
   justify-content: center;
+  align-items: center;
   line-height: 0;
+  flex-direction: column;
 }
 
 .results-container {
@@ -121,4 +123,11 @@ button.delete:hover {
 button.edit:hover {
   background-color: rgb(122, 54, 230);
   cursor: pointer;
+}
+.buttons-container {
+  display: flex;
+}
+
+.result-share-label {
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.774);
 }
