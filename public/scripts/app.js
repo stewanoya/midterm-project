@@ -26,3 +26,11 @@ function HamburgerMenu() {
 function submitform() {
   document.logout.submit();
 }
+
+const clipboard = function() {
+  const clipboardText = document.getElementById("copylink");
+
+  clipboardText.select();
+
+  navigator.clipboard.writeText(clipboardText.value);
+}

@@ -42,6 +42,10 @@
                 <strong> Score: </strong>
                 <span class="spacer"> <%= quiz.score %> / <%= quiz.total %></span>
               </p>
+              <p class="details">
+                <input type="text" value="localhost:8080/my-results/<%= quiz.short_url %>" id="copylink" disabled/>
+                <button onclick="clipboard()">Copy</button>
+              </p>
               <p class="try-again">
                 <a href="/quizzes/<%=quiz.short_url%>" class="btn-primary"
                   >Take sQuiz Again</a

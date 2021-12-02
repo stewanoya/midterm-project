@@ -78,6 +78,17 @@
   margin-bottom: 1.2rem;
   border-radius: 5px;
   overflow: hidden;
+
+  input {
+    background-color: #00000000;
+    font-size: smaller;
+    color: white;
+    border: none;
+  }
+  button {
+    font-size: small;
+    padding: 0% 0.5rem;
+  }
 }
 
 strong {
