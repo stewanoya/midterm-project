@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <%- include('partials/_head') %>
   <head>
     <title>sQuiz Game - Results</title>
@@ -33,24 +32,31 @@
               </div>
             </li>
             <div class="details-container">
-              <%const date = quiz.finish_at.toString()%>
+              <%const date = quiz.date_completed.toString()%>
               <p class="details">
                 <strong> Completed on:</strong>
                 <span class="spacer"> <%=date.slice(0, 16)%></span>
               </p>
               <p class="details">
                 <strong> Score: </strong>
-                <span class="spacer"> <%= quiz.score %> / <%= quiz.total %></span>
+                <span class="spacer"> <%= quiz.score %></span>
               </p>
-              <p class="details">
-                <input type="text" value="localhost:8080/my-results/<%= quiz.short_url %>" id="copylink" disabled/>
-                <button onclick="clipboard()">Copy</button>
-              </p>
-              <p class="try-again">
+              <div class="try-again">
                 <a href="/quizzes/<%=quiz.short_url%>" class="btn-primary"
                   >Take sQuiz Again</a
                 >
-              </p>
+              </div>
+            </div>
+            <p class="result-share-label">Share your results!</p>
+            <div class="share-result-link">
+              <input
+                type="text"
+                name="result-share"
+                value="localhost:8080/result/<%=quiz.result_id%>/<%=quiz.short_url%>"
+              />
+              <div class="copy-container" onclick="clipboard()">
+                <i class="fas fa-copy"></i>
+              </div>
             </div>
           </div>
           <%}%>
