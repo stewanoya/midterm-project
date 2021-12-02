@@ -15,14 +15,18 @@
     <%- include('partials/_header') %>
     <div class="spacer"></div>
     <div class="flex-container">
-      <section class="results-container">
-        <ul class="quiz-grid">
+      <section class="results-container-for-question">
 
 
     <h class="slogan" >Quiz Results</h2>
-    <p style="text-align: center;">You answered <%=score %> out of <%=total%> correctly!</p>
-
-
+    <p class="score-display">You answered <%=score %> out of <%=total%> correctly!</p>
+    <a href="/my-results">
+    <button id= "next_question"type="submit">
+      Go to my Results
+      </button>
+    </a>
+  </section>
+</div>
   </body>
 </html>
 
