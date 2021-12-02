@@ -54,7 +54,7 @@
         <ul class="private-grid">
           <% for (quiz of quizzes) { %> <% if (quiz.ispublic != true) { %>
           <div class="details-container">
-            <a href="/quizzes/<%=quiz.short_url%>" method="POST">
+            <a href="/quizzes/<%=quiz.short_url%>" method="GET">
               <li
                 class="quiz-card"
                 style="
