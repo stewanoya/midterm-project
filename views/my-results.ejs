@@ -39,7 +39,9 @@
               </p>
               <p class="details">
                 <strong> Score: </strong>
-                <span class="spacer"> <%= quiz.score %> / <%= quiz.total %></span>
+                <span class="spacer">
+                  <%= quiz.score %> / <%= quiz.total %></span
+                >
               </p>
               <div class="try-again">
                 <a href="/quizzes/<%=quiz.short_url%>" class="btn-primary"
@@ -51,14 +53,18 @@
 
             <div class="share-result-link">
               <input
-                id="copylink<%=quiz.result_id%><%=quiz.short_url%>" type="text" name="result-share"
+                id="copylink<%=quiz.result_id%><%=quiz.short_url%>"
+                type="text"
+                name="result-share"
                 value="localhost:8080/result/<%=quiz.result_id%>/<%=quiz.short_url%>"
               />
-              <button class="copy-container" onclick="clipboard('<%=quiz.result_id%><%=quiz.short_url%>')">
-                <i class="fas fa-copy" ></i>
+              <button
+                class="copy-container"
+                onclick="clipboard('<%=quiz.result_id%><%=quiz.short_url%>')"
+              >
+                <i class="fas fa-copy"></i>
               </button>
             </div>
-
           </div>
           <%}%>
         </ul>
