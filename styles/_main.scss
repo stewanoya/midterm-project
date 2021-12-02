@@ -63,6 +63,25 @@ p {
   background-color: rgb(127, 143, 212);
 }
 
+.btn-secondary {
+  font-size: 0.9rem;
+  background-color: #dadada;
+  padding: 0.5rem 1.5rem;
+  margin: 0rem 1rem;
+  border-radius: 5px;
+  color: $main-btn-color;
+  font-weight: bold;
+  border: 2px solid $main-btn-color;
+  transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+  background-color: $main-btn-color;
+  color: white;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
 .flex-container {
   display: flex;
   justify-content: center;
