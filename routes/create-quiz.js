@@ -5,8 +5,7 @@ const generateRandomString = require("../helpers/generateRandomString.js");
 module.exports = (db) => {
   const insertQuestion = function (question, quiz_id) {
     let count = 1;
-
-    console.log(question);
+    const img_url = question[`q${count}-image_url`] || 'https://source.unsplash.com/random/400×400/?studying';
 
     // use loop to group the questions and insert into questions_answers table
     while (question[`q${count}-question`]) {
@@ -32,7 +31,7 @@ module.exports = (db) => {
         VALUES($1, $2, $3, $4 , $5, $6, $7, $8, $9)`;
       const queryParams = [
         quiz_id,
-        question[`q${count}-image_url`],
+        img_url,
         question[`q${count}-question`],
         count,
         answer,
@@ -56,6 +55,7 @@ module.exports = (db) => {
     }
 
     const isPublic = req.body.public || true;
+    const img_url = req.body.image_url || 'https://source.unsplash.com/random/400×400/?studying';
     const queryString = `INSERT INTO quizzes
       (creator_id, title, short_url, isPublic, category, cover_image_url)
       VALUES($1, $2, $3, $4, $5, $6) RETURNING *;`;
@@ -66,7 +66,7 @@ module.exports = (db) => {
       generateRandomString(),
       isPublic,
       req.body.category,
-      req.body.image_url,
+      img_url
     ];
 
     console.log(queryString, queryParams);
