@@ -7,7 +7,7 @@ const resultShare = (db) => {
     const shortURL = req.params.shortURL;
     const resultID = req.params.resultID;
 
-/*
+    /*
     const queryString = `SELECT results.id, name, score, title, cover_image_url, category, finish_at, quizzes.short_url, COUNT(questions_answers.id) as count
       FROM users
       JOIN results ON users.id = user_id

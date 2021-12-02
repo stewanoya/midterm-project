@@ -20,10 +20,10 @@ const myResults = (db) => {
 
     return db.query(queryString, queryValues).then((data) => {
       const quizzes = data.rows;
-      console.log("---->", data.rows)
+      console.log("---->", data.rows);
       // const total =
       const templateVars = { session: user_id, quizzes };
- /*    const queryString = `SELECT results.id as result_id, users.id, name, score, title, cover_image_url, category, finish_at as date_completed, quizzes.short_url, COUNT(questions_answers.id) as count
+      /*    const queryString = `SELECT results.id as result_id, users.id, name, score, title, cover_image_url, category, finish_at as date_completed, quizzes.short_url, COUNT(questions_answers.id) as count
     FROM users
     JOIN results ON users.id = user_id
     JOIN quizzes on quizzes.id = quiz_id
