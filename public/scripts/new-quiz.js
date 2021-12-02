@@ -5,7 +5,7 @@ const loadQuestions = function(questionNum) {
 
 const createQuestionElement = function(num) {
   let $questions = `
-    <article class="q${num}-box">
+    <article class="q${num}-box" id='q${num}'>
       <div class='info'>
         <label for="q${num}-question">Question ${num}: </label>
         <input type="text" id="q${num}-question" name="q${num}-question" required>
@@ -49,5 +49,14 @@ $(document).ready(function() {
     loadQuestions(questionNum);
     questionNum++;
     //console.log('heelo from new quiz');
+  });
+
+  $("#Delete-one").submit(function(event) {
+    event.preventDefault();
+    if (questionNum > 2) {
+      const deleteQ = document.getElementById(`q${questionNum-1}`);
+      deleteQ.remove();
+      questionNum--;
+    }
   });
 });

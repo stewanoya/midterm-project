@@ -38,11 +38,20 @@
           <div id="question-container"></div>
           <button type="submit" class="btn-primary" id="send-q">Done</button>
         </form>
-        <form action="javascript:void(0);" id="Add-more" method="POST">
-          <button type="submit" class="btn-secondary">
-            Add Another Question
-          </button>
-        </form>
+
+        <div class="add-delete">
+          <form action="javascript:void(0);" id="Add-more" method="POST">
+            <button type="submit" class="btn-secondary">
+              Add Another Question
+            </button>
+          </form>
+          <form action="javascript:void(0);" id="Delete-one" method="POST">
+            <button type="submit" class="btn-secondary">
+              Delete Last Question
+            </button>
+          </form>
+        </div>
+
       </main>
     </div>
     <%- include('partials/_footer') %>
