@@ -446,6 +446,11 @@ form.edit-form::after {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  background: linear-gradient(
+    90deg,
+    rgba(163, 208, 219, 0) 0%,
+    rgba(223, 223, 223, 0.795) 100%
+  );
 }
 
 .quiz-details {
