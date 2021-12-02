@@ -55,7 +55,7 @@ module.exports = (db) => {
       res.status(304).redirect("/login");
     }
 
-    const isPublic = req.body.public || false;
+    const isPublic = req.body.public || true;
     const queryString = `INSERT INTO quizzes
       (creator_id, title, short_url, isPublic, category, cover_image_url)
       VALUES($1, $2, $3, $4, $5, $6) RETURNING *;`;
