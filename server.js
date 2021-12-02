@@ -57,6 +57,7 @@ const myResultsRoutes = require("./routes/my-results");
 const deleteQuizRoutes = require("./routes/delete-quiz");
 const editQuizRoutes = require("./routes/edit-quiz");
 const resultShareRoutes = require("./routes/result-share");
+const quizStartRoutes = require("./routes/quiz-start");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -79,6 +80,7 @@ app.use("/my-results", myResultsRoutes(db));
 app.use("/delete", deleteQuizRoutes(db));
 app.use("/edit", editQuizRoutes(db));
 app.use("/result", resultShareRoutes(db));
+app.use("/quiz-start", quizStartRoutes(db));
 
 app.get("/", (req, res) => {
   const session = req.session["id"];
@@ -97,18 +99,14 @@ app.get("/", (req, res) => {
     });
 });
 
-
 //displaying score //
 
 app.get("/quizzes/:short_url/results", (req, res) => {
-
   sqlQuery = `SELECT COUNT(*)
   FROM questions_answers
   WHERE quiz_id IN (SELECT id FROM quizzes WHERE short_url =$1);`;
 
-  db.query(sqlQuery, [req.params.short_url])
-  .then((data) => {
-
+  db.query(sqlQuery, [req.params.short_url]).then((data) => {
     const score = req.session.score;
     const total = data.rows[0].count;
     const templateVars = {
@@ -119,10 +117,7 @@ app.get("/quizzes/:short_url/results", (req, res) => {
 
     res.render("quiz-results", templateVars);
   });
-
 });
-
-
 
 //quiz taking and incrementing score with correct answer//
 app.post("/quizzes/:short_url", (req, res) => {
@@ -131,7 +126,7 @@ app.post("/quizzes/:short_url", (req, res) => {
   ;`;
 
   sqlQuery2 = `INSERT INTO results (short_url, score, quiz_id, user_id)
-  VALUES ($1, $2, $3, $4) RETURNING *`
+  VALUES ($1, $2, $3, $4) RETURNING *`;
 
   db.query(sqlQuery, [req.body.questionid])
     .then((data) => {
@@ -141,33 +136,36 @@ app.post("/quizzes/:short_url", (req, res) => {
       if (answer == req.body.answer) {
         req.session.score = req.session.score + 1;
       }
-        //if on last question redirect to results page //
+      //if on last question redirect to results page //
       if (req.body.last_question === "true") {
-
         const user_id = req.session.id || 0;
-        db.query(sqlQuery2, [req.params.short_url, req.session.score, req.session.quizid, user_id])
+        db.query(sqlQuery2, [
+          req.params.short_url,
+          req.session.score,
+          req.session.quizid,
+          user_id,
+        ])
 
-        .then((data) => {
-          // console.log("???sajdkajsd", data.rows);
-          res.redirect(`/result/${data.rows[0].id}/${req.params.short_url}`);
-          return;
+          .then((data) => {
+            // console.log("???sajdkajsd", data.rows);
+            res.redirect(`/result/${data.rows[0].id}/${req.params.short_url}`);
+            return;
+          })
+          .catch((err) => {
+            res.status(500).json({ error: err.message });
+          });
+      } else {
+        //if not on last question, redirect to next question //
 
-        })
-        .catch((err) => {
-          res.status(500).json({ error: err.message });
-        });
-
-      } else {//if not on last question, redirect to next question //
-
-      res.redirect(`/quizzes/${req.params.short_url}?questionid=${req.body.questionid}`);
-      };
-
+        res.redirect(
+          `/quizzes/${req.params.short_url}?questionid=${req.body.questionid}`
+        );
+      }
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });
     });
 });
-
 
 // get route for quiz //
 app.get("/quizzes/:short_url", (req, res) => {
@@ -210,7 +208,7 @@ app.get("/quizzes/:short_url", (req, res) => {
   db.query(sqlQuery, variables)
     .then((data) => {
       const quiz = data.rows;
-      req.session.quizid = data.rows[0] ? data.rows[0].quiz_id: 0;
+      req.session.quizid = data.rows[0] ? data.rows[0].quiz_id : 0;
       const session = req.session.id;
       const templateVars = {
         quiz,
@@ -222,7 +220,6 @@ app.get("/quizzes/:short_url", (req, res) => {
       res.status(500).json({ error: err.message });
     });
 });
-
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
