@@ -417,6 +417,11 @@ form.edit-form::after {
   }
 }
 
+.results-container {
+  border-radius: 10px;
+  box-shadow: 0 0 5px 0 black;
+}
+
 .result-card-container {
   background: linear-gradient(
     rgba(163, 173, 219, 0.5) 0%,
@@ -428,6 +433,7 @@ form.edit-form::after {
   box-shadow: 1px 2px 5px 0 rgb(19, 19, 43);
   animation: 1s ease-in-out 0s 1 slideIn;
   margin: 1.2rem;
+  border-radius: 10px;
 }
 
 .result-card {
