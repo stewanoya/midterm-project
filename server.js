@@ -144,8 +144,8 @@ app.post("/quizzes/:short_url", (req, res) => {
         //if on last question redirect to results page //
       if (req.body.last_question === "true") {
 
-
-        db.query(sqlQuery2, [req.params.short_url, req.session.score, req.session.quizid, req.session.id])
+        const user_id = req.session.id || 0;
+        db.query(sqlQuery2, [req.params.short_url, req.session.score, req.session.quizid, user_id])
 
         .then((data) => {
           // console.log("???sajdkajsd", data.rows);
