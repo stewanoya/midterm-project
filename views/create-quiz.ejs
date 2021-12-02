@@ -10,7 +10,8 @@
 
   <body>
     <%- include('partials/_header') %>
-
+    <div class="spacer"></div>
+    <h2 class="slogan">Create sQuiz</h2>
     <main id="main-create">
       <form action="/new-quiz" method="POST">
         <div class="quiz-detail">
@@ -37,7 +38,9 @@
         <button type="submit" class="btn-primary" id="send-q">Done</button>
       </form>
       <form action="javascript:void(0);" id="Add-more" method="POST">
-        <button type="submit" class="btn-secondary">Add More Question</button>
+        <button type="submit" class="btn-secondary">
+          Add Another Question
+        </button>
       </form>
     </main>
   </body>
