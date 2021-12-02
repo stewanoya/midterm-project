@@ -1,11 +1,13 @@
+.center {
+  display: flex;
+  justify-content: center;
+}
+
 #main-create {
   width: 90%;
-  margin-top: 10px;
   display: flex;
-  align-items: flex-start;
   flex-direction: column;
-  float: right;
-
+  align-items: center;
   form {
     width: 90%;
   }
@@ -13,9 +15,7 @@
   .quiz-detail {
     border: solid 1px #333;
     padding: 1rem;
-
-    flex-grow: 2;
-    max-width: 90rem;
+    width: 100%;
     margin: 0.5rem;
     background-image: url("http://www.transparenttextures.com/patterns/cartographer.png");
     border-radius: 10px;
@@ -35,9 +35,7 @@
   article {
     border: solid 1px #333;
     padding: 1rem;
-
-    flex-grow: 2;
-    max-width: 90rem;
+    width: 100%;
     margin: 0.5rem;
 
     display: flex;
