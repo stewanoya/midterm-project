@@ -32,7 +32,7 @@
               </div>
             </li>
             <div class="details-container">
-              <%const date = quiz.date_completed.toString()%>
+              <%const date = quiz.finish_at.toString()%>
               <p class="details">
                 <strong> Completed on:</strong>
                 <span class="spacer"> <%=date.slice(0, 16)%></span>
@@ -40,14 +40,30 @@
               <p class="details">
                 <strong> Score: </strong>
                 <span class="spacer">
-                  <%= quiz.score %> / <%= quiz.count %>
-                </span>
+                  <%= quiz.score %> / <%= quiz.total %></span
+                >
               </p>
-              <p class="try-again">
+              <div class="try-again">
                 <a href="/quizzes/<%=quiz.short_url%>" class="btn-primary"
                   >Take sQuiz Again</a
                 >
-              </p>
+              </div>
+            </div>
+            <p class="result-share-label">Share your results!</p>
+
+            <div class="share-result-link">
+              <input
+                id="copylink<%=quiz.result_id%><%=quiz.short_url%>"
+                type="text"
+                name="result-share"
+                value="localhost:8080/result/<%=quiz.result_id%>/<%=quiz.short_url%>"
+              />
+              <button
+                class="copy-container"
+                onclick="clipboard('<%=quiz.result_id%><%=quiz.short_url%>')"
+              >
+                <i class="fas fa-copy"></i>
+              </button>
             </div>
           </div>
           <%}%>

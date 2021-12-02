@@ -273,6 +273,12 @@ ul {
   justify-content: center;
   align-items: center;
   margin-top: 0.75rem;
+
+  input {
+    border: none;
+    outline: none;
+    border-radius: 4px;
+  }
 }
 //edit page//
 .edit-container {

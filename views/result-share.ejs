@@ -43,7 +43,7 @@
               <h1 class="result-title"><%=result.title%></h1>
               <p class="result-category"><%=result.category%></p>
               <!-- storing date as variable to splice -->
-              <%const date = result.date_completed.toString()%>
+              <%const date = result.finish_at.toString()%>
               <p class="date-taken">
                 Taken on: <span class="spacer"></span><%=date.slice(0, 16)%>
               </p>
