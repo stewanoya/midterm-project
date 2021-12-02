@@ -25,15 +25,27 @@
         ></div>
         <h2 class=""><%=quiz.title%></h2>
         </div>
+
         <div class="quiz-start-body">
     <p class="created-by">Created By: <span class="spacer"></span><%=quiz.name%></p>
           <p class="quiz-start-category">Category: <span class="spacer"></span><%=quiz.category%></p>
           <p class="total-questions">Number of Questions: <span class="spacer"></span><%=quiz.count%></p>
         </div>
+
         <div class="quiz-start-footer">
             <p class="result-meme quiz-start-meme">Ready to get sQuizzy?</p>
             <a href="/quizzes/<%=quiz.short_url%>" class="btn-secondary">Let the Game Begin!</a>
         </div>
+
+        <div class="share-quiz-link">
+          <button
+            class="copy-container"
+            onclick="clipboardPath()"
+          >
+            <i class="fas fa-copy"></i>
+          </button>
+        </div>
+
       </section>
     </div>
     <%- include('partials/_footer') %>

@@ -12,6 +12,12 @@
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.568);
 }
 
+.share-quiz-link {
+  display: flex;
+  align-self: end;
+  margin-right: 5%;
+}
+
 .quiz-start-header {
   display: flex;
   width: 100%;

@@ -35,3 +35,7 @@ const clipboard = function(id) {
 
   navigator.clipboard.writeText(clipboardText.value);
 }
+
+const clipboardPath = function() {
+  navigator.clipboard.writeText(window.location.href);
+}
