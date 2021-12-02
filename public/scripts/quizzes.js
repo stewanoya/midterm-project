@@ -1,5 +1,4 @@
 
-
 $(function() {
   $(".answers-quiz").on('click', function() {
     const choice =  $(this).text();
@@ -9,11 +8,8 @@ $(function() {
     $("#answer").val(choice);
 
     if (choice == answer) {
-
-
       $(this).css({
         backgroundColor: "lime"
-
       });
 
     } else {
