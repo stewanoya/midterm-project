@@ -11,8 +11,7 @@
 
     <!-- utility div to provide spacing for fixed header -->
     <div class="spacer"></div>
-    <div class="flex-container">
-      <h1 class="slogan">sQuiz Time!</h1>
+    <h1 class="slogan">sQuiz Time!</h1>
       <section class="quiz-start-card">
         <div class="quiz-start-header">
           <div
@@ -24,7 +23,7 @@
             background-repeat: no-repeat;
           "
         ></div>
-        <h2 class="slogan-text"><%=quiz.title%></h2>
+        <h2 class=""><%=quiz.title%></h2>
         </div>
         <div class="quiz-start-body">
     <p class="created-by">Created By: <span class="spacer"></span><%=quiz.name%></p>
@@ -32,11 +31,10 @@
           <p class="total-questions">Number of Questions: <span class="spacer"></span><%=quiz.count%></p>
         </div>
         <div class="quiz-start-footer">
-            <p class="result-meme">Ready to get sQuizzy?</p>
-            <a href="" class="btn-secondary">Let the Game Begin!</a>
+            <p class="result-meme quiz-start-meme">Ready to get sQuizzy?</p>
+            <a href="/quizzes/<%=quiz.short_url%>" class="btn-secondary">Let the Game Begin!</a>
         </div>
       </section>
-    </div>
     </div>
   </body>
 </html>
