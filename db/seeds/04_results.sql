@@ -1,23 +1,23 @@
 INSERT INTO results (short_url, score, quiz_id, user_id)
-VALUES ('zjfjzy1v', 95, 1, 1);
+VALUES ('zjfjzy1v', 1, 1, 1);
 
 INSERT INTO results (short_url, score, quiz_id, user_id)
-VALUES ('vfki2ygv', 95, 2, 1);
+VALUES ('vfki2ygv', 2, 2, 1);
 
 INSERT INTO results (short_url, score, quiz_id, user_id)
-VALUES ('1cfguwo1', 75, 3, 1);
+VALUES ('1cfguwo1', 2, 3, 1);
 
 INSERT INTO results (short_url, score, quiz_id, user_id)
-VALUES ('fach2o8r', 25, 4, 1);
+VALUES ('fach2o8r', 1, 4, 1);
 
 INSERT INTO results (short_url, score, quiz_id, user_id)
-VALUES ('vfki2ygv', 40, 2, 2);
+VALUES ('vfki2ygv', 2, 2, 2);
 
 INSERT INTO results (short_url, score, quiz_id, user_id)
-VALUES ('1cfguwo1', 75, 3, 3);
+VALUES ('1cfguwo1', 1, 3, 3);
 
 INSERT INTO results (short_url, score, quiz_id, user_id)
-VALUES ('fach2o8r', 25, 4, 4);
+VALUES ('fach2o8r', 1, 4, 4);
 
 INSERT INTO results (short_url, score, quiz_id, user_id)
-VALUES ('aflmgasw', 80, 5, 5);
+VALUES ('aflmgasw', 2, 5, 5);
