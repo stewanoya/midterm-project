@@ -144,7 +144,6 @@ app.post("/quizzes/:short_url", (req, res) => {
         //if on last question redirect to results page //
       if (req.body.last_question === "true") {
 
-        console.log("testingggg", [req.params.short_url, req.session.score, req.body.questionid, 1])
 
         db.query(sqlQuery2, [req.params.short_url, req.session.score, req.session.quizid, req.session.id])
 
@@ -211,8 +210,6 @@ app.get("/quizzes/:short_url", (req, res) => {
   db.query(sqlQuery, variables)
     .then((data) => {
       const quiz = data.rows;
-
-      console.log("finding data.rows", data.rows)
       req.session.quizid = data.rows[0] ? data.rows[0].quiz_id: 0;
       const session = req.session.id;
       const templateVars = {
@@ -225,19 +222,6 @@ app.get("/quizzes/:short_url", (req, res) => {
       res.status(500).json({ error: err.message });
     });
 });
-
-
-//storing results after quiz-taking in my-reselts page //
-
-// app.post("/:quiz_id/results/:user_id", (req, res) => {
-//   const resultsInfo = req.body;
-//   conso
-
-//   sqlQuery = (`INSERT INTO results (score, short_url, user_id) VALUES ($1, $2) RETURNING *;
-//   `, [req.params.short_url, req.params.userid])
-
-
-// }
 
 
 app.listen(PORT, () => {

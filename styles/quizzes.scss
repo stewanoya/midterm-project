@@ -2,14 +2,32 @@
 width: 70%;
 margin: auto;
 margin-top: 4em;
-border: 7px solid  rgb(150, 188, 228);
+// border: 7px solid  rgb(150, 188, 228);
 
 .category-quiz {
-  background-color: rgb(150, 188, 228);
-  text-align: center;
-  font-size: 30px;
-  padding: 0.5em;
+  // background-color: rgb(150, 188, 228);
+  // text-align: center;
+  // font-size: 30px;
+  // padding: 0.5em;
+  // margin: auto;
+
+  background-color: rgba(54, 54, 162, 0.776);
   margin: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  word-wrap:break-word;
+  background-clip: border-box;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 350;
+  border: 1px solid rgba(54, 54, 162, 0.776);
+  ;
+  border-radius: 0.25rem;
+  padding: 25px;
+  margin-bottom: 1em;
+  font-size: 30px;
+  width: 100%;
+  border-radius: 10px;
 
 
 }
@@ -29,25 +47,55 @@ margin-top: 1em;
 
 img {
   width: 26em;
-  height: 15em
+  height: 15em;
+  margin-bottom: 1em;
+  padding: 0.8em;
+  width: 70%;
+  border-radius: 10px;
+  opacity: 0.8;
+  background-color: white;
+ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+
+
 }
 
 }
 
 .question-quiz {
- font-size: 20px;
- font-weight: bold;
+
+  width: 70%;
+  padding: 10px 10px 20px 10px;
+  border: 1px solid #BFBFBF;
+  background-color: white;
+  box-shadow: 10px 10px 5px #aaaaaa;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif ;
+
+
+color: black;
+//  font-size: 30px;
+//  font-weight: 400;
+
  margin: auto;
+ margin-top: 0.5em;
  margin-bottom: 2em;
- width: 45%
+//  width: 90%;
+//  background-color: #cfe2ff;
+ padding: 20px;
+//  box-shadow: transparent;
+//  border-radius: 15px;
+
 
 }
 
 .answers-quiz {
-  background-color: rgb(93, 154, 220);  margin: auto;
+  background-color: rgba(54, 54, 162, 0.776);  margin: auto;
   margin-bottom: 1em;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 350;
+  font-size: 25px;
   padding: 0.8em;
-  width: 45%;
+  width: 70%;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -58,14 +106,59 @@ img {
 
 }
 
-#next-btn {
-  background-color: rgb(93, 154, 220);
-  display: flex;
+.controls {
+  float: right;
+
+}
+
+#next_question {
+  display: inline-block;
+  background-color: rgba(54, 54, 162, 0.776);
   justify-content: center;
   align-items: baseline;
   font-size: 1.5rem;
-  font-weight: bold;
-  margin: auto;
-  padding: 10px 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  vertical-align: middle;
+  padding: 10px 35px;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  color: #ffffff;
+
 
 }
+
+.hi {
+  border: solid 1px rgba(54, 54, 162, 0.776);
+    padding: 1rem;
+
+    flex-grow: 2;
+    max-width: 50rem;
+    margin: 0.5rem;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 0 black;
+}
+
+
+.quiz-results-page {
+  width: 100%;
+  margin: auto;
+
+  position: absolute;
+}
+
+.quiz-results-page p {
+  width: 100%;
+  margin: auto;
+
+  position: absolute;
+}
+

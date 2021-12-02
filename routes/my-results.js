@@ -3,9 +3,9 @@ const router = express.Router();
 
 const myResults = (db) => {
   router.get("/", (req, res) => {
-    const session = req.session.id;
+    const user_id = req.session.id;
 
-    if (!session) {
+    if (!user_id) {
       res.status(304).redirect("/login");
     }
 
@@ -21,7 +21,9 @@ const myResults = (db) => {
 
     return db.query(queryString, queryValues).then((data) => {
       const quizzes = data.rows;
-      const templateVars = { session, quizzes };
+      console.log("---->", quizzes[0].total);
+      // const total =
+      const templateVars = { session: user_id, quizzes };
       res.render("my-results", templateVars);
     });
   });
