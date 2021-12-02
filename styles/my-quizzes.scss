@@ -1,7 +1,13 @@
+.flex-container {
+  display: flex;
+  justify-content: center;
+}
+
 .private-grid,
 .public-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  gap: 2;
 }
 
 @media (max-width: 850px) {
@@ -37,6 +43,8 @@
 }
 
 .quiz-container {
+  width: 100%;
+  margin: 1.2rem;
   box-shadow: 0 0 5px 0 rgb(10, 5, 22);
 }
 
