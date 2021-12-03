@@ -12,57 +12,45 @@
   <body>
     <%- include('partials/_header') %>
     <div class="spacer"></div>
-    <div class="hi">
+    <main class="quizzes-container">
 
+    <% for (let q = 0; q < quiz.length; q++) { %>
 
-        <% for (let q = 0; q < quiz.length; q++) { %>
+      <div class="quiz">
+        <p class="category-quiz"><%=quiz[q].category%> - Question <%=quiz[q].question_number%> / <%=quiz[q].total%></p>
+        <div class="img-div-quiz">
+          <img src="<%=quiz[q].image_url%>" width="200" height="200" />
+        </div>
 
-          <div class="quiz">
-            <p class="category-quiz"><%=quiz[q].category%> - Question <%=quiz[q].question_number%> / <%=quiz[q].total%></p>
+        <input class="correct-answer" value="<%=quiz[q].answer%>" type=hidden>
+        <p class= "question-quiz"><%=quiz[q].question%></p>
+        <p class="answers-quiz"><%=quiz[q].choice_1%></p>
+        <p class="answers-quiz"><%=quiz[q].choice_2%></p>
 
-           <div class="img-div-quiz">
-            <img src="<%=quiz[q].image_url%>" width="200" height="200" />
-            </div>
-            <input class="correct-answer" value="<%=quiz[q].answer%>" type=hidden>
-           <p class= "question-quiz"><%=quiz[q].question%></p>
-           <p class="answers-quiz"><%=quiz[q].choice_1%></p>
-           <p class="answers-quiz"><%=quiz[q].choice_2%></p>
-
-           <% if(quiz[q].choice_3) { %>
-           <p class="answers-quiz"><%=quiz[q].choice_3%></p>
+        <% if(quiz[q].choice_3) { %>
+          <p class="answers-quiz"><%=quiz[q].choice_3%></p>
         <% } %>
         <% if(quiz[q].choice_4) { %>
-           <p class="answers-quiz"><%=quiz[q].choice_4%></p>
-           <% } %>
+          <p class="answers-quiz"><%=quiz[q].choice_4%></p>
+        <% } %>
 
         <div class="controls">
+          <form action="/quizzes/<%=quiz[q].short_url%>?questionid=<%=quiz[q].id%>" id="form_for_answer" method="POST">
+            <input id="answer" name="answer" type="text" hidden>
+            <input id="last-question" name="last_question" type="text" value="<%=quiz[q].question_number == quiz[q].total%>" hidden>
+            <input id="questionid" name="questionid"  type="text" value="<%= quiz[q].id%>" hidden>
 
+            <button id= "next_question"type="submit">
+              <%- (quiz[q].question_number == quiz[q].total) ? 'Finish' : 'Next' %>
+            </button>
+          </form>
+        </div>
 
-         <form action="/quizzes/<%=quiz[q].short_url%>?questionid=<%=quiz[q].id%>" id="form_for_answer" method="POST">
-        <input id="answer" name="answer" type="text" hidden>
-        <input id="last-question" name="last_question" type="text" value="<%=quiz[q].question_number == quiz[q].total%>" hidden>
-        <input id="questionid" name="questionid"  type="text" value="<%= quiz[q].id%>" hidden>
+      </div>
+    <%}%>
+    </main>
 
-
-
-         <button id= "next_question"type="submit">
-          <%if (quiz[q].question_number == quiz[q].total){%>
-            Finish
-            <%} else {%>
-              Next
-              <%}%>
-        </button>
-
-
-
-        <%}%>
-      </form>
-    </div>
-  </div>
-    </div>
-  </div>
-  <%- include('partials/_footer') %>
-
+    <%- include('partials/_footer') %>
   </body>
 </html>
 
