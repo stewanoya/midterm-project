@@ -35,6 +35,7 @@ module.exports = (db) => {
     getApi(`SELECT * FROM results;`, res);
   });
 
+  // use for quizzes.js to get the question and answers
   router.get("/loadquiz/:short_url", (req, res) => {
     const queryString = `
       SELECT * FROM quizzes
