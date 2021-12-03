@@ -5,6 +5,24 @@ const router  = express.Router();
 module.exports = (db) => {
 
   //displaying score //
+  router.post("/score/:short_url", (req, res) => {
+    console.log("body->", req.body);
+    const queryString = `INSERT INTO results (short_url, score, quiz_id, user_id)
+      VALUES ($1, $2, $3, $4) RETURNING *`;
+    const user_id = req.session.id || 0;
+    const queryValues = [req.params.short_url, req.body.score,
+      req.body.quiz_id, user_id,];
+
+    console.log(queryString, queryValues);
+    db.query(queryString, queryValues)
+      .then((data) => {
+        return res.redirect(`/result/${data.rows[0].id}/${req.params.short_url}`);
+      })
+      .catch((err) => {
+        return res.status(500).json({ error: err.message });
+      });
+
+  });
 
   router.get("/:short_url/results", (req, res) => {
     sqlQuery = `SELECT COUNT(*)

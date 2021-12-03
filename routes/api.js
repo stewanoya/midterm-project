@@ -35,5 +35,13 @@ module.exports = (db) => {
     getApi(`SELECT * FROM results;`, res);
   });
 
+  router.get("/loadquiz/:short_url", (req, res) => {
+    const queryString = `
+      SELECT * FROM quizzes
+      JOIN questions_answers ON quizzes.id = quiz_id
+      WHERE short_url = '${req.params.short_url}';`
+    getApi(queryString, res);
+  });
+
   return router;
 };
