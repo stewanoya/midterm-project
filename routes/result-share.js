@@ -7,7 +7,7 @@ const resultShare = (db) => {
     const shortURL = req.params.shortURL;
     const resultID = req.params.resultID;
 
-/*
+    /*
     const queryString = `SELECT results.id, name, score, title, cover_image_url, category, finish_at, quizzes.short_url, COUNT(questions_answers.id) as count
       FROM users
       JOIN results ON users.id = user_id
@@ -32,7 +32,6 @@ const resultShare = (db) => {
     return db.query(queryString, queryValues).then((data) => {
       const result = data.rows[0];
       const templateVars = { session, result };
-      console.log(templateVars);
       res.render("result-share", templateVars);
     });
   });

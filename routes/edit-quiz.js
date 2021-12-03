@@ -33,7 +33,6 @@ const editQuiz = (db) => {
     if (!req.body.ispublic) {
       isPublic = `TRUE`;
     }
-    console.log("HERE IS REQ BODY", req.body);
 
     let queryString = `UPDATE quizzes
     SET title = $1,
@@ -54,9 +53,9 @@ const editQuiz = (db) => {
       .query(queryString, queryValues)
       .then(() => {
         const type = typeof req.body.question;
-        const length = (type === "string") ? 1 : req.body.question.length;
+        const length = type === "string" ? 1 : req.body.question.length;
         for (let i = 0; i < length; i++) {
-          let answer = (type === "string") ? req.body.answer: req.body.answer[i];
+          let answer = type === "string" ? req.body.answer : req.body.answer[i];
           let queryString = `UPDATE questions_answers
             SET question = $1,
             image_url = $2,
@@ -65,14 +64,17 @@ const editQuiz = (db) => {
             `;
           let queryValues = [];
           queryValues = [
-            question = (type === "string") ? req.body.question: req.body.question[i],
-            image_url = (type === "string") ? req.body.image_url: req.body.image_url[i],
-            choice_1 = (type === "string") ?  req.body.choice_1: req.body.choice_1[i],
-            choice_2 = (type === "string") ? req.body.choice_2: req.body.choice_2[i],
-            questionid = (type === "string") ? req.body.questionid: req.body.questionid[i]
+            (question =
+              type === "string" ? req.body.question : req.body.question[i]),
+            (image_url =
+              type === "string" ? req.body.image_url : req.body.image_url[i]),
+            (choice_1 =
+              type === "string" ? req.body.choice_1 : req.body.choice_1[i]),
+            (choice_2 =
+              type === "string" ? req.body.choice_2 : req.body.choice_2[i]),
+            (questionid =
+              type === "string" ? req.body.questionid : req.body.questionid[i]),
           ];
-
-          console.log('answer', answer);
 
           // will check if there are more than 2 choices, and add the queries incrementally along with queryValues to array
           // because some questions have less than 2 choices, there is logic that checks if those choices exist in the ejs
@@ -80,12 +82,14 @@ const editQuiz = (db) => {
           // better as in easier to work with
           if (req.body.choice_3[i] !== "x") {
             queryString += `, choice_3 = $6`;
-            const choice_3 = (type === "string") ? req.body.choice_3: req.body.choice_3[i];
+            const choice_3 =
+              type === "string" ? req.body.choice_3 : req.body.choice_3[i];
             queryValues.push(choice_3);
           }
           if (req.body.choice_4[i] !== "x") {
             queryString += `, choice_4 = $7`;
-            const choice_4 = (type === "string") ? req.body.choice_4: req.body.choice_4[i];
+            const choice_4 =
+              type === "string" ? req.body.choice_4 : req.body.choice_4[i];
             queryValues.push(choice_4);
           }
 
@@ -116,7 +120,6 @@ const editQuiz = (db) => {
           }
           queryString += `WHERE questions_answers.id = $5;`;
 
-          console.log(queryString, queryValues);
           db.query(queryString, queryValues);
         }
       })

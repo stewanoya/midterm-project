@@ -1,10 +1,22 @@
 # Welcome to sQuiz Game!
 
-## sQuiz Game was created as a midterm project for the Lighthouse Labs Web Development Bootcamp
+### sQuiz Game was created as a midterm project for the Lighthouse Labs Web Development Bootcamp.
+
+###  sQuiz Game is an app that allows users to make quizzes, take quizzes and share results with friends. A user can search for quizzes, as well as make their quizzes public or private. Users can see the results of their recent attempt and share that result with friends.
 
 ====================================
 
 ### Action Shots
+
+!["Home Page"](https://github.com/stewanoya/midterm-project/blob/master/docs/homepage.png)
+!["Home Page"](https://github.com/stewanoya/midterm-project/blob/master/docs/homepage2.png)
+!["My Results Page"](https://github.com/stewanoya/midterm-project/blob/master/docs/my-results.png)
+!["My sQuizzes"](https://github.com/stewanoya/midterm-project/blob/master/docs/my-squizzes.png)
+!["Quiz Results"](https://github.com/stewanoya/midterm-project/blob/master/docs/quiz-results.png)
+!["Quiz Taking"](https://github.com/stewanoya/midterm-project/blob/master/docs/quiz-taking.png)
+![""](https://github.com/stewanoya/midterm-project/blob/master/docs/quiz-results.png)
+!["Search Feature"](https://github.com/stewanoya/midterm-project/blob/master/docs/search.png)
+
 
 ====================================
 
@@ -19,27 +31,23 @@ sQuiz Game uses the following tools:
 
 ### Getting Started
 
-1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
-2. Update the .env file with your correct local information
-
-- username: `labber`
-- password: `labber`
-- database: `midterm`
-
-3. Install dependencies: `npm i`
-4. Fix to binaries for sass: `npm rebuild node-sass`
-5. Reset database: `npm run db:reset`
-
-- Check the db folder to see what gets created and seeded in the SDB
-
-7. Run the server: `npm run local`
-
-- Note: nodemon is used, so you should not have to restart your server
-
-8. Visit `http://localhost:8080/`
+1. Fork this repository and clone
+2. Install dependencies using the npm install command.
+3. Start the web server using the npm run local command. The app will   be served at http://localhost:8080/.
+4. Go to http://localhost:8080/ in your browser.
+5. Login with the account alice.james@gmail.com, p/w of password to get full sense of user abilities on the site.
 
 ### Dependencies
 
 - Node 10.x or above
 - NPM 5.x or above
 - PG 6.x
+- Cookie-session
+- Express
+- EJS
+- Bcyrptjs
+- Chalk
+- Morgan
+- Pg-native
+- Sass
+- dotenv
