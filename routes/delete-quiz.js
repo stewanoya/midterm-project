@@ -5,7 +5,6 @@ const deleteQuiz = (db) => {
   router.post("/:id", (req, res) => {
     const queryString = `DELETE FROM quizzes WHERE id = $1`;
     const deleteQuizID = req.params.id;
-    console.log(deleteQuizID);
     const queryValues = [deleteQuizID];
 
     return db.query(queryString, queryValues).then(() => {

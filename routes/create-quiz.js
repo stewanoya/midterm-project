@@ -7,11 +7,12 @@ module.exports = (db) => {
   // it add each question one by one
   const insertQuestion = function (question, quiz_id) {
     let count = 1;
-    const img_url = question[`q${count}-image_url`] || 'https://source.unsplash.com/random/400×400/?studying';
+    const img_url =
+      question[`q${count}-image_url`] ||
+      "https://source.unsplash.com/random/400×400/?studying";
 
     // use loop to group the questions and insert into questions_answers table
     while (question[`q${count}-question`]) {
-      console.log(question[`q${count}-answer`]);
       let answer;
       switch (question[`q${count}-answer`]) {
         case "a":
@@ -59,7 +60,9 @@ module.exports = (db) => {
 
     // get some default values
     const isPublic = req.body.public || true;
-    const img_url = req.body.image_url || 'https://source.unsplash.com/random/400×400/?studying';
+    const img_url =
+      req.body.image_url ||
+      "https://source.unsplash.com/random/400×400/?studying";
     const queryString = `INSERT INTO quizzes
       (creator_id, title, short_url, isPublic, category, cover_image_url)
       VALUES($1, $2, $3, $4, $5, $6) RETURNING *;`;
@@ -69,7 +72,7 @@ module.exports = (db) => {
       generateRandomString(),
       isPublic,
       req.body.category,
-      img_url
+      img_url,
     ];
 
     // console.log(queryString, queryParams);

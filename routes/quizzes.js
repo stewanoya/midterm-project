@@ -1,9 +1,7 @@
-const express = require('express');
-const router  = express.Router();
-
+const express = require("express");
+const router = express.Router();
 
 module.exports = (db) => {
-
   //displaying score //
 
   router.get("/:short_url/results", (req, res) => {
@@ -22,7 +20,6 @@ module.exports = (db) => {
 
       res.render("quiz-results", templateVars);
     });
-
   });
 
   //quiz taking and incrementing score with correct answer//
@@ -51,8 +48,9 @@ module.exports = (db) => {
             user_id,
           ])
             .then((data) => {
-            // console.log("???sajdkajsd", data.rows);
-              res.redirect(`/result/${data.rows[0].id}/${req.params.short_url}`);
+              res.redirect(
+                `/result/${data.rows[0].id}/${req.params.short_url}`
+              );
               return;
             })
             .catch((err) => {
@@ -60,7 +58,9 @@ module.exports = (db) => {
             });
         } else {
           //if not on last question, redirect to next question //
-          res.redirect(`/quizzes/${req.params.short_url}?questionid=${req.body.questionid}`);
+          res.redirect(
+            `/quizzes/${req.params.short_url}?questionid=${req.body.questionid}`
+          );
         }
       })
       .catch((err) => {
@@ -123,5 +123,4 @@ module.exports = (db) => {
   });
 
   return router;
-
 };

@@ -1,9 +1,9 @@
-const loadQuestions = function(questionNum) {
+const loadQuestions = function (questionNum) {
   const $questions = createQuestionElement(questionNum);
-  $('#question-container').append($questions);
+  $("#question-container").append($questions);
 };
 
-const createQuestionElement = function(num) {
+const createQuestionElement = function (num) {
   let $questions = `
     <article class="q${num}-box" id='q${num}'>
       <div class='info'>
@@ -38,23 +38,22 @@ const createQuestionElement = function(num) {
   return $questions;
 };
 
-$(document).ready(function() {
+$(document).ready(function () {
   let questionNum = 1;
 
   loadQuestions(questionNum);
   questionNum++;
 
-  $("#Add-more").submit(function(event) {
+  $("#Add-more").submit(function (event) {
     event.preventDefault();
     loadQuestions(questionNum);
     questionNum++;
-    //console.log('heelo from new quiz');
   });
 
-  $("#Delete-one").submit(function(event) {
+  $("#Delete-one").submit(function (event) {
     event.preventDefault();
     if (questionNum > 2) {
-      const deleteQ = document.getElementById(`q${questionNum-1}`);
+      const deleteQ = document.getElementById(`q${questionNum - 1}`);
       deleteQ.remove();
       questionNum--;
     }
