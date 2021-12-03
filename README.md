@@ -8,7 +8,7 @@
 
 ### Action Shots
 
-!(https://github.com/stewanoya/midterm-project/blob/master/docs/homepage.png)
+(https://github.com/stewanoya/midterm-project/blob/master/docs/homepage.png)
 !(https://github.com/stewanoya/midterm-project/blob/master/docs/homepage2.png)
 !(https://github.com/stewanoya/midterm-project/blob/master/docs/my-results.png)
 !(https://github.com/stewanoya/midterm-project/blob/master/docs/my-squizzes.png)
