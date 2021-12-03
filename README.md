@@ -8,14 +8,14 @@
 
 ### Action Shots
 
-(https://github.com/stewanoya/midterm-project/blob/master/docs/homepage.png)
-!(https://github.com/stewanoya/midterm-project/blob/master/docs/homepage2.png)
-!(https://github.com/stewanoya/midterm-project/blob/master/docs/my-results.png)
-!(https://github.com/stewanoya/midterm-project/blob/master/docs/my-squizzes.png)
-!(https://github.com/stewanoya/midterm-project/blob/master/docs/quiz-results.png)
-!(https://github.com/stewanoya/midterm-project/blob/master/docs/quiz-taking.png)
-!(https://github.com/stewanoya/midterm-project/blob/master/docs/quiz-results.png)
-!(https://github.com/stewanoya/midterm-project/blob/master/docs/search.png)
+!["Home Page"](https://github.com/stewanoya/midterm-project/blob/master/docs/homepage.png)
+!["Home Page"](https://github.com/stewanoya/midterm-project/blob/master/docs/homepage2.png)
+!["My Results Page"](https://github.com/stewanoya/midterm-project/blob/master/docs/my-results.png)
+!["My sQuizzes"](https://github.com/stewanoya/midterm-project/blob/master/docs/my-squizzes.png)
+!["Quiz Results"](https://github.com/stewanoya/midterm-project/blob/master/docs/quiz-results.png)
+!["Quiz Taking"](https://github.com/stewanoya/midterm-project/blob/master/docs/quiz-taking.png)
+![""](https://github.com/stewanoya/midterm-project/blob/master/docs/quiz-results.png)
+!["Search Feature"](https://github.com/stewanoya/midterm-project/blob/master/docs/search.png)
 
 
 ====================================
