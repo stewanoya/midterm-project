@@ -423,6 +423,8 @@ form.edit-form::after {
 }
 
 .result-card-container {
+  overflow: hidden;
+
   background: linear-gradient(
     rgba(163, 173, 219, 0.5) 0%,
     rgba(163, 219, 208, 0.5) 100%
@@ -444,6 +446,7 @@ form.edit-form::after {
   align-items: center;
   justify-content: flex-start;
   background-image: url("https://www.transparenttextures.com/patterns/light-paper-fibers.png");
+  overflow: hidden;
 }
 
 .card-header {
