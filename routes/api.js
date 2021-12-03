@@ -40,7 +40,8 @@ module.exports = (db) => {
     const queryString = `
       SELECT * FROM quizzes
       JOIN questions_answers ON quizzes.id = quiz_id
-      WHERE short_url = '${req.params.short_url}';`
+      WHERE short_url = '${req.params.short_url}'
+      ORDER BY questions_answers.id;`
     getApi(queryString, res);
   });
 
