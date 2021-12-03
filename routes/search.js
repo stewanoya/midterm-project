@@ -16,8 +16,9 @@ module.exports = (db) => {
     const session = req.session["id"];
     db.query(
       `SELECT * FROM quizzes
-      WHERE LOWER(title) LIKE LOWER($1)
-      OR LOWER(category) LIKE LOWER($1) LIMIT 15;`,
+      WHERE (LOWER(title) LIKE LOWER($1) AND ispublic = 'TRUE')
+      OR (LOWER(category) LIKE LOWER($1) AND ispublic = 'TRUE')
+      LIMIT 15;`,
       [`%${req.query.search}%`]
     )
       .then((data) => {
