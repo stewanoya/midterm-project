@@ -37,7 +37,14 @@
             <a href="/quizzes/<%=quiz.short_url%>" class="btn-secondary">Let the Game Begin!</a>
         </div>
 
-        <div class="share-quiz-link">
+        <div class="share-result-link">
+          <label for="quiz-share">Share this sQuiz!</label>
+          <input
+          id="copylink<%=quiz.short_url%>"
+          type="text"
+          name="quiz-share"
+          value="localhost:8080/quiz-start/<%=quiz.short_url%>"
+        />
           <button
             class="copy-container"
             onclick="clipboardPath()"
