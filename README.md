@@ -1,8 +1,8 @@
 # Welcome to sQuiz Game!
 
-## sQuiz Game was created as a midterm project for the Lighthouse Labs Web Development Bootcamp.
+# sQuiz Game was created as a midterm project for the Lighthouse Labs Web Development Bootcamp.
 
-##  sQuiz Game is an app that allows users to make quizzes, take quizzes and share results with friends. A user can search for quizzes, as well as make their quizzes public or private.
+#  sQuiz Game is an app that allows users to make quizzes, take quizzes and share results with friends. A user can search for quizzes, as well as make their quizzes public or private.
 
 ====================================
 
