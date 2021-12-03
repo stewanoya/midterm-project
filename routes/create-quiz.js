@@ -75,13 +75,10 @@ module.exports = (db) => {
       img_url,
     ];
 
-    // console.log(queryString, queryParams);
-
     // insert to the quiz table for the db
     db.query(queryString, queryParams)
       .then((result) => result.rows[0])
       .then((row) => {
-        console.log(req.body, row.id);
         insertQuestion(req.body, row.id);
       }) //call and send quiz_id for questions_answers table
       .catch((err) => res.status(500).json({ error: err.message }));
