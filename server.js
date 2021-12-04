@@ -1,5 +1,5 @@
 // load .env data into process.env
-require("dotenv").config();
+// require("dotenv").config();
 
 // Web server config
 const PORT = process.env.PORT || 8080;
@@ -99,7 +99,6 @@ app.get("/", (req, res) => {
       return err.message;
     });
 });
-
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
